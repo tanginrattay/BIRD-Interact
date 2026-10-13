@@ -52,6 +52,7 @@ class KnowledgeRequest(BaseModel):
 class AskUserRequest(BaseModel):
     question: str
     task_id: str
+    dialogue_history: List[Dict[str, str]] = []
 
 
 class AskUserResponse(BaseModel):

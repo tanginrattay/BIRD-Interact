@@ -10,6 +10,8 @@ See .env.example for all available settings.
 """
 
 from pathlib import Path
+from typing import Literal
+from pydantic import Field
 from dotenv import load_dotenv
 from pydantic_settings import BaseSettings
 
@@ -39,7 +41,18 @@ class Settings(BaseSettings):
 
     # Models (LiteLlm format: provider/model-name)
     user_sim_model: str = "anthropic/claude-haiku-4-5-20251001"
-    system_agent_model: str = "anthropic/claude-sonnet-4-20250514"
+    system_agent_model: str = "deepseek/deepseek-flash"
+
+    # Official DeepSeek Chat API; independent of simulator/proxy credentials.
+    deepseek_api_base: str = "https://api.deepseek.com"
+    deepseek_api_key: str = Field(default="", repr=False)
+
+    # Independent simulator transport; never reuse the system agent's credentials.
+    user_sim_api_base: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    user_sim_api_key: str = Field(default="", repr=False)
+    user_sim_pipeline: Literal["auto", "single_stage", "two_stage"] = "auto"
+    user_sim_enable_thinking: bool = False
+    user_sim_thinking_budget: int = Field(default=2048, ge=1)
 
     # LiteLlm proxy (optional — set if using a LiteLlm proxy server)
     litellm_api_base: str = ""

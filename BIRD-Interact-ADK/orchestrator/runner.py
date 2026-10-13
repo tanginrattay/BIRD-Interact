@@ -4,8 +4,12 @@ import asyncio
 import argparse
 import json
 import logging
+import os
 import time
 import traceback
+import re
+import uuid
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Awaitable, Dict, List
 
@@ -24,6 +28,7 @@ async def run_parallel_evaluation(
     output_path: str,
     concurrency: int = 5,
     mode: str = "a-interact",
+    run_metadata: dict = None,
 ):
     semaphore = asyncio.Semaphore(concurrency)
     results: List[Dict[str, Any]] = []
@@ -40,6 +45,7 @@ async def run_parallel_evaluation(
             return
         output = {
             "mode": mode,
+            "run_metadata": run_metadata or {},
             "metrics": {
                 "total_tasks": n,
                 "total_reward": total_reward,
@@ -51,8 +57,12 @@ async def run_parallel_evaluation(
             },
             "results": results,
         }
-        with open(output_path, "w") as f:
+        temporary_path = Path(output_path).with_suffix(Path(output_path).suffix + ".tmp")
+        with temporary_path.open("w") as f:
             json.dump(output, f, indent=2, default=str)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(temporary_path, output_path)
 
     async def _run_one(i: int, td: dict):
         nonlocal total_reward, p1_count, p2_count, completed
@@ -74,8 +84,7 @@ async def run_parallel_evaluation(
             if r.get("phase2_passed"):
                 p2_count += 1
             completed += 1
-            if completed % 5 == 0 or completed == len(tasks):
-                await _save()
+            await _save()
 
     await asyncio.gather(*[_run_one(i, td) for i, td in enumerate(tasks)])
     await _save()
@@ -174,7 +183,33 @@ def main():
     parser.add_argument("--concurrency", type=int, default=5)
     args = parser.parse_args()
 
-    output = args.output or f"results/eval_{args.mode.replace('-', '_')}.json"
+    def slug(value):
+        return re.sub(r"[^a-zA-Z0-9._-]+", "-", value).strip("-") or "unknown"
+
+    started = datetime.now(timezone.utc)
+    run_id = started.strftime("%Y%m%dT%H%M%SZ") + "-" + uuid.uuid4().hex[:8]
+    output = args.output or str(
+        Path("results") / f"agent-{slug(settings.system_agent_model)}"
+        / f"simulator-{slug(settings.user_sim_model)}" / run_id
+        / f"eval_{args.mode.replace('-', '_')}.json"
+    )
+    if Path(output).exists():
+        parser.error(f"Refusing to overwrite existing result: {output}; choose a new --output")
+    run_metadata = {
+        "run_id": run_id,
+        "started_at_utc": started.isoformat(),
+        "system_agent_model": settings.system_agent_model if args.mode != "oracle" else None,
+        "user_sim_model": settings.user_sim_model,
+        "user_sim_pipeline": settings.user_sim_pipeline,
+        "user_sim_enable_thinking": settings.user_sim_enable_thinking,
+        "prompt_version": settings.prompt_version,
+        "patience": settings.patience,
+        "dataset": settings.dataset,
+        "data_path": str(Path(args.data).resolve()),
+        "concurrency": args.concurrency,
+        "configuration_source": "runner settings; restart services to ensure the same configuration is active",
+    }
+    logger.info("Result output: %s", output)
 
     if args.mode == "oracle":
         run_single_task = run_oracle_task
@@ -192,6 +227,7 @@ def main():
         output_path=output,
         concurrency=args.concurrency,
         mode=args.mode,
+        run_metadata=run_metadata,
     ))
 
 
