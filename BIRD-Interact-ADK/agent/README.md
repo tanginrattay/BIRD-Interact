@@ -1,5 +1,15 @@
 # 本科科研项目：Agent for Multi-turn Text-to-SQL
 
+> 最新 baseline（2026-10-28）：DeepSeek V4.1 Flash 1017 同时作为 agent 与 simulator，原版 ADK v1，72题全部完成。P1=29/72，P2=13/72，平均 reward=0.336111。完整结果：[72题统一报告](../results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/README.md)。下方2026-10-13的“当前配置”为历史记录。
+
+> 最新多型号筛选：17型号 × v1/v2 × 四问全部完成；见 [百炼simulator筛选与接手说明](SIMULATOR_MATRIX_BAILIAN_2026-10-13.md)。当前主配置仍为Qwen 3.7 Plus / v1，尚未自动切换候选型号。
+
+> 当前配置（2026-10-13）：Lite / Qwen 3.7 Plus / 原版两阶段 **v1**（`PROMPT_VERSION=v1`）。五任务测试完成，但仍有fallback及action-only回复；见 [v1测试报告](../results/reference_protocol_qwen_20261013/five_v1/README.md)。下文v2诊断及单阶段设置为历史记录。
+
+> 2026-10-13 更新：当前代码已恢复原版两阶段 simulator 协议；下文单阶段说明属于历史状态。恢复范围和已完成的五任务验证见 [恢复记录](REFERENCE_PROTOCOL_RESTORE_2026-10-13.md)。
+
+> 最新诊断：已复现v2第一阶段500-token截断、`<think>`被当作action传入第二阶段，详见 [两例原始输出诊断](../results/reference_protocol_qwen_20261013/diagnosis_two_cases/README.md)。
+
 本项目研究在多轮交互中完成 Text-to-SQL 的 agent：面对有歧义的自然语言需求，如何查询数据库信息、向用户澄清、保留已确认的意图，并在有限交互预算内生成正确 SQL。研究重点是 inference-time agent architecture、interaction policy、memory/state、planning、budget-aware tool use 和 ambiguity resolution，不以训练或微调基础模型为主要路线。
 
 当前实验平台是 **BIRD-INTERACT**，主要使用 **BIRD-Interact-Lite 的 a-Interact 模式**。此前已尝试 Kimi K2.6 和 Kimi 3 作为 system agent；具体每次运行使用的模型需要单独保存配置，不能仅凭结果文件推断。

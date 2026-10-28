@@ -1,5 +1,7 @@
 # Qwen 3.7 Plus simulator 接入
 
+> 2026-10-13 更新：当前代码已恢复原版两阶段 simulator 协议；下文单阶段说明属于历史状态。恢复范围和待完成验证见 [恢复记录](REFERENCE_PROTOCOL_RESTORE_2026-10-13.md)。
+
 本次只切换 user simulator。system agent 仍使用原有 Moonshot Kimi 3 配置；原密钥、budget、system agent policy 均不改动。
 
 ## 配置
