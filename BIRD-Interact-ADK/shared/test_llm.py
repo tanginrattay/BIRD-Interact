@@ -9,6 +9,17 @@ from shared.config import settings
 
 
 class ReasoningConfigTests(unittest.TestCase):
+    def test_bailian_agent_uses_bailian_endpoint_and_key(self):
+        with patch.object(settings, "user_sim_api_key", "test-bailian-key"), \
+             patch.object(settings, "user_sim_api_base", "https://bailian.example/v1"), \
+             patch("google.adk.models.lite_llm.LiteLlm") as model:
+            build_adk_model("openai/deepseek-v4.1-flash-1017")
+        kwargs = model.call_args.kwargs
+        self.assertEqual(kwargs["api_base"], "https://bailian.example/v1")
+        self.assertEqual(kwargs["api_key"], "test-bailian-key")
+        self.assertEqual(kwargs["extra_body"], {"enable_thinking": False})
+        self.assertEqual(kwargs["max_tokens"], 4096)
+
     def test_deepseek_transport_is_independent_and_non_thinking(self):
         response = SimpleNamespace(choices=[SimpleNamespace(message=SimpleNamespace(content="ok"))])
         with patch.object(settings, "deepseek_api_key", "test-deepseek-key"), \

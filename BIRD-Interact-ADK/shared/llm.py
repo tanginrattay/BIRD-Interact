@@ -16,6 +16,14 @@ MAX_RETRIES = 5
 
 def _transport_kwargs(model_name: str) -> dict:
     """Keep DeepSeek on its official endpoint with its own credentials."""
+    if model_name == "openai/deepseek-v4.1-flash-1017":
+        if not settings.user_sim_api_key.strip():
+            raise ValueError("USER_SIM_API_KEY is required for Bailian")
+        return {
+            "api_base": settings.user_sim_api_base,
+            "api_key": settings.user_sim_api_key,
+            "extra_body": {"enable_thinking": False},
+        }
     if model_name.startswith("deepseek/"):
         if not settings.deepseek_api_key.strip():
             raise ValueError("DEEPSEEK_API_KEY is empty; fill it in .env before running the agent")
