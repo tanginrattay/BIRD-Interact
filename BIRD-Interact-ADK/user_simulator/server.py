@@ -1,9 +1,8 @@
-"""User Simulator Service (Port 6001), with selectable simulation protocol."""
+"""User Simulator Service (Port 6001). Two-stage function-driven pipeline."""
 
 import asyncio
 import json
 import logging
-import re
 from typing import Any, Dict, List, Tuple
 
 from fastapi import FastAPI, HTTPException
@@ -12,7 +11,6 @@ from shared.config import settings
 from shared.models import AskUserRequest, AskUserResponse, InitTaskRequest, PhaseTransitionRequest
 from user_simulator.prompts import USER_SIMULATOR_ACTION_PARSER, USER_SIMULATOR_RESPONSE_GENERATOR
 from user_simulator.sql_parser import segment_sql
-from user_simulator.bailian import call_bailian, is_qwen_simulator
 
 logger = logging.getLogger(__name__)
 app = FastAPI(title="BIRD-Interact User Simulator", version="1.0.0")
@@ -64,62 +62,45 @@ class TaskSimState:
 _task_states: Dict[str, TaskSimState] = {}
 
 
-def _call_llm(prompt: str, max_tokens: int = 200,
-              reasoning_effort: str = None, system_prompt: str = None) -> str:
-    kwargs = {"model_name": settings.user_sim_model, "temperature": 0,
-              "max_tokens": max_tokens}
-    if reasoning_effort is not None:
-        kwargs["reasoning_effort"] = reasoning_effort
-    messages = []
-    if system_prompt:
-        messages.append({"role": "system", "content": system_prompt})
-    messages.append({"role": "user", "content": prompt})
-    if is_qwen_simulator(settings.user_sim_model):
-        content = call_bailian(messages, max_tokens=max_tokens)
-    else:
+def _call_llm(prompt: str, max_tokens: int = 200) -> str:
+    try:
+        from user_simulator.bailian import call_bailian, is_bailian_simulator
+        if is_bailian_simulator(settings.user_sim_model):
+            return call_bailian([{"role": "user", "content": prompt}], max_tokens=max_tokens)
         from shared.llm import call_llm
-        content = call_llm(messages, **kwargs)
-    if not content or not content.strip():
-        raise ValueError("User simulator model returned an empty response")
-    return content.strip()
+        return call_llm(
+            [{"role": "user", "content": prompt}],
+            model_name=settings.user_sim_model,
+            temperature=0,
+            max_tokens=max_tokens,
+        )
+    except Exception as e:
+        logger.error(f"LLM call failed: {e}")
+        return ""
 
 
-def _extract_output(content: str) -> str:
-    """Accept the prompt's <s> format and plain text from chat models."""
-    match = re.search(r"<s>(.*?)(?:</s>|$)", content, re.DOTALL)
-    if match:
-        return match.group(1).strip()
-    if "</s>" in content:
-        content = content.split("</s>", 1)[0]
-    content = re.sub(r"<think>.*?</think>", "", content, flags=re.DOTALL)
-    content = re.sub(r"^(?:-\s*)?(?:Action|Response):\s*", "", content.strip(), flags=re.I)
-    return content.strip().strip("`").strip()
-
-
-def _parse_action(state: TaskSimState, question: str, dialogue_history: List[Dict[str, str]] = None) -> str:
+def _parse_action(state: TaskSimState, question: str) -> str:
     """Stage 1: Action Parser — maps clarification question to action (AMB/LOC/UNA)."""
     template = USER_SIMULATOR_ACTION_PARSER[PROMPT_VERSION]
     prompt = template.replace("[[clarification_Q]]", question)
     prompt = prompt.replace("[[amb_json]]", state.get_ambiguity_json())
     prompt = prompt.replace("[[SQL_Glot]]", state.get_all_sql_segments())
     prompt = prompt.replace("[[DB_schema]]", state.db_schema)
-    if dialogue_history:
-        prompt += "\n\nPrevious clarification dialogue:\n" + json.dumps(dialogue_history, ensure_ascii=False)
     # v2 includes <think> reasoning, needs more tokens
     max_tok = 500 if PROMPT_VERSION == "v2" else 200
     content = _call_llm(prompt, max_tokens=max_tok)
     # Extract action from <s>...</s> (skip <think>...</think> if present)
-    action = _extract_output(content)
-    action_match = re.search(r"(labeled\([^\n]*?\)|unlabeled\([^\n]*?\)|unanswerable\(\))", action)
-    if not action_match:
-        raise ValueError(f"User simulator returned an invalid action: {action[:200]!r}")
-    action = action_match.group(1)
+    if "</s>" in content:
+        action = content.split("</s>")[0].strip()
+    else:
+        action = content.split("\n")[0].strip()
+    if "<s>" in action:
+        action = action[action.find("<s>"):].replace("<s>", "").strip()
     logger.info(f"Parsed action: {action}")
     return action
 
 
-def _generate_response(state: TaskSimState, question: str, action: str,
-                       dialogue_history: List[Dict[str, str]] = None) -> str:
+def _generate_response(state: TaskSimState, question: str, action: str) -> str:
     """Stage 2: Response Generator — produces user response from action + context."""
     template = USER_SIMULATOR_RESPONSE_GENERATOR[PROMPT_VERSION]
     prompt = template.replace("[[clarification_Q]]", question)
@@ -129,13 +110,16 @@ def _generate_response(state: TaskSimState, question: str, action: str,
     prompt = prompt.replace("[[GT_SQL]]", state.get_gt_sql_str())
     prompt = prompt.replace("[[SQL_Glot]]", state.get_all_sql_segments())
     prompt = prompt.replace("[[DB_schema]]", state.db_schema)
-    if dialogue_history:
-        prompt += "\n\nPrevious clarification dialogue:\n" + json.dumps(dialogue_history, ensure_ascii=False)
     content = _call_llm(prompt, max_tokens=1024)
-    response = _extract_output(content)
-    if not response:
-        raise ValueError("User simulator returned an empty answer")
-    return response
+    # Extract response: handle both complete and truncated cases
+    if "</s>" in content:
+        extracted = content.split("</s>")[0].strip()
+        if "<s>" in extracted:
+            return extracted[extracted.find("<s>"):].replace("<s>", "").strip()
+        return extracted
+    elif "<s>" in content:
+        return content.split("<s>")[1].strip()
+    return "I'm not sure I understand your question."
 
 
 @app.post("/init_task")
@@ -155,62 +139,10 @@ async def init_task(req: InitTaskRequest):
     return {"status": "ok", "task_id": req.task_id}
 
 
-def _ask_sync(state: "TaskSimState", question: str,
-              dialogue_history: List[Dict[str, str]] = None) -> str:
-    """Choose the protocol independently of the transport. Runs in thread pool."""
-    if settings.user_sim_pipeline == "single_stage" or (
-        settings.user_sim_pipeline == "auto" and (
-            settings.user_sim_model.startswith("moonshot/kimi-")
-            or is_qwen_simulator(settings.user_sim_model)
-        )
-    ):
-        return _ask_direct(state, question, dialogue_history)
-    action = _parse_action(state, question, dialogue_history)
-    return _generate_response(state, question, action, dialogue_history)
-
-
-def _ask_direct(state: TaskSimState, question: str,
-              dialogue_history: List[Dict[str, str]] = None) -> str:
-    """Shared single-stage protocol, preserving the existing calibrated prompt."""
-    instructions = (
-        "You are the user who wrote the original request. Answer the collaborator's "
-        "clarification question directly and briefly. The original clear request and "
-        "reference SQL define your intent. The ambiguous request, the collaborator's "
-        "question, and earlier dialogue may contain WRONG assumptions; they do not "
-        "override that intent. Correct any false premise relevant to the question "
-        "before answering it, including the grouping object, metric, population, or "
-        "threshold. If offered choices are all wrong or partly wrong, reject or qualify "
-        "them instead of agreeing. Correct earlier mistaken user replies when needed. "
-        "Answer each requested clarification, but do not volunteer unrelated details "
-        "or reproduce the full original request. Use ordinary language and conceptual "
-        "metric names; never quote SQL expressions, table aliases, schema identifiers, "
-        "internal annotations, or reasoning. Refuse requests for SQL or implementation "
-        "details. If the private information does not determine an answer, say so; "
-        "if its sources conflict, acknowledge the conflict rather than inventing a "
-        "definite answer. Never mention private context, original/ambiguous versions, "
-        "or knowledge IDs. Do not put schema names in parentheses or explain which "
-        "fields implement a concept. Do not add thresholds or formulas unless asked. "
-        "For requests for reference SQL, table names, column names or implementation "
-        "details, reply ONLY: 'Sorry, I can clarify my requirements, but cannot provide "
-        "SQL or database implementation details.' Do not append requirements or hints."
-    )
-    prompt = (
-        f"Task ID: {state.task_data.get('instance_id', '')}\n"
-        f"Original request: {state.clear_query}\n"
-        f"Ambiguous request: {state.amb_user_query}\n"
-        f"Ambiguity annotations: {state.get_ambiguity_json()}\n"
-        f"Ground truth SQL: {state.get_gt_sql_str()}\n"
-        f"Previous clarification dialogue: {json.dumps(dialogue_history or [], ensure_ascii=False)}\n"
-        f"Clarification question: {question}\n"
-        "Your concise answer:"
-    )
-    effort = "none" if settings.user_sim_model.startswith("moonshot/kimi-") else None
-    content = _call_llm(prompt, max_tokens=1024, reasoning_effort=effort,
-                        system_prompt=instructions)
-    answer = _extract_output(content)
-    if not answer:
-        raise ValueError("User simulator returned an empty answer")
-    return answer
+def _ask_sync(state: "TaskSimState", question: str) -> str:
+    """Two-stage pipeline: parse action, then generate response. Runs in thread pool."""
+    action = _parse_action(state, question)
+    return _generate_response(state, question, action)
 
 
 @app.post("/ask", response_model=AskUserResponse)
@@ -218,7 +150,7 @@ async def ask_user(req: AskUserRequest):
     state = _task_states.get(req.task_id)
     if not state:
         raise HTTPException(404, f"Task {req.task_id} not initialized")
-    response = await asyncio.to_thread(_ask_sync, state, req.question, req.dialogue_history)
+    response = await asyncio.to_thread(_ask_sync, state, req.question)
     logger.info(f"User response for {req.task_id}: {response[:100]}...")
     return AskUserResponse(answer=response)
 

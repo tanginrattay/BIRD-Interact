@@ -37,9 +37,7 @@ def main():
     if output.exists():
         raise SystemExit(f"Refusing to overwrite {output}")
     report = {"model": settings.user_sim_model, "prompt_version": settings.prompt_version,
-              "pipeline": (settings.user_sim_pipeline if settings.user_sim_pipeline != "auto" else
-                           "single_stage" if settings.user_sim_model.startswith("moonshot/kimi-")
-                           or is_qwen_simulator(settings.user_sim_model) else "two_stage"),
+              "pipeline": "two_stage",
               "enable_thinking": (settings.user_sim_enable_thinking
                                   if is_qwen_simulator(settings.user_sim_model) else None),
               "thinking_budget": (settings.user_sim_thinking_budget

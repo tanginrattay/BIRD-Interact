@@ -35,9 +35,7 @@ def main():
         "system_agent_model": settings.system_agent_model,
         "user_sim_model": settings.user_sim_model,
         "prompt_version": settings.prompt_version, "patience": settings.patience,
-        "simulator_route": (settings.user_sim_pipeline if settings.user_sim_pipeline != "auto" else
-                            "single_stage" if settings.user_sim_model.startswith("moonshot/kimi-")
-                            or is_qwen_simulator(settings.user_sim_model) else "two_stage"),
+        "simulator_route": "two_stage",
         "simulator_enable_thinking": (settings.user_sim_enable_thinking
                                       if is_qwen_simulator(settings.user_sim_model) else None),
         "simulator_thinking_budget": (settings.user_sim_thinking_budget

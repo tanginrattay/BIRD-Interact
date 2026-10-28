@@ -205,9 +205,7 @@ def ask_user(question: str, tool_context: ToolContext) -> str:
         with httpx.Client(timeout=60.0, trust_env=False) as client:
             resp = client.post(_user_url("/ask"),
                                json={"task_id": task_id,
-                                     "question": question,
-                                     "dialogue_history": tool_context.state.get("dialogue_history", [])})
-            resp.raise_for_status()
+                                     "question": question})
             answer = resp.json().get("answer", "No response from user.")
             history = tool_context.state.get("dialogue_history", [])
             history.append({"role": "agent", "content": question})

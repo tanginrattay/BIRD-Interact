@@ -50,7 +50,7 @@ class Settings(BaseSettings):
     # Independent simulator transport; never reuse the system agent's credentials.
     user_sim_api_base: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
     user_sim_api_key: str = Field(default="", repr=False)
-    user_sim_pipeline: Literal["auto", "single_stage", "two_stage"] = "auto"
+    user_sim_pipeline: Literal["two_stage"] = "two_stage"
     user_sim_enable_thinking: bool = False
     user_sim_thinking_budget: int = Field(default=2048, ge=1)
 
