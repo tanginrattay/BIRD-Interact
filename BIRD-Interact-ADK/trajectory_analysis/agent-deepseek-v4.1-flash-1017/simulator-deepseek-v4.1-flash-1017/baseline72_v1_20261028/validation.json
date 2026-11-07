@@ -1,0 +1,469 @@
+{
+  "discovered_markdown_count": 72,
+  "processed_task_count": 72,
+  "unique_task_count": 72,
+  "benchmark_count": 72,
+  "unreadable_files": [],
+  "markdown_json_full_leaf_match_count": 72,
+  "source_markdown_unchanged": true,
+  "source_manifest": [
+    {
+      "task_id": "alien_11",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/alien_11.md",
+      "sha256": "41f2a86c84070a7c114ac635884b9bbed484235384b321d6a0a6671354ff1e0f",
+      "leaf_blocks": 406
+    },
+    {
+      "task_id": "alien_7",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/alien_7.md",
+      "sha256": "56dacbc74e60066f0bfbb056615c17dc00819a585ef0679335a8d28be87f726b",
+      "leaf_blocks": 575
+    },
+    {
+      "task_id": "archeology_1",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/archeology_1.md",
+      "sha256": "228ca62bd68c4e5b21ac61e52d667e31fc6e85cde6994b47f86d14655bbc01a8",
+      "leaf_blocks": 465
+    },
+    {
+      "task_id": "archeology_9",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/archeology_9.md",
+      "sha256": "e2c2f40d6146103cbab03d043d6a0a6676b244b9765fd06ae788f8225693ef68",
+      "leaf_blocks": 628
+    },
+    {
+      "task_id": "credit_8",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/credit_8.md",
+      "sha256": "50446a203b78854ddc60ad4bc63eac03a0f53a41cf619cdfee3703f1e1b3555e",
+      "leaf_blocks": 523
+    },
+    {
+      "task_id": "credit_M_6",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/credit_M_6.md",
+      "sha256": "b3f6c708fe9bf10c265cb2b1b0ab19df5faa8c64ed12be633a0dce50251d2fdf",
+      "leaf_blocks": 316
+    },
+    {
+      "task_id": "cross_db_5",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/cross_db_5.md",
+      "sha256": "5132e6c41bbb9ccb8818e74f5409b62f67acbaa88efcf91bd9d1220dbca12ea5",
+      "leaf_blocks": 499
+    },
+    {
+      "task_id": "cross_db_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/cross_db_4.md",
+      "sha256": "0077c47ac88721744e5bba9451229060aa83ee75f68437441cd604b975964d08",
+      "leaf_blocks": 456
+    },
+    {
+      "task_id": "crypto_3",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/crypto_3.md",
+      "sha256": "8713099226a97a7ce499b0a202f4983f6d4ee3d3b37a24da94540db93c71acac",
+      "leaf_blocks": 616
+    },
+    {
+      "task_id": "crypto_M_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/crypto_M_4.md",
+      "sha256": "67a0be3ac44833c9df3339735f66c17f1980d210a282262085f715bc07f6ef78",
+      "leaf_blocks": 440
+    },
+    {
+      "task_id": "cybermarket_2",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/cybermarket_2.md",
+      "sha256": "981313c0bfd726227c0eb07e5ad978022bdc6bf23aeeb2fe5649f3c76ec3a6ed",
+      "leaf_blocks": 425
+    },
+    {
+      "task_id": "cybermarket_1",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/cybermarket_1.md",
+      "sha256": "32ce76f7d100f4a5ca7a40678c1a4b6fd1253ffa31d636044ce8a918a2771a34",
+      "leaf_blocks": 361
+    },
+    {
+      "task_id": "disaster_3",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/disaster_3.md",
+      "sha256": "b0887e9aa698685fc8d77417b931cc891a2fede081bc71d694bde1a26f39c5b3",
+      "leaf_blocks": 516
+    },
+    {
+      "task_id": "disaster_7",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/disaster_7.md",
+      "sha256": "a70a78ecce3e0410e16563c1a913c22d4f381a9a730fe0d40535ca21391bb967",
+      "leaf_blocks": 693
+    },
+    {
+      "task_id": "fake_8",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/fake_8.md",
+      "sha256": "3eb5b3c277bcde4fb5043597692f81c0deada9593cdb5ae6a84df2fae7b26f28",
+      "leaf_blocks": 553
+    },
+    {
+      "task_id": "fake_1",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/fake_1.md",
+      "sha256": "4dc7a852bb4ce57958e04d1437bdd9af117564175bfcb29fcd6e1ee9332006f2",
+      "leaf_blocks": 518
+    },
+    {
+      "task_id": "gaming_7",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/gaming_7.md",
+      "sha256": "b021ea77b34bfb17511299180cb8526b642f68701c76e03ddb3bd64bd4779034",
+      "leaf_blocks": 388
+    },
+    {
+      "task_id": "gaming_M_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/gaming_M_4.md",
+      "sha256": "88abf634a308dfecc8f6af24ce796977ebcef30c0c139c5503a0847a99673e51",
+      "leaf_blocks": 547
+    },
+    {
+      "task_id": "insider_8",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/insider_8.md",
+      "sha256": "7e016bf8cfeff0382cab2b822ce42f3d86f2f388ec5084cbe0c2f86ff8db29d3",
+      "leaf_blocks": 577
+    },
+    {
+      "task_id": "insider_M_5",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/insider_M_5.md",
+      "sha256": "2831f6f6ea29dec320532a7dbae2d1fb3d90b84f0f0ebe719614ffc5dab58161",
+      "leaf_blocks": 303
+    },
+    {
+      "task_id": "mental_9",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/mental_9.md",
+      "sha256": "6c44aa5845761295c229c0b56dbddf15708cc639ffee112921bfb271d84f1f10",
+      "leaf_blocks": 480
+    },
+    {
+      "task_id": "mental_1",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/mental_1.md",
+      "sha256": "f43520eb17eefd73a903e1e26207dfb0dbe8150cd23a86ab149abe4c1d6b85ad",
+      "leaf_blocks": 839
+    },
+    {
+      "task_id": "museum_6",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/museum_6.md",
+      "sha256": "531dce5d47cc46463da5df2e71d47c860a1f0ae5cfe6c325cb5c42ae8d077366",
+      "leaf_blocks": 355
+    },
+    {
+      "task_id": "museum_M_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/museum_M_4.md",
+      "sha256": "ea098b8d16620babfe5cc919c995741cbafee27763d3d1fea37a36871058089f",
+      "leaf_blocks": 356
+    },
+    {
+      "task_id": "news_M_1",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/news_M_1.md",
+      "sha256": "bdddca1f8b382d08a53ae8c7a09a3ef3df04b596929da9b1b0420430c540855f",
+      "leaf_blocks": 249
+    },
+    {
+      "task_id": "news_9",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/news_9.md",
+      "sha256": "60eaf8d669c2e69790c54a6d9642b3c4f3565f653a9ae914c3740fb04700ad4f",
+      "leaf_blocks": 444
+    },
+    {
+      "task_id": "polar_5",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/polar_5.md",
+      "sha256": "b237d49b0b15d96da46a13c14563b58d07772795ca81be0031dd892bb2d95103",
+      "leaf_blocks": 597
+    },
+    {
+      "task_id": "polar_7",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/polar_7.md",
+      "sha256": "2254f06226b9d4b97185581444b54055866c78c25b2ad6854ce07725f84689da",
+      "leaf_blocks": 523
+    },
+    {
+      "task_id": "robot_M_3",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/robot_M_3.md",
+      "sha256": "8103cbe7e3dc81be1056fa5216bec9bf4f6c4b0ab08df96254b50f559873cb6c",
+      "leaf_blocks": 618
+    },
+    {
+      "task_id": "robot_6",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/robot_6.md",
+      "sha256": "eb81a97c1eb9b77d4028e622f6e45f569a956f95d829e9189088b24529b7fef9",
+      "leaf_blocks": 464
+    },
+    {
+      "task_id": "solar_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/solar_4.md",
+      "sha256": "89656876d5e01b8f7d2fbaaabe00ec0597923b3da6da3fb46f16688e82eace84",
+      "leaf_blocks": 516
+    },
+    {
+      "task_id": "solar_3",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/solar_3.md",
+      "sha256": "85824f14147e91fbcfdb32b7ee6d11af74a383fcc7bfbd8985b1d55dd69ef301",
+      "leaf_blocks": 537
+    },
+    {
+      "task_id": "vaccine_7",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/vaccine_7.md",
+      "sha256": "5976de07ba60478e42c7a307c1d13b78446603da0be0493c3fe7c55c99108666",
+      "leaf_blocks": 552
+    },
+    {
+      "task_id": "vaccine_2",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/vaccine_2.md",
+      "sha256": "d1a15510978fb5588a747247672a9eb811121f2853e9a0801a3f0ce0b977abb7",
+      "leaf_blocks": 519
+    },
+    {
+      "task_id": "virtual_6",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/virtual_6.md",
+      "sha256": "750f08d8e538e4e2716c9eb91d5405431448111f103724184188af46bc3632f8",
+      "leaf_blocks": 528
+    },
+    {
+      "task_id": "virtual_M_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/virtual_M_4.md",
+      "sha256": "210a4e52142b23c393d96430859d8336aec81bd2385e4e24ead64878b606694d",
+      "leaf_blocks": 468
+    },
+    {
+      "task_id": "alien_8",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/alien_8.md",
+      "sha256": "5050e105f46842c257723b9599b3eddcae52e5fe41215610c7cd10c190d78167",
+      "leaf_blocks": 486
+    },
+    {
+      "task_id": "alien_6",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/alien_6.md",
+      "sha256": "402ea4a9574ad83dfc609a91eeddbeb00dc2b26ad9181ac7660da1a488de00a1",
+      "leaf_blocks": 700
+    },
+    {
+      "task_id": "archeology_M_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/archeology_M_4.md",
+      "sha256": "c3ac09d1b36c7341202841c5255a97ead6ebc10f3704b49bc4d56bb4eeb38356",
+      "leaf_blocks": 489
+    },
+    {
+      "task_id": "archeology_6",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/archeology_6.md",
+      "sha256": "0c148e7b99af97f803a35b6ed21c8381a04a3171626df0affdab748cae875885",
+      "leaf_blocks": 546
+    },
+    {
+      "task_id": "credit_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/credit_4.md",
+      "sha256": "b305e9d2ba73a9c02986f2b932e7637eac723e432185263f5e6d74798342aec5",
+      "leaf_blocks": 416
+    },
+    {
+      "task_id": "credit_11",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/credit_11.md",
+      "sha256": "0981c407e67c8df3d457f4ba80fe8bebe20d984930f5af6dcffd12b2c1b22b37",
+      "leaf_blocks": 565
+    },
+    {
+      "task_id": "cross_db_3",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/cross_db_3.md",
+      "sha256": "bfe6f3db34c246d3b7750ea2a0fcee2405968ab454eee2b8ae9a15c3d7ea4526",
+      "leaf_blocks": 545
+    },
+    {
+      "task_id": "cross_db_M_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/cross_db_M_4.md",
+      "sha256": "0b1ed7a3f48e90a5300412c693af39464243721216ee939d33249cdde6d47351",
+      "leaf_blocks": 367
+    },
+    {
+      "task_id": "crypto_2",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/crypto_2.md",
+      "sha256": "5d7cb802318f3b697c0870755f52a11cb60989ca496aacb5554eadf6755771a1",
+      "leaf_blocks": 390
+    },
+    {
+      "task_id": "crypto_M_2",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/crypto_M_2.md",
+      "sha256": "bc644305c61cb8a3580679d8f700dfcc9c9c2ef89e5a88b57a4383353edf88ad",
+      "leaf_blocks": 439
+    },
+    {
+      "task_id": "cybermarket_M_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/cybermarket_M_4.md",
+      "sha256": "338e20a4376c0340582bc0c9ce978f9bf89490822a567d029caec3bff049d411",
+      "leaf_blocks": 528
+    },
+    {
+      "task_id": "cybermarket_M_1",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/cybermarket_M_1.md",
+      "sha256": "1b1650f2eda1f650c8c8fe49d3805de6422498f345026b8a713e4439b3fab652",
+      "leaf_blocks": 472
+    },
+    {
+      "task_id": "disaster_2",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/disaster_2.md",
+      "sha256": "5828bf789bf180c987061ce7465e7f0d5add395f0da50f66008721bcf283c801",
+      "leaf_blocks": 631
+    },
+    {
+      "task_id": "disaster_M_2",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/disaster_M_2.md",
+      "sha256": "19296b903e24d0a6348e99e5eae6131865177935f633426f4d558777fc5959d0",
+      "leaf_blocks": 458
+    },
+    {
+      "task_id": "fake_9",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/fake_9.md",
+      "sha256": "476d0a0499dc37b64f7c4a345151cd3db7232f65f6817c2aed68584db236baf2",
+      "leaf_blocks": 657
+    },
+    {
+      "task_id": "fake_2",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/fake_2.md",
+      "sha256": "7334e65d245cfd1d4e90b383f09eacf96c9d806d017688e8c55cda4982a9f4c1",
+      "leaf_blocks": 460
+    },
+    {
+      "task_id": "gaming_1",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/gaming_1.md",
+      "sha256": "7a8c519ba9f19c4126d8a0a7050d804ba85ac2f2952f68a0284d433cde67b26f",
+      "leaf_blocks": 441
+    },
+    {
+      "task_id": "gaming_2",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/gaming_2.md",
+      "sha256": "c11c7de8603395841a891145633d7ce8b4fda95acf26497894acd3371db18ba0",
+      "leaf_blocks": 524
+    },
+    {
+      "task_id": "insider_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/insider_4.md",
+      "sha256": "4da9778579ed60a60aad2da3e8adcb04916b4bb62be8dce161a46da03f6858a4",
+      "leaf_blocks": 521
+    },
+    {
+      "task_id": "insider_M_6",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/insider_M_6.md",
+      "sha256": "6b97aa020617b50a08a18f42db9b3e36d021c0b60a13a288e0161ce93cc6a65a",
+      "leaf_blocks": 383
+    },
+    {
+      "task_id": "mental_M_1",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/mental_M_1.md",
+      "sha256": "560ea24f3d96444a4c2fb54b8747ee53993d3171f0529255012bc9ead8ec6d5e",
+      "leaf_blocks": 505
+    },
+    {
+      "task_id": "mental_M_2",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/mental_M_2.md",
+      "sha256": "cdf3771a30cbe15c3961f09b2aa916ebda94d29778d88e7f54e20c979a0c7b53",
+      "leaf_blocks": 326
+    },
+    {
+      "task_id": "museum_1",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/museum_1.md",
+      "sha256": "b034408a864c134a7f718a97c0f70f7f3dbbb2c370024f16876ee362f58f9b4e",
+      "leaf_blocks": 616
+    },
+    {
+      "task_id": "museum_10",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/museum_10.md",
+      "sha256": "ac62952029d5d68bad729ed36e67fae69f85e93461d19c7a80e59d1f7d9463d1",
+      "leaf_blocks": 512
+    },
+    {
+      "task_id": "news_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/news_4.md",
+      "sha256": "e57d76cf115451627ba81bd5746eb399ef6349386358d94b4149e0df0b4b2e53",
+      "leaf_blocks": 478
+    },
+    {
+      "task_id": "news_M_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/news_M_4.md",
+      "sha256": "c339cd82f6d3d8de5d2d2368e3df78e5f62b59ce0ca54fd3eca0a30ebc0407c1",
+      "leaf_blocks": 200
+    },
+    {
+      "task_id": "polar_M_3",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/polar_M_3.md",
+      "sha256": "5a05631b1aac23de5d4bf1a56399fd696560ce25fc3ec4068060f1c9b3061944",
+      "leaf_blocks": 485
+    },
+    {
+      "task_id": "polar_M_4",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/polar_M_4.md",
+      "sha256": "9fb4e8c59b16269658be6ca40026c48ec6906ba1c0cc272111356389e45ce5dd",
+      "leaf_blocks": 609
+    },
+    {
+      "task_id": "robot_10",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/robot_10.md",
+      "sha256": "3243e61cf13a1b6b53d7545090701bcaf610ea69ceee8ca501dc378b4d145954",
+      "leaf_blocks": 654
+    },
+    {
+      "task_id": "robot_8",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/robot_8.md",
+      "sha256": "cfa760c466f96b117595f48f34a976f62717717fdc71ce6ecaaed419d92bea60",
+      "leaf_blocks": 423
+    },
+    {
+      "task_id": "solar_6",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/solar_6.md",
+      "sha256": "f74d70e9132fd3c0e2db069481b8c3f02cf1931f825384010436a772c77467e0",
+      "leaf_blocks": 543
+    },
+    {
+      "task_id": "solar_10",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/solar_10.md",
+      "sha256": "e3a6ef899a9516b1534f6c5e6c0ee78a03e55ffd082261db2d4774caab99f3a0",
+      "leaf_blocks": 463
+    },
+    {
+      "task_id": "vaccine_M_2",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/vaccine_M_2.md",
+      "sha256": "0bd7d14036cd36e53763fb287927f9951f6711e255af4d86a8d6ad8c5908d1c5",
+      "leaf_blocks": 486
+    },
+    {
+      "task_id": "vaccine_6",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/vaccine_6.md",
+      "sha256": "1a79a52e1c1f219d54e724a3211bb88745b1cf0f27212153697b756e6ec88b93",
+      "leaf_blocks": 557
+    },
+    {
+      "task_id": "virtual_M_5",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/virtual_M_5.md",
+      "sha256": "5a93f9302498cf734fdba2ab8a2850406df1ab452e343ee73e42de89968e8531",
+      "leaf_blocks": 421
+    },
+    {
+      "task_id": "virtual_1",
+      "path": "results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/baseline72_v1_20261028/markdown/tasks/virtual_1.md",
+      "sha256": "c0829a5c9308d64b9b9eb55a169a8ab9d42473e58c8c785f9a7bd3d4397ac7d2",
+      "leaf_blocks": 483
+    }
+  ],
+  "tool_counts": {
+    "get_schema": 72,
+    "get_all_external_knowledge_names": 71,
+    "get_knowledge_definition": 440,
+    "execute_sql": 308,
+    "submit_sql": 179,
+    "ask_user": 86,
+    "get_all_knowledge_definitions": 15,
+    "get_column_meaning": 45,
+    "get_all_column_meanings": 10
+  },
+  "execute_sql_error_types": {
+    "MISSING_COLUMN_OR_RELATION": 2,
+    "POLICY_READ_ONLY": 19,
+    "DIVISION_BY_ZERO": 1
+  },
+  "submit_sql_execution_error_types": {
+    "FUNCTION_SIGNATURE_OR_TYPE": 3,
+    "FOREIGN_KEY_CONSTRAINT": 2,
+    "MISSING_COLUMN_OR_RELATION": 1,
+    "OBJECT_ALREADY_EXISTS": 1
+  },
+  "cards_count": 72,
+  "csv_rows": 72,
+  "source_json_sha256": "6426215357a10cb27a1879a5df80656d45dd90d3f80bc5a52e33ec4eb9a7c8e6",
+  "source_benchmark_sha256": "dcaa82470060263d08f023d92ee15218b10eb80cf50479c2cf66aace74f50296"
+}

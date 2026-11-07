@@ -1,0 +1,18 @@
+{
+  "cards": 72,
+  "features_rows": 72,
+  "readable_trajectories": 5,
+  "trajectory_adk_events": 134,
+  "trajectory_tool_calls": 85,
+  "evidence_links_checked": 2160,
+  "all_links_valid": true,
+  "code_fences_valid": true,
+  "original_evaluation_files_unchanged": true,
+  "retained_early_archive_unchanged": true,
+  "archive_manifest_entries_preserved": 63,
+  "pending_manual_trash": "results/archive_manifest_2026-10-04.json",
+  "ground_truth_statements_verified": 10,
+  "ground_truth_before_references": true,
+  "failure_sql_comparisons": 3,
+  "successful_tasks_not_reclassified": true
+}
