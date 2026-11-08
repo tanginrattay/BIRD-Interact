@@ -190,7 +190,8 @@ def main():
     run_id = started.strftime("%Y%m%dT%H%M%SZ") + "-" + uuid.uuid4().hex[:8]
     output = args.output or str(
         Path("results") / f"agent-{slug(settings.system_agent_model)}"
-        / f"simulator-{slug(settings.user_sim_model)}" / run_id
+        / f"simulator-{slug(settings.user_sim_model)}"
+        / ("requirement_tracking_1call_v1" if args.mode != "oracle" else "oracle") / run_id
         / f"eval_{args.mode.replace('-', '_')}.json"
     )
     if Path(output).exists():
@@ -203,6 +204,7 @@ def main():
         "user_sim_pipeline": settings.user_sim_pipeline,
         "user_sim_enable_thinking": settings.user_sim_enable_thinking,
         "prompt_version": settings.prompt_version,
+        "state_mechanism": "requirement_tracking_1call_v1" if args.mode != "oracle" else None,
         "patience": settings.patience,
         "dataset": settings.dataset,
         "data_path": str(Path(args.data).resolve()),

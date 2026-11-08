@@ -1,0 +1,95 @@
+{
+  "date": "2026-11-08",
+  "branch": "state/requirement-tracking",
+  "new_implementation_committed": false,
+  "base_main": "81384036930d22f993849dd8eaba9bfe65e0d89b",
+  "archived_two_call_branch": "state/requirement-tracking-2calls",
+  "archived_two_call_commit": "92a299cb458de2bf3fb4ff93356e45d5b323a7c5",
+  "experiment": "requirement_tracking_1call_v1",
+  "versions": {
+    "python": "3.10",
+    "google-adk": "2.9.2",
+    "litellm": "1.102.0",
+    "pydantic": "2.13.5",
+    "jsonschema": "4.26.0"
+  },
+  "offline": {
+    "tests_passed": 9,
+    "live_tests_skipped": 1,
+    "exit_code": 0,
+    "runtime_seconds": 2.447,
+    "command": "REQUIREMENT_SMOKE_ARTIFACT=docs/requirement_tracking_1call_smoke/offline.json /home/nimir/miniconda3/envs/bird-interact/bin/python -m unittest discover -s tests -v",
+    "model": "scripted BaseLlm",
+    "adk_runner": "real",
+    "http": "synthetic fixtures"
+  },
+  "live": {
+    "tests_passed": 1,
+    "exit_code": 0,
+    "runtime_seconds": 11.878,
+    "command": "REQUIREMENT_LIVE_SMOKE=1 /home/nimir/miniconda3/envs/bird-interact/bin/python -m unittest discover -s tests -p '*live.py' -v",
+    "model": "deepseek/deepseek-flash",
+    "normal_model_calls": 6,
+    "provider_requests": 6,
+    "additional_state_model_calls": 0,
+    "accepted_state_responses": 6,
+    "all_provider_requests_used_json_object": true,
+    "final_revision": 5,
+    "final_requirements": 7,
+    "budget_initial": 16,
+    "budget_remaining": 6.0,
+    "tools": [
+      "get_schema",
+      "get_all_external_knowledge_names",
+      "get_knowledge_definition",
+      "ask_user",
+      "ask_user",
+      "execute_sql",
+      "submit_sql"
+    ],
+    "total_normal_decision_tokens": 22290,
+    "sql_correctness_evaluated": false,
+    "http": "synthetic fixtures",
+    "semantic_limitation": "Formula applicability resolved based on schema fit after a partial user reply, before explicit confirmation; threshold remained candidate until numeric clarification.",
+    "cleanup_warning": "LiteLLM/aiohttp event loop cleanup warning after successful assertions"
+  },
+  "checks": {
+    "git_diff_check": "passed",
+    "compileall_system_agent_orchestrator_tests": "passed",
+    "model_invocations_in_requirement_callbacks": 0
+  },
+  "diagnostic_failures": [
+    "tool_id_failure.txt",
+    "native_history_failure.json",
+    "text_history_failure.json",
+    "required_audit_field_failure.json",
+    "json_mode_history_failure.json"
+  ],
+  "limitations": [
+    "No real database or user-simulator evaluation",
+    "No benchmark comparison",
+    "Session durability is in-process only",
+    "Semantic completeness, duplicate detection and conflict/applicability assessment remain model-dependent",
+    "Nonstreaming local ADK/LiteLLM backend tested only"
+  ],
+  "files_sha256": {
+    "system_agent/requirement_state.py": "c7f95aa63b1fca4cc792f32a118d1ef483a930e6c3a71086d44b011ea7e8ffe1",
+    "system_agent/requirement_tracking.py": "8ad5380def8fc730a944b6b5b5a95f6bd0941511f09f62de534ede25f4c659fe",
+    "system_agent/agent.py": "de206e01b83e5bdd292e1538e4b4b130cdc6ecd2df2f8b47ea0e193b338a413a",
+    "system_agent/adk_runtime.py": "791659766eee59efe06df539b908bad3ac9ea48c1ef50bb042f272501987769d",
+    "orchestrator/ainteract.py": "1b91e1345a4e7f2902365fe2ba71bccdb4ea0dc79466b1c77be4af74cc42cec8",
+    "orchestrator/cinteract.py": "ce8ab0469e4225e84fb061196556dab079d76e43c8f1ea9fa94e510983e15918",
+    "orchestrator/runner.py": "9ac26bc02ef9983f265655b647e8eaa67817861a6033b0096dcabf3bc91a5564",
+    "requirements.txt": "6b92281ec6ffdac616a1dc85feb2df6723745e13395fe4789d00ace950052489",
+    "tests/test_requirement_tracking.py": "f6adc96c0863a3f38148c27bd4e03abd69355c4bf4569510586c5a4f809087d4",
+    "tests/test_requirement_tracking_live.py": "d073d7ba77a45dd239f084b2d4c3638c39d72637277be3737b1a988367a8b85c",
+    "docs/REQUIREMENT_STATE_TRACKING_ZH.md": "17d87572647c99c57d01546272d35ace30faef917dbd6bdd0d79f2ca0f297fea",
+    "docs/requirement_tracking_1call_smoke/diagnostics/json_mode_history_failure.json": "d3bb6ddab19e4c01fd0b5e4a83a49cd41b710d316a2322cdbb4548a8027fdaa1",
+    "docs/requirement_tracking_1call_smoke/diagnostics/native_history_failure.json": "c4a92bc95f59f2c8b2e8c84b1097336d33dc21ab042a1ffca78b5341346ddf70",
+    "docs/requirement_tracking_1call_smoke/diagnostics/required_audit_field_failure.json": "357e045bb236894cf9a930bc8996ef1dc11930c533ed230955db0ddca906bf49",
+    "docs/requirement_tracking_1call_smoke/diagnostics/text_history_failure.json": "15f250aad783f8d2730c21b0e3d3017652117ad8af80466b84d2883630cde964",
+    "docs/requirement_tracking_1call_smoke/diagnostics/tool_id_failure.txt": "2b0ad53d3355834e233b2ea92e1b83870c8c0d4ce202d64ffd249df0c513c8f4",
+    "docs/requirement_tracking_1call_smoke/live.json": "dcb34e8f44c6f49d742cf9f69d8e5863921486a4f103aec4be4bb8f0466b17e5",
+    "docs/requirement_tracking_1call_smoke/offline.json": "a8498bcea717bea74072d9cb026424d438c1f87607f298031e99a4cd584a6c22"
+  }
+}

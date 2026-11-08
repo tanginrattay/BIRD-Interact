@@ -1,0 +1,285 @@
+test_live_single_response_state_and_action (test_requirement_tracking_live.LiveSmoke) ... /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/system_agent/requirement_tracking.py:123: UserWarning: [EXPERIMENTAL] feature JSON_SCHEMA_FOR_FUNC_DECL is enabled.
+  declaration = tool._get_declaration()
+Executing <Task pending name='Task-1' coro=<IsolatedAsyncioTestCase._asyncioLoopRunner() running at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/unittest/async_case.py:101> wait_for=<Future pending cb=[Task.task_wakeup()] created at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/base_events.py:429> created at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/unittest/async_case.py:117> took 0.359 seconds
+Executing <Task pending name='Task-2' coro=<AdkRuntime.run_turn() running at /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/system_agent/adk_runtime.py:248> wait_for=<Future pending cb=[Task.task_wakeup()] created at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/base_events.py:429> cb=[_release_waiter(<Future pendi...events.py:429>)() at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/tasks.py:387] created at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/tasks.py:636> took 0.133 seconds
+Executing <Task pending name='Task-3' coro=<run_node_async.<locals>._run.<locals>._drive_root_node() running at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner_utils.py:237> wait_for=<_GatheringFuture pending cb=[Task.task_wakeup()] created at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/tasks.py:665> created at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/tasks.py:337> took 0.442 seconds
+Executing <Task pending name='Task-3' coro=<run_node_async.<locals>._run.<locals>._drive_root_node() running at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner_utils.py:237> wait_for=<Future pending cb=[_chain_future.<locals>._call_check_cancel() at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/futures.py:385, Task.task_wakeup()] created at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/base_events.py:429> created at /home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/tasks.py:337> took 3.008 seconds
+Node execution failed with exception
+Traceback (most recent call last):
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/llms/custom_httpx/llm_http_handler.py", line 333, in _make_common_async_call
+    response = await async_httpx_client.post(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/litellm_core_utils/logging_utils.py", line 336, in async_wrapper
+    result: Final = await func(*args, **kwargs)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/llms/custom_httpx/http_handler.py", line 807, in post
+    await _raise_masked_async_error(e, stream)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/llms/custom_httpx/http_handler.py", line 506, in _raise_masked_async_error
+    raise MaskedHTTPStatusError(e, message=_text, text=_text) from None
+litellm.llms.custom_httpx.http_handler.MaskedHTTPStatusError: Client error '400 Bad Request' for url 'https://api.deepseek.com/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/main.py", line 648, in acompletion
+    response = await _resolve_dispatched_chat_response(init_response)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/main.py", line 713, in _resolve_dispatched_chat_response
+    return await pending
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/llms/custom_httpx/llm_http_handler.py", line 447, in async_completion
+    response: Final = await self._make_common_async_call(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/llms/custom_httpx/llm_http_handler.py", line 350, in _make_common_async_call
+    raise self._handle_error(e=e, provider_config=provider_config)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/llms/custom_httpx/llm_http_handler.py", line 6076, in _handle_error
+    raise provider_error
+litellm.llms.openai.common_utils.OpenAIError: {"error":{"message":"Duplicate value for 'tool_call_id' of  in message[2] (request_id: 19fd2d5b-7d6a-41ad-bf26-24141bf826bd)","type":"invalid_request_error","param":null,"code":"invalid_request_error"}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner.py", line 137, in run
+    await self._execute_node(ctx, node_input)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner.py", line 285, in _execute_node
+    await self._run_node_loop(ctx, node_input)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner.py", line 299, in _run_node_loop
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_base_node.py", line 175, in run
+    async for item in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/llm_agent.py", line 671, in _run_impl
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_llm_agent_wrapper.py", line 484, in run_llm_agent_as_node
+    async for event in run_iter:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/base_agent.py", line 364, in run_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/base_agent.py", line 102, in _with_caller_context
+    async for item in a:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/base_agent.py", line 351, in _run
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/llm_agent.py", line 620, in _run_async_impl
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 641, in run_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 719, in _run_one_step_async
+    async for llm_response in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 1109, in _call_llm_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 1087, in _call_llm_with_tracing
+    async for llm_response in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 1170, in _run_and_handle_error
+    async for response in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 431, in _run_and_handle_error
+    raise model_error
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 408, in _run_and_handle_error
+    async for llm_response in agen:
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/tests/test_requirement_tracking_live.py", line 32, in generate_content_async
+    async for response in self.delegate.generate_content_async(llm_request, stream=stream):
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/models/lite_llm.py", line 3531, in generate_content_async
+    response = await self.llm_client.acompletion(**completion_args)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/models/lite_llm.py", line 889, in acompletion
+    return await acompletion(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/utils.py", line 2152, in wrapper_async
+    raise e
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/utils.py", line 1964, in wrapper_async
+    result = await original_function(*args, **kwargs)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/main.py", line 701, in acompletion
+    raise exception_type(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2678, in exception_type
+    raise e  # it's already mapped
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2439, in exception_type
+    _map_openai_exception(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 353, in _map_openai_exception
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: DeepseekException - {"error":{"message":"Duplicate value for 'tool_call_id' of  in message[2] (request_id: 19fd2d5b-7d6a-41ad-bf26-24141bf826bd)","type":"invalid_request_error","param":null,"code":"invalid_request_error"}} LiteLLM Retried: 5 times
+Root node bird_interact_agent failed.
+Traceback (most recent call last):
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner_utils.py", line 237, in _drive_root_node
+    await root_ctx._run_node_internal(  # pylint: disable=protected-access
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/context.py", line 604, in _run_node_internal
+    raise DynamicNodeFailError(
+google.adk.workflow._errors.DynamicNodeFailError: Dynamic node bird_interact_agent failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/runners.py", line 824, in _cleanup_root_task
+    await task
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner_utils.py", line 246, in _drive_root_node
+    raise e.error
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner.py", line 137, in run
+    await self._execute_node(ctx, node_input)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner.py", line 285, in _execute_node
+    await self._run_node_loop(ctx, node_input)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner.py", line 299, in _run_node_loop
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_base_node.py", line 175, in run
+    async for item in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/llm_agent.py", line 671, in _run_impl
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_llm_agent_wrapper.py", line 484, in run_llm_agent_as_node
+    async for event in run_iter:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/base_agent.py", line 364, in run_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/base_agent.py", line 102, in _with_caller_context
+    async for item in a:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/base_agent.py", line 351, in _run
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/llm_agent.py", line 620, in _run_async_impl
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 641, in run_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 719, in _run_one_step_async
+    async for llm_response in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 1109, in _call_llm_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 1087, in _call_llm_with_tracing
+    async for llm_response in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 1170, in _run_and_handle_error
+    async for response in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 431, in _run_and_handle_error
+    raise model_error
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 408, in _run_and_handle_error
+    async for llm_response in agen:
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/tests/test_requirement_tracking_live.py", line 32, in generate_content_async
+    async for response in self.delegate.generate_content_async(llm_request, stream=stream):
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/models/lite_llm.py", line 3531, in generate_content_async
+    response = await self.llm_client.acompletion(**completion_args)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/models/lite_llm.py", line 889, in acompletion
+    return await acompletion(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/utils.py", line 2152, in wrapper_async
+    raise e
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/utils.py", line 1964, in wrapper_async
+    result = await original_function(*args, **kwargs)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/main.py", line 701, in acompletion
+    raise exception_type(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2678, in exception_type
+    raise e  # it's already mapped
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2439, in exception_type
+    _map_openai_exception(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 353, in _map_openai_exception
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: DeepseekException - {"error":{"message":"Duplicate value for 'tool_call_id' of  in message[2] (request_id: 19fd2d5b-7d6a-41ad-bf26-24141bf826bd)","type":"invalid_request_error","param":null,"code":"invalid_request_error"}} LiteLLM Retried: 5 times
+ERROR
+
+======================================================================
+ERROR: test_live_single_response_state_and_action (test_requirement_tracking_live.LiveSmoke)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner_utils.py", line 237, in _drive_root_node
+    await root_ctx._run_node_internal(  # pylint: disable=protected-access
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/context.py", line 604, in _run_node_internal
+    raise DynamicNodeFailError(
+google.adk.workflow._errors.DynamicNodeFailError: Dynamic node bird_interact_agent failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/unittest/async_case.py", line 64, in _callTestMethod
+    self._callMaybeAsync(method)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/unittest/async_case.py", line 87, in _callMaybeAsync
+    return self._asyncioTestLoop.run_until_complete(fut)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/unittest/async_case.py", line 101, in _asyncioLoopRunner
+    ret = await awaitable
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/tests/test_requirement_tracking_live.py", line 60, in test_live_single_response_state_and_action
+    result = await asyncio.wait_for(runtime.run_turn("live-one-call", "a-interact", QUERY), timeout=240)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/system_agent/adk_runtime.py", line 248, in run_turn
+    return await self._run_turn_unlocked(task_id, mode, message, **kwargs)
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/system_agent/adk_runtime.py", line 281, in _run_turn_unlocked
+    async for event in runner.run_async(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/runners.py", line 1149, in run_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/runners.py", line 579, in _run_node_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner_utils.py", line 294, in run_node_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/utils/_runner_utils.py", line 42, in _with_caller_context
+    async for item in a:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner_utils.py", line 264, in _run
+    await runner._cleanup_root_task(task, runner.agent.name)  # pylint: disable=protected-access
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/runners.py", line 824, in _cleanup_root_task
+    await task
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner_utils.py", line 246, in _drive_root_node
+    raise e.error
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner.py", line 137, in run
+    await self._execute_node(ctx, node_input)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner.py", line 285, in _execute_node
+    await self._run_node_loop(ctx, node_input)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_node_runner.py", line 299, in _run_node_loop
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_base_node.py", line 175, in run
+    async for item in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/llm_agent.py", line 671, in _run_impl
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/workflow/_llm_agent_wrapper.py", line 484, in run_llm_agent_as_node
+    async for event in run_iter:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/base_agent.py", line 364, in run_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/base_agent.py", line 102, in _with_caller_context
+    async for item in a:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/base_agent.py", line 351, in _run
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/agents/llm_agent.py", line 620, in _run_async_impl
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 641, in run_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 719, in _run_one_step_async
+    async for llm_response in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 1109, in _call_llm_async
+    async for event in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 1087, in _call_llm_with_tracing
+    async for llm_response in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 1170, in _run_and_handle_error
+    async for response in agen:
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 431, in _run_and_handle_error
+    raise model_error
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 408, in _run_and_handle_error
+    async for llm_response in agen:
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/tests/test_requirement_tracking_live.py", line 32, in generate_content_async
+    async for response in self.delegate.generate_content_async(llm_request, stream=stream):
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/models/lite_llm.py", line 3531, in generate_content_async
+    response = await self.llm_client.acompletion(**completion_args)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/google/adk/models/lite_llm.py", line 889, in acompletion
+    return await acompletion(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/utils.py", line 2152, in wrapper_async
+    raise e
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/utils.py", line 1964, in wrapper_async
+    result = await original_function(*args, **kwargs)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/main.py", line 701, in acompletion
+    raise exception_type(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2678, in exception_type
+    raise e  # it's already mapped
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2439, in exception_type
+    _map_openai_exception(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 353, in _map_openai_exception
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: DeepseekException - {"error":{"message":"Duplicate value for 'tool_call_id' of  in message[2] (request_id: 19fd2d5b-7d6a-41ad-bf26-24141bf826bd)","type":"invalid_request_error","param":null,"code":"invalid_request_error"}} LiteLLM Retried: 5 times
+
+----------------------------------------------------------------------
+Ran 1 test in 6.785s
+
+FAILED (errors=1)
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+

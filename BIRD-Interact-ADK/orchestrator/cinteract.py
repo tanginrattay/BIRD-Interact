@@ -216,6 +216,9 @@ async def run_single_task(task_data: dict) -> Dict[str, Any]:
             "tool_trajectory": state.get("tool_trajectory", []),
             "dialogue_history": state.get("dialogue_history", []),
             "adk_events": all_adk_events,
+            "requirement_state": state.get("requirement_state"),
+            "requirement_state_history": state.get("requirement_state_history", []),
+            "requirement_state_error": state.get("requirement_state_error", ""),
         }
         logger.info("Task %s done. Reward: %.2f, Time: %.1fs", instance_id, total_reward, elapsed)
         return result

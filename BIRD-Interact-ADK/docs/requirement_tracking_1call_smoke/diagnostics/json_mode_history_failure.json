@@ -1,0 +1,353 @@
+{
+  "kind": "one-call real model + real ADK; environment fixtures; SQL correctness not evaluated",
+  "model": "deepseek/deepseek-flash",
+  "query": "Find the top 10 suspicious chains ordered by TCR descending. Return chain_id and TCR.",
+  "result": {
+    "task_id": "live-one-call",
+    "mode": "a-interact",
+    "session_id": "be199cfd-811a-469b-8919-8ab4a7d01796",
+    "response": "Requirement State response rejected; no proposed tools executed. Extra data: line 5 column 73 (char 141)",
+    "state": {
+      "db_name": "synthetic",
+      "budget_remaining": 14.5,
+      "initial_budget": 16.0,
+      "task_id": "live-one-call",
+      "requirement_state": {
+        "task_id": "live-one-call",
+        "revision": 1,
+        "requirements": [
+          {
+            "id": "r1",
+            "requirement": "Return top 10 chains",
+            "category": "user_semantics",
+            "status": "resolved",
+            "value": "10 (source: user)",
+            "priority": 0
+          },
+          {
+            "id": "r2",
+            "requirement": "Order results by TCR descending",
+            "category": "user_semantics",
+            "status": "resolved",
+            "value": "TCR DESC (source: user)",
+            "priority": 0
+          },
+          {
+            "id": "r3",
+            "requirement": "Output columns: chain_id and TCR",
+            "category": "user_semantics",
+            "status": "resolved",
+            "value": "chain_id, TCR (source: user)",
+            "priority": 0
+          },
+          {
+            "id": "r4",
+            "requirement": "Definition of 'suspicious chain' criteria",
+            "category": "knowledge",
+            "status": "unresolved",
+            "value": "",
+            "priority": 1
+          },
+          {
+            "id": "r5",
+            "requirement": "TCR metric formula/definition",
+            "category": "knowledge",
+            "status": "unresolved",
+            "value": "",
+            "priority": 1
+          },
+          {
+            "id": "r6",
+            "requirement": "Schema mapping for chain_id and TCR source tables/columns",
+            "category": "schema",
+            "status": "unresolved",
+            "value": "",
+            "priority": 1
+          }
+        ]
+      },
+      "requirement_state_history": [
+        {
+          "accepted": true,
+          "revision": 1,
+          "changes": [
+            {
+              "id": "r1",
+              "before": null,
+              "after": {
+                "id": "r1",
+                "requirement": "Return top 10 chains",
+                "category": "user_semantics",
+                "status": "resolved",
+                "value": "10 (source: user)",
+                "priority": 0
+              },
+              "reason": ""
+            },
+            {
+              "id": "r2",
+              "before": null,
+              "after": {
+                "id": "r2",
+                "requirement": "Order results by TCR descending",
+                "category": "user_semantics",
+                "status": "resolved",
+                "value": "TCR DESC (source: user)",
+                "priority": 0
+              },
+              "reason": ""
+            },
+            {
+              "id": "r3",
+              "before": null,
+              "after": {
+                "id": "r3",
+                "requirement": "Output columns: chain_id and TCR",
+                "category": "user_semantics",
+                "status": "resolved",
+                "value": "chain_id, TCR (source: user)",
+                "priority": 0
+              },
+              "reason": ""
+            },
+            {
+              "id": "r4",
+              "before": null,
+              "after": {
+                "id": "r4",
+                "requirement": "Definition of 'suspicious chain' criteria",
+                "category": "knowledge",
+                "status": "unresolved",
+                "value": "",
+                "priority": 1
+              },
+              "reason": ""
+            },
+            {
+              "id": "r5",
+              "before": null,
+              "after": {
+                "id": "r5",
+                "requirement": "TCR metric formula/definition",
+                "category": "knowledge",
+                "status": "unresolved",
+                "value": "",
+                "priority": 1
+              },
+              "reason": ""
+            },
+            {
+              "id": "r6",
+              "before": null,
+              "after": {
+                "id": "r6",
+                "requirement": "Schema mapping for chain_id and TCR source tables/columns",
+                "category": "schema",
+                "status": "unresolved",
+                "value": "",
+                "priority": 1
+              },
+              "reason": ""
+            }
+          ],
+          "raw_response": "{\"state_update\": {\"base_revision\": 0, \"upserts\": [{\"id\": \"r1\", \"requirement\": \"Return top 10 chains\", \"category\": \"user_semantics\", \"status\": \"resolved\", \"value\": \"10 (source: user)\", \"priority\": 0}, {\"id\": \"r2\", \"requirement\": \"Order results by TCR descending\", \"category\": \"user_semantics\", \"status\": \"resolved\", \"value\": \"TCR DESC (source: user)\", \"priority\": 0}, {\"id\": \"r3\", \"requirement\": \"Output columns: chain_id and TCR\", \"category\": \"user_semantics\", \"status\": \"resolved\", \"value\": \"chain_id, TCR (source: user)\", \"priority\": 0}, {\"id\": \"r4\", \"requirement\": \"Definition of 'suspicious chain' criteria\", \"category\": \"knowledge\", \"status\": \"unresolved\", \"value\": \"\", \"priority\": 1}, {\"id\": \"r5\", \"requirement\": \"TCR metric formula/definition\", \"category\": \"knowledge\", \"status\": \"unresolved\", \"value\": \"\", \"priority\": 1}, {\"id\": \"r6\", \"requirement\": \"Schema mapping for chain_id and TCR source tables/columns\", \"category\": \"schema\", \"status\": \"unresolved\", \"value\": \"\", \"priority\": 1}]}, \"tool_calls\": [{\"name\": \"get_schema\", \"args\": {}}, {\"name\": \"get_all_external_knowledge_names\", \"args\": {}}], \"response\": \"\"}",
+          "usage": {
+            "cached_content_token_count": 512,
+            "candidates_token_count": 355,
+            "prompt_token_count": 2368,
+            "total_token_count": 2723
+          }
+        },
+        {
+          "accepted": false,
+          "revision": 1,
+          "changes": [],
+          "raw_response": "\n\n                \n                                                 \n                                               {\"knowledge_name\": \"TCR\"}</｜｜DSML｜｜ parameter>\n<｜｜DSML｜｜ parameter name=\"name\" string=\"true\">get_knowledge_definition</｜｜DSML｜｜ parameter>\n</｜｜DSML｜｜ invoke>\n</｜｜DSML｜｜ calls>",
+          "error": "Extra data: line 5 column 73 (char 141)",
+          "usage": {
+            "cached_content_token_count": 2304,
+            "candidates_token_count": 69,
+            "prompt_token_count": 2873,
+            "total_token_count": 2942
+          }
+        }
+      ],
+      "requirement_state_error": "Extra data: line 5 column 73 (char 141)",
+      "tool_trajectory": [
+        {
+          "type": "tool",
+          "tool": "get_schema",
+          "args": {},
+          "result": "CREATE TABLE chains(chain_id integer, total numeric, capacity numeric);",
+          "cost": 1.0,
+          "budget_before": 16.0,
+          "budget_after": 15.0
+        },
+        {
+          "type": "tool",
+          "tool": "get_all_external_knowledge_names",
+          "args": {},
+          "result": "[\"TCR\"]",
+          "cost": 0.5,
+          "budget_before": 15.0,
+          "budget_after": 14.5
+        }
+      ],
+      "adk_events": [
+        {
+          "type": "user_message",
+          "message": "Find the top 10 suspicious chains ordered by TCR descending. Return chain_id and TCR."
+        },
+        {
+          "type": "adk_event",
+          "author": "bird_interact_agent",
+          "invocation_id": "e-199902ea-c03e-42bb-9f9d-f06783d56d37",
+          "branch": null,
+          "final": false,
+          "content": {
+            "role": "model",
+            "parts": [
+              {
+                "type": "function_call",
+                "name": "get_schema",
+                "id": "call_req_e84319e355cf4905bcc570fa81586e98",
+                "args": {}
+              },
+              {
+                "type": "function_call",
+                "name": "get_all_external_knowledge_names",
+                "id": "call_req_b13c55f39b1b4c9db02fb27d0cdaee5f",
+                "args": {}
+              }
+            ]
+          }
+        },
+        {
+          "type": "adk_event",
+          "author": "bird_interact_agent",
+          "invocation_id": "e-199902ea-c03e-42bb-9f9d-f06783d56d37",
+          "branch": null,
+          "final": false,
+          "content": {
+            "role": "user",
+            "parts": [
+              {
+                "type": "function_response",
+                "name": "get_schema",
+                "id": "call_req_e84319e355cf4905bcc570fa81586e98",
+                "response": "{\"result\": \"CREATE TABLE chains(chain_id integer, total numeric, capacity numeric);\\n\\n[SYSTEM NOTE: Remaining budget: 15.0/16.0]\"}"
+              },
+              {
+                "type": "function_response",
+                "name": "get_all_external_knowledge_names",
+                "id": "call_req_b13c55f39b1b4c9db02fb27d0cdaee5f",
+                "response": "{\"result\": \"[\\\"TCR\\\"]\\n\\n[SYSTEM NOTE: Remaining budget: 14.5/16.0]\"}"
+              }
+            ]
+          }
+        },
+        {
+          "type": "adk_event",
+          "author": "bird_interact_agent",
+          "invocation_id": "e-199902ea-c03e-42bb-9f9d-f06783d56d37",
+          "branch": null,
+          "final": true,
+          "content": {
+            "role": "model",
+            "parts": [
+              {
+                "type": "text",
+                "text": "Requirement State response rejected; no proposed tools executed. Extra data: line 5 column 73 (char 141)"
+              }
+            ]
+          }
+        }
+      ],
+      "model_turns": 2,
+      "_budget_before": 15.0
+    },
+    "adk_available": true
+  },
+  "model_requests": [
+    {
+      "state": {
+        "task_id": "live-one-call",
+        "revision": 0,
+        "requirements": []
+      },
+      "native_tools_enabled": false
+    },
+    {
+      "state": {
+        "task_id": "live-one-call",
+        "revision": 1,
+        "requirements": [
+          {
+            "id": "r1",
+            "requirement": "Return top 10 chains",
+            "category": "user_semantics",
+            "status": "resolved",
+            "value": "10 (source: user)",
+            "priority": 0
+          },
+          {
+            "id": "r2",
+            "requirement": "Order results by TCR descending",
+            "category": "user_semantics",
+            "status": "resolved",
+            "value": "TCR DESC (source: user)",
+            "priority": 0
+          },
+          {
+            "id": "r3",
+            "requirement": "Output columns: chain_id and TCR",
+            "category": "user_semantics",
+            "status": "resolved",
+            "value": "chain_id, TCR (source: user)",
+            "priority": 0
+          },
+          {
+            "id": "r4",
+            "requirement": "Definition of 'suspicious chain' criteria",
+            "category": "knowledge",
+            "status": "unresolved",
+            "value": "",
+            "priority": 1
+          },
+          {
+            "id": "r5",
+            "requirement": "TCR metric formula/definition",
+            "category": "knowledge",
+            "status": "unresolved",
+            "value": "",
+            "priority": 1
+          },
+          {
+            "id": "r6",
+            "requirement": "Schema mapping for chain_id and TCR source tables/columns",
+            "category": "schema",
+            "status": "unresolved",
+            "value": "",
+            "priority": 1
+          }
+        ]
+      },
+      "native_tools_enabled": false
+    }
+  ],
+  "http_calls": [
+    {
+      "url": "http://localhost:6002/schema",
+      "payload": {
+        "task_id": "live-one-call"
+      }
+    },
+    {
+      "url": "http://localhost:6002/knowledge_names",
+      "payload": {
+        "task_id": "live-one-call"
+      }
+    }
+  ],
+  "additional_state_model_calls": 0
+}
