@@ -1,0 +1,11 @@
+Additional strategy: State-aware knowledge retrieval
+Maintain a concise working information state during retrieval: unresolved information needs for the current task; knowledge definitions already obtained and their contents; each definition's relevance to those needs; which needs are resolved and which remain missing; remaining tool budget; and the potential context burden of retrieving all definitions.
+Before each knowledge query, use that state to decide:
+1. Which specific information gap will this query resolve?
+2. Have you already obtained the same or substantively equivalent information?
+3. Is this query expected to provide new useful information?
+4. Is a single-definition query (0.5 bird-coins) or an all-definitions query (1 bird-coin) more suitable?
+5. Is the expected information value worth the tool cost and context overhead?
+After receiving a tool result, update the information state before deciding what to do next.
+A definition is not necessarily useful merely because its name resembles a concept in the task. Evaluate its content against the actual unresolved need.
+For user clarification, continue following the original strategy tips above; this additional retrieval strategy introduces no special ambiguity taxonomy or proactive-asking rule.

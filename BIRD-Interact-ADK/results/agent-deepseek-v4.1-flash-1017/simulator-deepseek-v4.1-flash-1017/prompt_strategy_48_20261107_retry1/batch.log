@@ -1,0 +1,25 @@
+START baseline repetition 1 2026-11-07T16:38:50+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/baseline_r1/eval_a_interact.json {'total_tasks': 4, 'total_reward': 1.0, 'average_reward': 0.25, 'phase1_rate': 0.25, 'phase2_rate': 0.25, 'phase1_count': 1, 'phase2_count': 1}
+START A repetition 1 2026-11-07T16:41:32+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/A_r1/eval_a_interact.json {'total_tasks': 4, 'total_reward': 1.0, 'average_reward': 0.25, 'phase1_rate': 0.25, 'phase2_rate': 0.25, 'phase1_count': 1, 'phase2_count': 1}
+START B repetition 1 2026-11-07T16:44:07+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/B_r1/eval_a_interact.json {'total_tasks': 4, 'total_reward': 1.0, 'average_reward': 0.25, 'phase1_rate': 0.25, 'phase2_rate': 0.25, 'phase1_count': 1, 'phase2_count': 1}
+START C repetition 1 2026-11-07T16:46:24+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/C_r1/eval_a_interact.json {'total_tasks': 4, 'total_reward': 0.7, 'average_reward': 0.175, 'phase1_rate': 0.25, 'phase2_rate': 0.0, 'phase1_count': 1, 'phase2_count': 0}
+START B repetition 2 2026-11-07T16:48:54+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/B_r2/eval_a_interact.json {'total_tasks': 4, 'total_reward': 1.0, 'average_reward': 0.25, 'phase1_rate': 0.25, 'phase2_rate': 0.25, 'phase1_count': 1, 'phase2_count': 1}
+START C repetition 2 2026-11-07T16:51:19+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/C_r2/eval_a_interact.json {'total_tasks': 4, 'total_reward': 2.0, 'average_reward': 0.5, 'phase1_rate': 0.5, 'phase2_rate': 0.5, 'phase1_count': 2, 'phase2_count': 2}
+START baseline repetition 2 2026-11-07T16:53:41+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/baseline_r2/eval_a_interact.json {'total_tasks': 4, 'total_reward': 2.0, 'average_reward': 0.5, 'phase1_rate': 0.5, 'phase2_rate': 0.5, 'phase1_count': 2, 'phase2_count': 2}
+START A repetition 2 2026-11-07T16:56:16+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/A_r2/eval_a_interact.json {'total_tasks': 4, 'total_reward': 1.7, 'average_reward': 0.425, 'phase1_rate': 0.5, 'phase2_rate': 0.25, 'phase1_count': 2, 'phase2_count': 1}
+START C repetition 3 2026-11-07T16:58:51+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/C_r3/eval_a_interact.json {'total_tasks': 4, 'total_reward': 2.0, 'average_reward': 0.5, 'phase1_rate': 0.5, 'phase2_rate': 0.5, 'phase1_count': 2, 'phase2_count': 2}
+START A repetition 3 2026-11-07T17:01:17+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/A_r3/eval_a_interact.json {'total_tasks': 4, 'total_reward': 1.0, 'average_reward': 0.25, 'phase1_rate': 0.25, 'phase2_rate': 0.25, 'phase1_count': 1, 'phase2_count': 1}
+START baseline repetition 3 2026-11-07T17:04:02+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/baseline_r3/eval_a_interact.json {'total_tasks': 4, 'total_reward': 1.0, 'average_reward': 0.25, 'phase1_rate': 0.25, 'phase2_rate': 0.25, 'phase1_count': 1, 'phase2_count': 1}
+START B repetition 3 2026-11-07T17:06:20+08:00
+COMPLETE /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/B_r3/eval_a_interact.json {'total_tasks': 4, 'total_reward': 1.0, 'average_reward': 0.25, 'phase1_rate': 0.25, 'phase2_rate': 0.25, 'phase1_count': 1, 'phase2_count': 1}
+ALL_48_COMPLETED 2026-11-07T17:08:45+08:00

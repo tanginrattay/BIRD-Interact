@@ -1,0 +1,2606 @@
+{
+  "baseline_r1__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1 digital native criteria: ask8 OR high online/mobile AND autopay Yes",
+      "S2 CES and average aggregation: KB7/tool3, ask15",
+      "S3 CES>0.7: ask8",
+      "S4 cohort vs digital-first denominator: ask15 gives explicit expressions",
+      "S5 cohort-quarter: KB51/tool5"
+    ],
+    "unresolved_information_units": [],
+    "coverage_evidence": [
+      "K1 CES: tool3/KB7",
+      "K2 Digital First: ask8",
+      "K3 High Engagement: ask8"
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 8,
+        "label": "necessary",
+        "reason": "Digital-first and high-engagement definitions hidden; both missing at this point."
+      },
+      {
+        "tool_index": 15,
+        "label": "necessary",
+        "reason": "Prior reply did not resolve aggregation or denominator differences; answer supplies both."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Digital Channel Opportunity, BRS and High-Value Customer do not resolve the target digital-first rule; low relevance, not semantic equivalence.",
+      "CES KB/GT component-capping discrepancy is retained."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in actual evidence and benchmark/KB; not agent self-evaluation; unblinded, without independent replication."
+  },
+  "baseline_r1__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1 Gift-focused predicate: tool3 KB49; ask9 confirms gift-heavy GIQ>50",
+      "S2 GIQ formula: ask9 explicitly giftvalusd*gifttot/100.0",
+      "S3 lower-tier=Free/Basic: ask9 resolves membership vs fan-tier interpretation"
+    ],
+    "unresolved_information_units": [],
+    "coverage_evidence": [
+      "K1 GIQ formula: ask9",
+      "K2 Gift-Focused Supporter: tool3/KB49"
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "GIQ formula hidden; raw gift score and fan-tier vs membership mapping unresolved despite available category descriptions."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Fan tier, MV and Fan Value Segmentation are distinct concepts, not equivalent answers to the GIQ gap."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in actual evidence and benchmark/KB; not agent self-evaluation; unblinded, without independent replication."
+  },
+  "baseline_r1__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 5,
+      "no_new_relevant_information_calls": 5,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S2 WRMI exact formula: ask9, reaffirmed ask11",
+      "S3 status thresholds/labels: tool3 KB53",
+      "S4 exact output fields: ask15",
+      "S5 water-level-data non-null filter: ask15"
+    ],
+    "unresolved_information_units": [
+      "S1 requires a view named water_management_view; ask15 says view but never supplies required view name."
+    ],
+    "coverage_evidence": [
+      "K1 WRMI formula: ask9",
+      "K2 classification: tool3 KB53; also bulk8"
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "WRMI formula hidden; none of the nearby definitions supply it."
+      },
+      {
+        "tool_index": 11,
+        "label": "necessary_verification",
+        "reason": "A database execution exposed unexpected value scales relative to thresholds, creating a concrete inconsistency to verify. It is not counted as a needless repetition without new evidence."
+      },
+      {
+        "tool_index": 15,
+        "label": "necessary",
+        "reason": "Required output contract and view-vs-query interpretation not established."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Bulk8 repeats five prior IDs and adds no new target-relevant definition. This is exact duplication plus mostly low relevance, not a distinct-ID semantic equivalence.",
+      "View intent only partially resolved: required name remains missing."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in actual evidence and benchmark/KB; not agent self-evaluation; unblinded, without independent replication."
+  },
+  "baseline_r1__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.75,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 1,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 4,
+      "no_new_relevant_information_calls": 5,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.5
+    },
+    "resolved_information_units": [
+      "S1 laundering intent: ask7 and ask10 supply correct associated filters; bulk9 KB23",
+      "S2 exact TCR formula: ask10",
+      "S4 schema1 supplies output/join sources"
+    ],
+    "unresolved_information_units": [
+      "S3 descending order confirmed, but top-N vs all qualifying rows not explicitly addressed; partial only."
+    ],
+    "coverage_evidence": [
+      "K1 TCR formula: ask10",
+      "K2 Money Laundering Indicator: bulk9 KB23 + ask10",
+      "P2 CSR formula already obtained incidentally in bulk9 before follow-up disclosed"
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 7,
+        "label": "necessary",
+        "reason": "Wrong nearby metric hypotheses need correction to TCR/laundering."
+      },
+      {
+        "tool_index": 10,
+        "label": "partially_unnecessary",
+        "reason": "TCR formula is still missing and genuinely needs asking; threshold150 and associated laundering predicates were already available in bulk9 KB23."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Bulk9 repeats four previous definition IDs; exact duplication is separate from cross-ID semantic equivalence.",
+      "Task success does not establish explicit prior resolution of the top-N ambiguity."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in actual evidence and benchmark/KB; not agent self-evaluation; unblinded, without independent replication."
+  },
+  "A_r1__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      7,
+      14,
+      50
+    ],
+    "user_supplied_knowledge_ids": [
+      14,
+      50
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB7/tool3 CES; KB51/tool5 cohort quarter. Ask8 supplies Digital First OR+autopay and CES>0.7. Ask13 explains distinct percentage denominators."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 8,
+        "label": "necessary",
+        "reason": "Digital-first and high-engagement definitions hidden."
+      },
+      {
+        "tool_index": 13,
+        "label": "necessary",
+        "reason": "Cohort output format and denominator differences remain unclear."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "No semantic equivalence across distinct returned definitions; several are low relevance."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "A_r1__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 8,
+      "no_new_relevant_information_calls": 6,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      34,
+      49
+    ],
+    "user_supplied_knowledge_ids": [
+      34
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB49/tool3 contains GIQ>50 and spendusd<100; KB3/tool5 and KB7/tool6 give field semantics. Ask12 confirms gift-heavy criterion, provides GIQ=giftvalusd*gifttot/100 and Free/Basic membership mapping."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 12,
+        "label": "necessary",
+        "reason": "GIQ formula absent; intended metric and lower-tier mapping remain unknown."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Bulk11 repeats eight earlier definitions and adds no new target-relevant content."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "A_r1__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 1,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 7,
+      "no_new_relevant_information_calls": 7,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.5
+    },
+    "resolved_information_units": [
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S1"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      53
+    ],
+    "user_supplied_knowledge_ids": [
+      7
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB53/tool3 classification. Ask11 supplies WRMI formula; ask19 specifies three output columns and non-null-waterlevel scope."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 11,
+        "label": "necessary",
+        "reason": "Hidden WRMI formula is not supplied by bulk10."
+      },
+      {
+        "tool_index": 19,
+        "label": "partially_unnecessary",
+        "reason": "Output fields and equipment scope are unresolved; formula scale was already explicitly given in ask11."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "View intent mentioned in ask19, but required water_management_view name never supplied; S1 only partial."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "A_r1__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 0.5,
+      "ambiguity_resolution_rate": 0.75,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 2,
+      "knowledge_coverage_ever_correct_seen": 0.5,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "unresolved_information_units": [
+      "S1"
+    ],
+    "required_knowledge_ids_covered": [
+      16
+    ],
+    "user_supplied_knowledge_ids": [
+      16
+    ],
+    "coverage_and_resolution_evidence": [
+      "Ask7 supplies exact TCR formula; ask11 explicitly says all qualifying rows without LIMIT. Schema1 supports joins/output."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 7,
+        "label": "necessary",
+        "reason": "Intended chain-risk metric unresolved; no TCR definition available."
+      },
+      {
+        "tool_index": 11,
+        "label": "necessary",
+        "reason": "Top-N versus all qualifying results not established by preceding answer."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S1 laundering predicate remains unresolved: only Suspicious Transaction Pattern/KB22 and TAS/KB12 retrieved, not Money Laundering Indicator/KB23.",
+      "User reply ambiguously calls TCR composite scoring a (c)-style choice, while option(c) was TAS; exact formula is nevertheless explicit.",
+      "Knowledge cost is low but required laundering conditions are missing; candidate cost-coverage tradeoff case."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r1__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      7,
+      14,
+      50
+    ],
+    "user_supplied_knowledge_ids": [
+      14,
+      50
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB7/tool3 CES and KB51/tool4 cohort. Ask8 supplies Digital First+CES>0.7. Ask13 and ask16 establish distinct denominator and NULL on False groups."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 8,
+        "label": "necessary",
+        "reason": "Digital-first predicate and threshold are missing."
+      },
+      {
+        "tool_index": 13,
+        "label": "necessary",
+        "reason": "Output quarter and two percentage-column semantics not established."
+      },
+      {
+        "tool_index": 16,
+        "label": "necessary",
+        "reason": "Whether the digital-first rate is NULL in False groups remains unclear; reply gives exact denominator and precision."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Three clarifications resolve genuinely different residual gaps; no whole ask is marked unnecessary."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r1__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      34,
+      49
+    ],
+    "user_supplied_knowledge_ids": [
+      34
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB49/tool3 gift-focused predicate. Ask9 explicitly gives GIQ formula, threshold, two-decimal output and Free/Basic membership."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "GIQ formula hidden and business mapping/tiers unresolved."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Nearby MV, Fan Value and fan-tier queries do not solve GIQ formula."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r1__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 7,
+      "no_new_relevant_information_calls": 7,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S1"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      53
+    ],
+    "user_supplied_knowledge_ids": [
+      7
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB53/tool3 classification; ask11 exact WRMI formula; ask17 three output fields, non-null scope and no rounding."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 11,
+        "label": "necessary",
+        "reason": "Hidden WRMI formula missing."
+      },
+      {
+        "tool_index": 17,
+        "label": "necessary",
+        "reason": "Output and scope contract unresolved."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Required view name remains unstated, so S1 partial only."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r1__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.75,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 1,
+      "semantic_redundancy_definition_occurrences": 1,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 3,
+      "no_new_relevant_information_calls": 4,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S4"
+    ],
+    "unresolved_information_units": [
+      "S3"
+    ],
+    "required_knowledge_ids_covered": [
+      16,
+      23
+    ],
+    "user_supplied_knowledge_ids": [
+      16,
+      23
+    ],
+    "coverage_and_resolution_evidence": [
+      "Ask5 gives all four laundering predicates; ask8 supplies exact TCR coefficients. Schema1 supports output/join sources."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 5,
+        "label": "necessary",
+        "reason": "Intended suspicious-chain rule/metric unresolved."
+      },
+      {
+        "tool_index": 8,
+        "label": "necessary",
+        "reason": "No exact TCR coefficients supplied by prior response or KB."
+      }
+    ],
+    "semantic_redundancy_evidence": [
+      {
+        "tool_index": 7,
+        "definition_ids": [
+          23
+        ],
+        "prior_evidence": "Ask5 already supplied TCR>150, wallage<30, wallturnrt>5, linkedtxcount>=3."
+      }
+    ],
+    "notes": [
+      "S3 descending order implemented but no explicit top-N/all-result clarification.",
+      "Bulk7 returns already-known laundering conditions as well as repeating KB22/12; cross-source redundancy is additional to exact ID duplication."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "C_r1__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.6666666666666666,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S4"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      14,
+      50
+    ],
+    "user_supplied_knowledge_ids": [
+      14,
+      50
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB7/tool3 CES; KB51/tool4 cohort. Ask8 supplies Digital First OR+autopay. Ask9 supplies CES>0.7 and weighted CES formula."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 8,
+        "label": "necessary",
+        "reason": "Digital-first criterion hidden."
+      },
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "High-engagement threshold hidden and not supplied by ask8."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S4 distinct percentage denominators never clarified.",
+      "Despite proactive-asking instruction, five definition queries precede first ask, same count as B_r1 credit."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "C_r1__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      34,
+      49
+    ],
+    "user_supplied_knowledge_ids": [
+      34
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB49/tool3 gift-focused predicate. Ask9 supplies exact GIQ formula and threshold. Ask14 confirms Free/Basic membership."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "GIQ formula and gift-score mapping missing."
+      },
+      {
+        "tool_index": 14,
+        "label": "necessary",
+        "reason": "Fan-tier versus Free/Basic membership mapping not yet resolved."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "P1 succeeds only in free-exit submit18 at negative-budget stop, leaving no P2 opportunity.",
+      "C first asks only after six single-definition queries; same count as B_r1 virtual."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "C_r1__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 0.5,
+      "ambiguity_resolution_rate": 0.2,
+      "user_semantic_resolution_rate": 0.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 6,
+      "no_new_relevant_information_calls": 6,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 1,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S3"
+    ],
+    "unresolved_information_units": [
+      "S1",
+      "S2",
+      "S4",
+      "S5"
+    ],
+    "required_knowledge_ids_covered": [
+      53
+    ],
+    "user_supplied_knowledge_ids": [],
+    "coverage_and_resolution_evidence": [
+      "KB53/tool3 supplies status labels/thresholds. Ask10 supplies correct WRMI formula, but ask12 incorrectly tells agent to add waterlevelpercent/100, leaving unresolved conflicting information."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 10,
+        "label": "necessary",
+        "reason": "WRMI formula missing from KB."
+      },
+      {
+        "tool_index": 12,
+        "label": "necessary_verification",
+        "reason": "New execution-scale evidence raises a concrete apparent inconsistency."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "K1 was seen correctly at ask10 but is not reliably resolved at end because ask12 contradicts it; final-consistent coverage0.5, ever-correct-seen coverage1.0.",
+      "S1 required view/name, S4 output contract and S5 relevant-equipment scope not clarified.",
+      "Simulator answer12 contradicts benchmark formula; distinguish this interaction failure from a valid new definition."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated.",
+    "simulator_issues": [
+      {
+        "tool_index": 12,
+        "evidence": "The formula should normalize waterlevelpercent to a fraction (divide by 100)",
+        "benchmark_conflict": "GT and hidden KB7 multiply by raw waterlevelpercent, with no extra /100."
+      }
+    ]
+  },
+  "C_r1__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 0.5,
+      "ambiguity_resolution_rate": 0.5,
+      "user_semantic_resolution_rate": 0.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 0.5,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S2",
+      "S4"
+    ],
+    "unresolved_information_units": [
+      "S1",
+      "S3"
+    ],
+    "required_knowledge_ids_covered": [
+      16
+    ],
+    "user_supplied_knowledge_ids": [
+      16
+    ],
+    "coverage_and_resolution_evidence": [
+      "Ask7 identifies TCR; ask9 supplies exact TCR formula. Schema1 supplies join/output sources."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 7,
+        "label": "necessary",
+        "reason": "Target chain-risk score unidentified."
+      },
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "TCR lookup8 not found; exact coefficients remain missing."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S1 suspicious-chain laundering predicates never supplied; only TAS-based definitions retrieved.",
+      "S3 order is confirmed, but top-N versus all qualifying results not addressed.",
+      "Lower knowledge cost than bulk-using B comes with missing KB23 predicate coverage."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r2__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      7,
+      14,
+      50
+    ],
+    "user_supplied_knowledge_ids": [
+      14,
+      50
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB7/tool3 CES and KB51/tool4 cohort. Ask10 explicitly OR online/mobile + autopay Yes, CES>0.7. Ask15 row-group vs digital-first-subset denominators."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 10,
+        "label": "necessary",
+        "reason": "Business digital-first and high-engagement criteria hidden."
+      },
+      {
+        "tool_index": 15,
+        "label": "necessary",
+        "reason": "Quarter-wide vs row-group denominators not established."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Prefatory yes to agent AND proposal is contradicted by explicit correct OR rule; classification follows the explicit rule."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r2__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 1,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "simulator_incomplete_answer_count": 1,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.5
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      34,
+      49
+    ],
+    "user_supplied_knowledge_ids": [
+      34
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB49/tool3 target predicate. Ask9 GIQ exact formula+threshold. Ask10 Free/Basic membership mapping."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "GIQ formula and intended low-tier mapping missing."
+      },
+      {
+        "tool_index": 10,
+        "label": "partially_unnecessary",
+        "reason": "Lower-tier part of ask9 went unanswered, so repeating it is necessary; the output membership column itself was already identified by schema/KB3."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Incomplete Simulator reply9 omits the requested lower-tier interpretation; follow-up is justified, not a fully redundant question."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r2__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.4,
+      "user_semantic_resolution_rate": 0.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 8,
+      "no_new_relevant_information_calls": 8,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [
+      "S1",
+      "S4",
+      "S5"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      53
+    ],
+    "user_supplied_knowledge_ids": [
+      7
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB53/tool3 status classification. Ask12 gives exact raw-waterlevel WRMI formula."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 12,
+        "label": "necessary",
+        "reason": "No WRMI formula after eight single definitions and bulk11."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "View/name, output contract and relevant-equipment scope never clarified; S1/S4/S5 unresolved.",
+      "Bulk11 repeats eight IDs and adds no new target-relevant content."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r2__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.75,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 2,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S4"
+    ],
+    "unresolved_information_units": [
+      "S3"
+    ],
+    "required_knowledge_ids_covered": [
+      16,
+      23
+    ],
+    "user_supplied_knowledge_ids": [
+      16,
+      23
+    ],
+    "coverage_and_resolution_evidence": [
+      "Ask6 explicitly rejects TAS and supplies exact TCR coefficients plus all four laundering filters. Schema1 supports join/output. P2 CSR retrieved at tool9."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 6,
+        "label": "necessary",
+        "reason": "Agent holds wrong TAS-based criterion; intended TCR and laundering predicates missing."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S3 order confirmed, but no explicit all-qualifying vs top-N clarification.",
+      "Both P1 knowledge requirements supplied by user; no P1 target KB definition retrieved. No bulk retrieval needed for task success."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "C_r2__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.6666666666666666,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 1,
+      "no_new_relevant_information_calls": 4,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S4"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      14,
+      50
+    ],
+    "user_supplied_knowledge_ids": [
+      14,
+      50
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB7/tool3 CES, KB51/tool5 cohort. Ask9 OR online/mobile + autopay, ask10 CES>0.7."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "Digital-first rule absent."
+      },
+      {
+        "tool_index": 10,
+        "label": "necessary",
+        "reason": "High-engagement threshold absent."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S4 distinct percentage denominators not clarified.",
+      "Digital Channel Opportunity retrieved twice (tools4/8); exact repeat adds no information."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "C_r2__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      34,
+      49
+    ],
+    "user_supplied_knowledge_ids": [
+      34
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB49/tool3 predicate. Ask9 confirms GIQ>50 AND spendusd<100, exact formula and Free/Basic membership."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "GIQ formula and gift-heavy/lower-tier business mappings missing."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Six knowledge definitions precede ask, despite proactive-asking strategy."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "C_r2__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.4,
+      "user_semantic_resolution_rate": 0.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 1,
+      "no_new_relevant_information_calls": 8,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [
+      "S1",
+      "S4",
+      "S5"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      53
+    ],
+    "user_supplied_knowledge_ids": [
+      7
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB53/tool3 status thresholds; ask12 exact WRMI formula and target classification."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 12,
+        "label": "necessary",
+        "reason": "WRMI formula absent; relation of status category to WRMSC not explicitly established."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S1 view/name, S4 output contract and S5 non-null equipment scope unresolved.",
+      "Water Conservation Requirement repeated at tools4/10; unrelated energy definitions do not resolve WRMI."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "C_r2__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.75,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 4,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S4"
+    ],
+    "unresolved_information_units": [
+      "S3"
+    ],
+    "required_knowledge_ids_covered": [
+      16,
+      23
+    ],
+    "user_supplied_knowledge_ids": [
+      16,
+      23
+    ],
+    "coverage_and_resolution_evidence": [
+      "Ask9 gives exact TCR formula, explicitly rejects TAS rule and supplies all four laundering filters. Schema1 supports output/join sources. P2 CSR tool12."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "Wrong nearby metric hypotheses and TAS predicate require correction."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S3 top-N vs all results not explicitly clarified.",
+      "Complex Money Laundering Operation KB49 mentions a different TCR threshold180 and does not supply target TCR formula or full KB23 criteria."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "baseline_r2__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.6666666666666666,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 2,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S4"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      14,
+      50
+    ],
+    "user_supplied_knowledge_ids": [
+      14,
+      50
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB7/tool3 CES; KB51/tool5 cohort. Ask7 supplies Digital First OR+autopay and CES>0.7."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 7,
+        "label": "necessary",
+        "reason": "Hidden Digital First/high-engagement rules missing."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S4 percentage denominators never clarified."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "baseline_r2__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 9,
+      "no_new_relevant_information_calls": 7,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      34,
+      49
+    ],
+    "user_supplied_knowledge_ids": [
+      34
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB49/tool3 target predicate; ask13 confirms GIQ formula, GIQ>50 AND spendusd<100, Free/Basic membership."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 13,
+        "label": "necessary",
+        "reason": "GIQ formula missing and intended business/low-tier meanings unresolved."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Nine single definitions followed by bulk12 repeating all nine; no new target-relevant information from bulk."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "baseline_r2__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 1,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 7,
+      "no_new_relevant_information_calls": 7,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.5
+    },
+    "resolved_information_units": [
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S1"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      53
+    ],
+    "user_supplied_knowledge_ids": [
+      7
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB53/tool3 classification. Ask11 formula; ask17 raw-waterlevel confirmation, exact three columns and non-null scope."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 11,
+        "label": "necessary",
+        "reason": "Hidden WRMI formula unavailable."
+      },
+      {
+        "tool_index": 17,
+        "label": "partially_unnecessary",
+        "reason": "Equipment scope and output unresolved; raw waterlevelpercent formula already explicit at ask11."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Required water_management_view name remains unstated, so S1 partial only."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "baseline_r2__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.75,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 1,
+      "semantic_redundancy_definition_occurrences": 1,
+      "semantic_redundancy_including_exact_calls": 2,
+      "semantic_redundancy_including_exact_definition_occurrences": 9,
+      "no_new_relevant_information_calls": 9,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S4"
+    ],
+    "unresolved_information_units": [
+      "S3"
+    ],
+    "required_knowledge_ids_covered": [
+      16,
+      23
+    ],
+    "user_supplied_knowledge_ids": [
+      16,
+      23
+    ],
+    "coverage_and_resolution_evidence": [
+      "Ask7 gives all four laundering predicates. Ask13 exact TCR formula. Schema1 supports outputs/joins."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 7,
+        "label": "necessary",
+        "reason": "Intended metric/predicate unknown, agent proposes TAS alternative."
+      },
+      {
+        "tool_index": 13,
+        "label": "necessary",
+        "reason": "Exact TCR coefficients missing despite additional exploration."
+      }
+    ],
+    "semantic_redundancy_evidence": [
+      {
+        "tool_index": 8,
+        "definition_ids": [
+          23
+        ],
+        "prior_evidence": "Ask7 already supplies TCR>150, wallage<30, wallturnrt>5, linkedtxcount>=3."
+      }
+    ],
+    "notes": [
+      "S3 order confirmed but top-N/all-results not explicit.",
+      "Knowledge query8 retrieves KB23 after user already supplied it; bulk12 then exactly repeats eight earlier IDs."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "A_r2__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 0,
+      "simulator_incorrect_answer_count": 1,
+      "simulator_incomplete_answer_count": 1,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      7,
+      14,
+      50
+    ],
+    "user_supplied_knowledge_ids": [
+      14,
+      50
+    ],
+    "coverage_and_resolution_evidence": [
+      "Bulk3 contains CES/KB7 and Cohort Quarter/KB51. Ask4 supplies Digital First and CES>0.7. Ask13 correctly specifies quarter-start value and within-row-group percentage vs digital-first-only rate."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 4,
+        "label": "necessary",
+        "reason": "Digital-first and high-engagement rules hidden despite bulk3."
+      },
+      {
+        "tool_index": 8,
+        "label": "necessary",
+        "reason": "Quarter output and percentage semantics unresolved."
+      },
+      {
+        "tool_index": 13,
+        "label": "necessary",
+        "reason": "Ask8 omitted quarter format and incorrectly said whole-quarter denominator; final output/denominator still unclear."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Ask8 wrong denominator is corrected by ask13; final S4 resolved.",
+      "One bulk knowledge call achieves lower cost but returns many irrelevant entries; three asks still required."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated.",
+    "simulator_issues": [
+      {
+        "tool_index": 8,
+        "evidence": "single overall metric computed across the entire cohort (both digital-first and non-digital-first customers combined)",
+        "benchmark_conflict": "GT pct_high_engagement groups by both cohort_quarter and is_digital_first. Reply13 later corrects this."
+      }
+    ]
+  },
+  "A_r2__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 7,
+      "no_new_relevant_information_calls": 6,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      34,
+      49
+    ],
+    "user_supplied_knowledge_ids": [
+      34
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB49/tool3 and reply9 predicate GIQ>50 AND spendusd<100; ask9 Free/Basic membership. Ask13 exact GIQ=giftvalusd*gifttot/100."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "Business criterion, score identity and lower-tier mapping missing."
+      },
+      {
+        "tool_index": 13,
+        "label": "necessary",
+        "reason": "Reply9 identifies GIQ but does not give formula; further lookup10 fails and bulk12 also lacks it."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Bulk12 repeats seven successful prior IDs and does not supply the hidden formula."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "A_r2__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.4,
+      "user_semantic_resolution_rate": 0.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 2,
+      "semantic_redundancy_including_exact_definition_occurrences": 6,
+      "no_new_relevant_information_calls": 6,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [
+      "S1",
+      "S4",
+      "S5"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      53
+    ],
+    "user_supplied_knowledge_ids": [
+      7
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB53/tools3/8 classification; ask11 exact WRMI formula."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 11,
+        "label": "necessary",
+        "reason": "WRMI formula missing despite multiple lookups and bulk9."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S1 view/name, S4 output contract and S5 non-null scope unresolved.",
+      "KB53 repeated at8 then bulk9 repeats five known IDs."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "A_r2__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 2,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      16,
+      23
+    ],
+    "user_supplied_knowledge_ids": [
+      16
+    ],
+    "coverage_and_resolution_evidence": [
+      "User10 identifies TCR and explicitly no fixed top-N. Bulk12 supplies Money Laundering Indicator/KB23 target predicates. Ask13 supplies exact TCR formula. Schema1 supports outputs/joins."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 10,
+        "label": "necessary",
+        "reason": "Wrong chain-length/TAS interpretation and top-N question unresolved after failed submit6."
+      },
+      {
+        "tool_index": 13,
+        "label": "necessary",
+        "reason": "TCR lookup11 fails; exact coefficients still missing."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "First ask only after one failed submission and additional SQL exploration.",
+      "P1 passes only at free-exit submit17 with negative-budget stop, preventing P2."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "C_r3__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.6666666666666666,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 1,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S4"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      14,
+      50
+    ],
+    "user_supplied_knowledge_ids": [
+      14,
+      50
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB7/tool3 CES; KB51/tool4 cohort. Ask7 Digital First OR+autopay; ask8 CES>0.7."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 7,
+        "label": "necessary",
+        "reason": "Digital-first criterion hidden."
+      },
+      {
+        "tool_index": 8,
+        "label": "necessary",
+        "reason": "High-engagement threshold hidden."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S4 separate digital-first-subset denominator unresolved."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "C_r3__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      34,
+      49
+    ],
+    "user_supplied_knowledge_ids": [
+      34
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB49/tool3 and ask9 confirm Gift-Focused predicate and exact GIQ formula; ask10 confirms Free/Basic membership."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "GIQ formula and target business criterion missing."
+      },
+      {
+        "tool_index": 10,
+        "label": "necessary",
+        "reason": "Lower-tier membership mapping still missing after ask9."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "C_r3__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 1,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 7,
+      "no_new_relevant_information_calls": 7,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.5
+    },
+    "resolved_information_units": [
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S1"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      53
+    ],
+    "user_supplied_knowledge_ids": [
+      7
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB53/tool3 classification; ask11 exact WRMI formula and explicit non-null scope. Ask15 equipment reference/score/status columns, no equipment type."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 11,
+        "label": "necessary",
+        "reason": "Hidden WRMI formula absent."
+      },
+      {
+        "tool_index": 15,
+        "label": "partially_unnecessary",
+        "reason": "Output column contract unresolved; non-null-waterlevel equipment scope already stated in reply11."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S1 required view name still absent; only view intent partly stated."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "C_r3__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.75,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S4"
+    ],
+    "unresolved_information_units": [
+      "S3"
+    ],
+    "required_knowledge_ids_covered": [
+      16,
+      23
+    ],
+    "user_supplied_knowledge_ids": [
+      16,
+      23
+    ],
+    "coverage_and_resolution_evidence": [
+      "Ask9 supplies exact TCR coefficients and all four numeric laundering filters. Schema1 output/joins. CSR retrieved at12 for P2."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 7,
+        "label": "necessary",
+        "reason": "Agent proposes wrong raw-score/TAS mapping."
+      },
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "Reply7 gives only qualitative factors, leaving exact TCR coefficients and suspicion thresholds missing."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S3 descending order established, but no explicit top-N/all-result clarification.",
+      "Unlike C_r1 ask9, this ask9 explicitly requests the missing thresholds; same P1 knowledge cost and ask count, stronger coverage and successful SQL."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "A_r3__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.6666666666666666,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 0,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S4"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      14,
+      50
+    ],
+    "user_supplied_knowledge_ids": [
+      14,
+      50
+    ],
+    "coverage_and_resolution_evidence": [
+      "Bulk3 CES/KB7 and Cohort Quarter/KB51. Ask6 OR online/mobile + autopay. Ask7 confirms CES>0.7."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 6,
+        "label": "necessary",
+        "reason": "Digital-native rule hidden."
+      },
+      {
+        "tool_index": 7,
+        "label": "necessary",
+        "reason": "Cross-Sell Priority CES cutoff does not establish high-engagement business mapping without confirmation."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S4 distinct percentage denominators not clarified.",
+      "One bulk query reduces cost and avoids exact repeats, but returns many non-target definitions."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "A_r3__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      34,
+      49
+    ],
+    "user_supplied_knowledge_ids": [
+      34
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB49/tool3 and ask9 target predicate; ask9 exact GIQ formula and Free/Basic membership."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "GIQ formula, gift-heavy meaning and membership mapping unknown."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "High acquired coverage does not imply correct final SQL; task still fails."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "A_r3__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 1,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 6,
+      "no_new_relevant_information_calls": 6,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.5
+    },
+    "resolved_information_units": [
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S1"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      53
+    ],
+    "user_supplied_knowledge_ids": [
+      7
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB53/tool3 classification. Ask10 exact raw-waterlevel formula. Ask17 score included among three columns and non-null-waterlevel equipment scope."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 10,
+        "label": "necessary",
+        "reason": "WRMI formula hidden."
+      },
+      {
+        "tool_index": 17,
+        "label": "partially_unnecessary",
+        "reason": "Output and equipment scope unresolved; waterlevelpercent scale already explicit at ask10."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S1 view name never supplied; only view intent partially clarified."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "A_r3__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.75,
+      "user_semantic_resolution_rate": 0.5,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 1,
+      "semantic_redundancy_definition_occurrences": 1,
+      "semantic_redundancy_including_exact_calls": 2,
+      "semantic_redundancy_including_exact_definition_occurrences": 4,
+      "no_new_relevant_information_calls": 5,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S4"
+    ],
+    "unresolved_information_units": [
+      "S3"
+    ],
+    "required_knowledge_ids_covered": [
+      16,
+      23
+    ],
+    "user_supplied_knowledge_ids": [
+      16,
+      23
+    ],
+    "coverage_and_resolution_evidence": [
+      "Ask5 supplies all four laundering filters. Ask9 exact TCR coefficients. Schema1 output/join sources."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 5,
+        "label": "necessary",
+        "reason": "Wrong TAS/chain-length interpretation needs correction."
+      },
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "Exact TCR coefficients not in reply5 or subsequent lookups."
+      }
+    ],
+    "semantic_redundancy_evidence": [
+      {
+        "tool_index": 6,
+        "definition_ids": [
+          23
+        ],
+        "prior_evidence": "Ask5 already gives TCR>150, wallage<30, wallturnrt>5, linkedtxcount>=3."
+      }
+    ],
+    "notes": [
+      "S3 descending order given, but no explicit top-N/all-results clarification.",
+      "Query6 repeats predicate information already provided by user; bulk8 then repeats three prior successful IDs."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "baseline_r3__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.6666666666666666,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 1,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "simulator_incorrect_answer_count": 1,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.3333333333333333
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S4"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      14,
+      50
+    ],
+    "user_supplied_knowledge_ids": [
+      14,
+      50
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB7/tool3 CES; KB51/tool5 cohort. Ask8 Digital First OR+autopay; ask9 CES>0.7."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 8,
+        "label": "necessary",
+        "reason": "Digital-first rule hidden."
+      },
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "High-engagement threshold hidden."
+      },
+      {
+        "tool_index": 13,
+        "label": "partially_unnecessary",
+        "reason": "Percentage denominators unresolved; cohort definition already given by KB51/tool5."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Ask13 gives wrong denominator interpretation: global cohort percentage and second percentage in both true/false subgroups, conflicting with GT row-group first metric and true-only second metric. S4 remains unresolved."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated.",
+    "simulator_issues": [
+      {
+        "tool_index": 13,
+        "evidence": "high-engagement percentage broken down by digital native status is the percentage within each digital-native subgroup (true/false)",
+        "benchmark_conflict": "GT second rate only counts is_digital_first rows and is NULL for false groups; first rate uses each cohort/status group."
+      }
+    ]
+  },
+  "baseline_r3__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "simulator_incomplete_answer_count": 2,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      34,
+      49
+    ],
+    "user_supplied_knowledge_ids": [
+      34
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB49/tool3 plus ask9 GIQ formula/predicate. Ask10 Free/Basic membership. Ask11 computed GIQ output with2 decimals."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "Gift-heavy meaning, GIQ formula, output score and lower-tier mapping unresolved."
+      },
+      {
+        "tool_index": 10,
+        "label": "necessary",
+        "reason": "Reply9 supplies formula/criterion but omits lower-tier mapping and explicit output-score confirmation."
+      },
+      {
+        "tool_index": 11,
+        "label": "necessary",
+        "reason": "Reply10 only answers membership; output-score choice still not explicitly answered."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "Two incomplete replies create follow-up clarifications; repeated unresolved questions are not marked unnecessary."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "baseline_r3__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.6,
+      "user_semantic_resolution_rate": 0.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 1,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 11,
+      "no_new_relevant_information_calls": 11,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.5
+    },
+    "resolved_information_units": [
+      "S2",
+      "S3",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S1",
+      "S4"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      53
+    ],
+    "user_supplied_knowledge_ids": [
+      7
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB53/tool3 classification. Ask15 exact WRMI formula. Ask22 non-null-waterlevel scope and unchanged normalization."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 15,
+        "label": "necessary",
+        "reason": "WRMI formula missing after eleven single definitions plus bulk14."
+      },
+      {
+        "tool_index": 22,
+        "label": "partially_unnecessary",
+        "reason": "Equipment scope unresolved; exact raw-waterlevel formula already supplied at15, with no explicit new numeric contradiction cited."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S1 view/name and S4 three-column contract never clarified.",
+      "Bulk14 repeats eleven prior IDs; queries on renewable energy, CORI and LOSS do not solve WRMI."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "baseline_r3__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 0.5,
+      "ambiguity_resolution_rate": 0.5,
+      "user_semantic_resolution_rate": 0.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 4,
+      "knowledge_coverage_ever_correct_seen": 0.5,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S2",
+      "S4"
+    ],
+    "unresolved_information_units": [
+      "S1",
+      "S3"
+    ],
+    "required_knowledge_ids_covered": [
+      16
+    ],
+    "user_supplied_knowledge_ids": [
+      16
+    ],
+    "coverage_and_resolution_evidence": [
+      "Ask12 gives exact TCR formula. Schema1 supports output/join sources."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 12,
+        "label": "necessary",
+        "reason": "Raw-field risk hypothesis wrong; TCR formula unknown."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S1 laundering filters absent: KB22/TAS/Complex Money Laundering/MFC do not supply target KB23 conditions.",
+      "S3 descending order confirmed but no explicit row-limit clarification.",
+      "First ask follows a failed SQL submission and multiple SQL explorations."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r3__credit_11": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.8,
+      "user_semantic_resolution_rate": 0.6666666666666666,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 1,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.5
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3",
+      "S5"
+    ],
+    "unresolved_information_units": [
+      "S4"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      14,
+      50
+    ],
+    "user_supplied_knowledge_ids": [
+      14,
+      50
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB7/tool3 CES; KB51/tool4 cohort. Ask10 Digital First OR+autopay and CES>0.7. Ask14 six output fields and group-specific size."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 10,
+        "label": "necessary",
+        "reason": "Digital-first and high-engagement rules missing."
+      },
+      {
+        "tool_index": 14,
+        "label": "partially_unnecessary",
+        "reason": "Cohort-size denominator unresolved; one row per cohort/status combination already explicit in initial task, so pivot-vs-row subquestion repeats known shape."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S4 exact distinct percentage denominators remain unspecified despite output-name clarification."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r3__virtual_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 1.0,
+      "user_semantic_resolution_rate": 1.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 3,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [],
+    "required_knowledge_ids_covered": [
+      34,
+      49
+    ],
+    "user_supplied_knowledge_ids": [
+      34
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB49/tool3 predicate. Ask9 complete GIQ formula, GIQ>50 AND spendusd<100, Free/Basic membership."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 9,
+        "label": "necessary",
+        "reason": "GIQ formula, gift-heavy and lower-tier mappings missing."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r3__polar_M_4": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 1.0,
+      "ambiguity_resolution_rate": 0.4,
+      "user_semantic_resolution_rate": 0.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 1,
+      "semantic_redundancy_including_exact_definition_occurrences": 7,
+      "no_new_relevant_information_calls": 7,
+      "knowledge_coverage_ever_correct_seen": 1.0,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S2",
+      "S3"
+    ],
+    "unresolved_information_units": [
+      "S1",
+      "S4",
+      "S5"
+    ],
+    "required_knowledge_ids_covered": [
+      7,
+      53
+    ],
+    "user_supplied_knowledge_ids": [
+      7
+    ],
+    "coverage_and_resolution_evidence": [
+      "KB53/tool3 classification. Ask12 formula; ask14 explicitly reaffirms raw waterlevelpercent with no additional normalization."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 12,
+        "label": "necessary",
+        "reason": "Hidden WRMI formula not supplied by retrieval."
+      },
+      {
+        "tool_index": 14,
+        "label": "necessary_verification",
+        "reason": "New executed values e.g. raw90.6 and WRMI270 conflict with expected0.5/0.7 scale and warrant verification."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S1 view/name, S4 output contract and S5 non-null scope unresolved."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  },
+  "B_r3__cybermarket_1": {
+    "metrics": {
+      "knowledge_coverage_tools_plus_user": 0.5,
+      "ambiguity_resolution_rate": 0.5,
+      "user_semantic_resolution_rate": 0.0,
+      "unnecessary_ask_count": 0,
+      "partially_unnecessary_ask_count": 0,
+      "unnecessary_ask_rate": 0.0,
+      "semantic_redundancy_calls": 0,
+      "semantic_redundancy_definition_occurrences": 0,
+      "semantic_redundancy_including_exact_calls": 0,
+      "semantic_redundancy_including_exact_definition_occurrences": 0,
+      "no_new_relevant_information_calls": 4,
+      "knowledge_coverage_ever_correct_seen": 0.5,
+      "simulator_incorrect_answer_count": 0,
+      "simulator_incomplete_answer_count": 0,
+      "unnecessary_ask_upper_bound": 0.0
+    },
+    "resolved_information_units": [
+      "S2",
+      "S4"
+    ],
+    "unresolved_information_units": [
+      "S1",
+      "S3"
+    ],
+    "required_knowledge_ids_covered": [
+      16
+    ],
+    "user_supplied_knowledge_ids": [
+      16
+    ],
+    "coverage_and_resolution_evidence": [
+      "Ask7 gives exact TCR formula. Schema1 supplies join/output sources."
+    ],
+    "ask_reviews": [
+      {
+        "tool_index": 7,
+        "label": "necessary",
+        "reason": "TCR identity/formula missing; agent proposes chain-length alternative."
+      }
+    ],
+    "semantic_redundancy_evidence": [],
+    "notes": [
+      "S1 full laundering filters never obtained: Complex Money Laundering KB49 and MFC do not supply target KB23 predicate.",
+      "S3 descending order confirmed but top-N/all-results not explicit."
+    ],
+    "review_method": "Explicit single-reviewer offline labels grounded in visible evidence and benchmark/KB content; not agent self-evaluation; not blinded or independently replicated."
+  }
+}

@@ -1,0 +1,25 @@
+Additional strategy: State-aware knowledge retrieval
+Maintain a concise working information state during retrieval: unresolved information needs for the current task; knowledge definitions already obtained and their contents; each definition's relevance to those needs; which needs are resolved and which remain missing; remaining tool budget; and the potential context burden of retrieving all definitions.
+Before each knowledge query, use that state to decide:
+1. Which specific information gap will this query resolve?
+2. Have you already obtained the same or substantively equivalent information?
+3. Is this query expected to provide new useful information?
+4. Is a single-definition query (0.5 bird-coins) or an all-definitions query (1 bird-coin) more suitable?
+5. Is the expected information value worth the tool cost and context overhead?
+After receiving a tool result, update the information state before deciding what to do next.
+A definition is not necessarily useful merely because its name resembles a concept in the task. Evaluate its content against the actual unresolved need.
+For user clarification, continue following the original strategy tips above; this additional retrieval strategy introduces no special ambiguity taxonomy or proactive-asking rule.
+
+Additional strategy: Ambiguity-aware interaction
+Before large-scale knowledge retrieval, identify potentially ambiguous concepts and determine where the missing information should come from:
+1. Database structure: uncertainty about tables, columns, or joins. Prefer schema and column-meaning tools for evidence; do not ask the user to resolve questions the database structure can answer.
+2. Existing domain knowledge: a named metric or business concept, such as CES, GIQ, or WRMI. Prefer a targeted lookup of that concept. If no matching reliable definition exists or the definition is insufficient, ask the user promptly. Do not keep retrieving similarly named definitions that fail to resolve the gap.
+3. User semantics or task context: expressions such as "usable signals", "gift-heavy", "suspicious chains", or "high engagement" may depend on the user's business definition. If alternative interpretations would materially change SQL calculations, filters, or outputs, prioritize ask_user before extensive knowledge exploration. Do not guess or infer intent from many nearby knowledge definitions.
+4. Unknown or custom concepts: if a term appears to be a proprietary metric without a reliable knowledge-base definition, allow one targeted lookup. If its meaning or formula remains uncertain, ask the user instead of continually broadening retrieval.
+Interaction rules:
+- Identify material user-semantic ambiguities before large-scale knowledge retrieval and prioritize ask_user for them.
+- Domain knowledge may be looked up first, but ask promptly if no reliable adequate definition is found; do not wait until a large knowledge budget is spent.
+- Ask only genuinely unresolved questions, one at a time, with concrete wording that is easy to answer.
+- Do not ask for information already established by schema, the knowledge base, database execution results, or prior conversation.
+- After a user answer, update the current information state and avoid repeated questions.
+The objective is to choose the right source—database, knowledge base, or user—for each gap, not to maximize the number of questions.

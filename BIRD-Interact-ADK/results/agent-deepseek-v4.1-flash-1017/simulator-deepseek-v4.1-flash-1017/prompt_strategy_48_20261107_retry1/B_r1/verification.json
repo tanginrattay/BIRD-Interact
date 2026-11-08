@@ -1,0 +1,21 @@
+{
+  "health": {
+    "6000": {
+      "status": "healthy",
+      "service": "system_agent",
+      "model": "deepseek/deepseek-flash",
+      "adk_available": true,
+      "adk_error": ""
+    },
+    "6001": {
+      "status": "healthy",
+      "service": "user_simulator"
+    },
+    "6002": {
+      "status": "healthy",
+      "service": "db_environment"
+    }
+  },
+  "instruction_sha256": "7b2dee03da1898d95999e3604f6afd4ba007aa49e90ecc0e80450979d5319f5c",
+  "baseline_constant_sha256": "a43338edfe4679f538c1c747029a866eb2facf8e02dd419762879dc4e0738ce0"
+}

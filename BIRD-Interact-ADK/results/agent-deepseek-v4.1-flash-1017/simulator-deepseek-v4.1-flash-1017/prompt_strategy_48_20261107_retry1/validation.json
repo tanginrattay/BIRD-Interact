@@ -1,0 +1,33 @@
+{
+  "complete": true,
+  "planned_runs": 48,
+  "valid_completed_runs": 48,
+  "task_errors": 0,
+  "conditions": {
+    "A": 12,
+    "B": 12,
+    "C": 12,
+    "baseline": 12
+  },
+  "tasks": {
+    "credit_11": 12,
+    "virtual_1": 12,
+    "polar_M_4": 12,
+    "cybermarket_1": 12
+  },
+  "balanced_matrix_verified": true,
+  "all_sources_and_prompts_match_frozen_hashes": true,
+  "baseline_matches_HEAD": true,
+  "benchmark_and_KB_unchanged": true,
+  "all_tool_trajectories_and_adk_events_present": true,
+  "invocation_ids_disjoint_between_runs": true,
+  "session_isolation_basis": "Original init_session reset=True, new create_session, fresh initial state; per-block service restart; disjoint invocation IDs. Session IDs are not included by the original runner.",
+  "knowledge_returns_verified": 282,
+  "knowledge_return_mismatches": [],
+  "budget_chain_mismatches": [],
+  "service_errors_detected": [],
+  "semantic_reviews_complete": 48,
+  "context_tokens_available": false,
+  "diagnostic_runs_included": 0,
+  "successful_task_db_cleanups": 48
+}

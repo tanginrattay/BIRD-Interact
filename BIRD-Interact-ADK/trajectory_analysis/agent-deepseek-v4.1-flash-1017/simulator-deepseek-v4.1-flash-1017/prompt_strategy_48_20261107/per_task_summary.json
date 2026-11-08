@@ -1,0 +1,1706 @@
+{
+  "credit_11": {
+    "baseline": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "A": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "B": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "C": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    }
+  },
+  "virtual_1": {
+    "baseline": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "A": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "B": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "C": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    }
+  },
+  "polar_M_4": {
+    "baseline": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "A": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "B": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "C": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    }
+  },
+  "cybermarket_1": {
+    "baseline": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "A": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "B": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "C": {
+      "n": 0,
+      "status": "no_valid_completed_runs",
+      "metrics": {
+        "knowledge_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_tool_cost": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "single_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "get_all_knowledge_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unique_definitions_retrieved": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "exact_duplicate_retrievals": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "semantic_redundancy": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "retrieval_relevance": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_coverage": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ask_user_count": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "knowledge_calls_before_first_ask": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "first_ask_timing": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "ambiguity_resolution_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "unnecessary_ask_rate": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "priority_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "follow_up_success": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_reward": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "remaining_budget": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "total_tool_calls": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        },
+        "context_tokens": {
+          "n_observed": 0,
+          "mean": null,
+          "sample_sd": null
+        }
+      }
+    }
+  }
+}

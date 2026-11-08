@@ -1,0 +1,6 @@
+{
+  "batch_completed": true,
+  "pending_task_requests": 0,
+  "own_service_processes_requested_stop": [],
+  "scope": "Only processes whose stdout points to this experiment B_r3/services.log; preserve pre-existing PostgreSQL container."
+}

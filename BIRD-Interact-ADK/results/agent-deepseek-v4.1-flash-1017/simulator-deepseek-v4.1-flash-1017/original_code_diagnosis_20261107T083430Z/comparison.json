@@ -1,0 +1,24 @@
+{
+  "original_HEAD": {
+    "task": "credit_11",
+    "elapsed_seconds": 51.29665994644165,
+    "tool_calls": 20,
+    "adk_events": 32,
+    "phase1_passed": false,
+    "phase2_passed": false,
+    "reward": 0.0,
+    "model": "deepseek/deepseek-flash",
+    "simulator": "deepseek/deepseek-flash"
+  },
+  "modified_with_appendix_unset": {
+    "task": "credit_11",
+    "elapsed_seconds": 50.83645582199097,
+    "tool_calls": 19,
+    "adk_events": 32,
+    "phase1_passed": false,
+    "phase2_passed": false,
+    "reward": 0.0,
+    "model": "deepseek/deepseek-flash",
+    "simulator": "deepseek/deepseek-flash"
+  }
+}

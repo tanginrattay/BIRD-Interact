@@ -1,0 +1,11 @@
+{
+  "purpose": "Infrastructure diagnosis only; excluded from 48 experiment runs",
+  "model": "deepseek/deepseek-flash",
+  "max_tokens": 1,
+  "num_retries": 0,
+  "uses_tools": true,
+  "success": false,
+  "error_type": "TimeoutError",
+  "error": "",
+  "elapsed_seconds": 29.49
+}

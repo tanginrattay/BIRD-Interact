@@ -1,6 +1,8 @@
 """BIRD-Interact ADK System Agent."""
 
 import logging
+import os
+from pathlib import Path
 from typing import Any
 
 from shared.config import settings
@@ -102,7 +104,11 @@ def build_agent(mode: str = "c-interact") -> Agent:
             model=model,
             name="bird_interact_agent",
             description="Text-to-SQL agent for BIRD-Interact a-interact benchmark.",
-            instruction=AINTERACT_INSTRUCTION,
+            instruction=(
+                AINTERACT_INSTRUCTION
+                + ("\n\n" + Path(os.environ["AINTERACT_PROMPT_APPENDIX"]).read_text()
+                   if os.environ.get("AINTERACT_PROMPT_APPENDIX") else "")
+            ),
             tools=get_ainteract_tools(),
             before_model_callback=before_model_callback,
             before_tool_callback=before_tool_callback,

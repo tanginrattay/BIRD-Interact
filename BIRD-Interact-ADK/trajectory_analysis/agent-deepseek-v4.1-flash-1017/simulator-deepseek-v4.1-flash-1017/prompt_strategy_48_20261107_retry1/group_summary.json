@@ -1,0 +1,1762 @@
+{
+  "baseline": {
+    "n": 12,
+    "metrics": {
+      "repetition": {
+        "n_observed": 12,
+        "mean": 2,
+        "sample_sd": 0.8528028654224418
+      },
+      "priority_success": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.49236596391733095
+      },
+      "follow_up_success": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.49236596391733095
+      },
+      "total_reward": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.49236596391733095
+      },
+      "remaining_budget": {
+        "n_observed": 12,
+        "mean": 0.625,
+        "sample_sd": 1.0028368851322822
+      },
+      "total_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.916666666666668,
+        "sample_sd": 2.314316444667973
+      },
+      "recorded_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.916666666666668,
+        "sample_sd": 2.314316444667973
+      },
+      "attempted_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.916666666666668,
+        "sample_sd": 2.314316444667973
+      },
+      "budget_rejected_calls": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "knowledge_tool_calls": {
+        "n_observed": 12,
+        "mean": 6.75,
+        "sample_sd": 2.490892501603683
+      },
+      "knowledge_tool_cost": {
+        "n_observed": 12,
+        "mean": 3.625,
+        "sample_sd": 1.4479609487451341
+      },
+      "knowledge_cost_including_names": {
+        "n_observed": 12,
+        "mean": 4.125,
+        "sample_sd": 1.4479609487451341
+      },
+      "single_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 6.25,
+        "sample_sd": 2.137330535547045
+      },
+      "get_all_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 0.5,
+        "sample_sd": 0.5222329678670935
+      },
+      "name_discovery_calls": {
+        "n_observed": 12,
+        "mean": 1,
+        "sample_sd": 0.0
+      },
+      "phase1_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 6.75,
+        "sample_sd": 2.490892501603683
+      },
+      "phase1_knowledge_cost": {
+        "n_observed": 12,
+        "mean": 3.625,
+        "sample_sd": 1.4479609487451341
+      },
+      "phase2_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "phase2_knowledge_cost": {
+        "n_observed": 12,
+        "mean": 0.0,
+        "sample_sd": 0.0
+      },
+      "unique_definitions_retrieved": {
+        "n_observed": 12,
+        "mean": 28.416666666666668,
+        "sample_sd": 24.51143826993035
+      },
+      "exact_duplicate_retrievals": {
+        "n_observed": 12,
+        "mean": 0.5,
+        "sample_sd": 0.5222329678670935
+      },
+      "duplicate_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 3.6666666666666665,
+        "sample_sd": 4.206776639776552
+      },
+      "repeated_failed_lookups": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "failed_knowledge_lookups": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "no_new_relevant_information_calls": {
+        "n_observed": 12,
+        "mean": 5.166666666666667,
+        "sample_sd": 2.79067711996189
+      },
+      "retrieval_relevance": {
+        "n_observed": 12,
+        "mean": 0.21235498591822213,
+        "sample_sd": 0.2221380600861878
+      },
+      "useful_query_rate": {
+        "n_observed": 12,
+        "mean": 0.3199074074074074,
+        "sample_sd": 0.15967591921437224
+      },
+      "knowledge_coverage_tool_only": {
+        "n_observed": 12,
+        "mean": 0.4166666666666667,
+        "sample_sd": 0.15075567228888181
+      },
+      "ask_user_count": {
+        "n_observed": 12,
+        "mean": 1.9166666666666667,
+        "sample_sd": 0.7929614610987591
+      },
+      "knowledge_calls_before_first_ask": {
+        "n_observed": 12,
+        "mean": 6.166666666666667,
+        "sample_sd": 2.587850400809463
+      },
+      "knowledge_cost_before_first_ask": {
+        "n_observed": 12,
+        "mean": 3.25,
+        "sample_sd": 1.5
+      },
+      "first_ask_timing": {
+        "n_observed": 12,
+        "mean": 9.583333333333334,
+        "sample_sd": 2.6097137890209456
+      },
+      "first_ask_normalized_position": {
+        "n_observed": 12,
+        "mean": 0.53372483273757,
+        "sample_sd": 0.11961733480266964
+      },
+      "context_tokens": {
+        "n_observed": 0,
+        "mean": null,
+        "sample_sd": null
+      },
+      "elapsed_seconds": {
+        "n_observed": 12,
+        "mean": 36.419065634409584,
+        "sample_sd": 11.337673891472317
+      },
+      "error": {
+        "n_observed": 0,
+        "mean": null,
+        "sample_sd": null
+      },
+      "relevant_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 2.25,
+        "sample_sd": 1.4222261679238195
+      },
+      "returned_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 32.083333333333336,
+        "sample_sd": 28.426806597529264
+      },
+      "no_ask": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "semantic_review_complete": {
+        "n_observed": 12,
+        "mean": 1,
+        "sample_sd": 0.0
+      },
+      "knowledge_coverage_tools_plus_user": {
+        "n_observed": 12,
+        "mean": 0.9583333333333334,
+        "sample_sd": 0.14433756729740643
+      },
+      "ambiguity_resolution_rate": {
+        "n_observed": 12,
+        "mean": 0.8166666666666667,
+        "sample_sd": 0.1628347368197324
+      },
+      "user_semantic_resolution_rate": {
+        "n_observed": 12,
+        "mean": 0.6111111111111112,
+        "sample_sd": 0.35769557999243984
+      },
+      "unnecessary_ask_count": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "partially_unnecessary_ask_count": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.49236596391733095
+      },
+      "unnecessary_ask_rate": {
+        "n_observed": 12,
+        "mean": 0.0,
+        "sample_sd": 0.0
+      },
+      "semantic_redundancy_calls": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "semantic_redundancy_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "semantic_redundancy_including_exact_calls": {
+        "n_observed": 12,
+        "mean": 0.5833333333333334,
+        "sample_sd": 0.6685579234215214
+      },
+      "semantic_redundancy_including_exact_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 3.75,
+        "sample_sd": 4.3090813195136874
+      },
+      "knowledge_coverage_ever_correct_seen": {
+        "n_observed": 12,
+        "mean": 0.9583333333333334,
+        "sample_sd": 0.14433756729740643
+      },
+      "simulator_incorrect_answer_count": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "simulator_incomplete_answer_count": {
+        "n_observed": 12,
+        "mean": 0.16666666666666666,
+        "sample_sd": 0.5773502691896257
+      },
+      "unnecessary_ask_upper_bound": {
+        "n_observed": 12,
+        "mean": 0.1527777777777778,
+        "sample_sd": 0.22982572815040817
+      }
+    },
+    "relevance_micro": 0.07012987012987013,
+    "repetition_means": {
+      "1": {
+        "repetition": 1,
+        "priority_success": 0.25,
+        "follow_up_success": 0.25,
+        "total_reward": 0.25,
+        "remaining_budget": 0.75,
+        "total_tool_calls": 18,
+        "recorded_tool_calls": 18,
+        "attempted_tool_calls": 18,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 5.75,
+        "knowledge_tool_cost": 3.125,
+        "knowledge_cost_including_names": 3.625,
+        "single_knowledge_calls": 5.25,
+        "get_all_knowledge_calls": 0.5,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 5.75,
+        "phase1_knowledge_cost": 3.125,
+        "phase2_knowledge_calls": 0,
+        "phase2_knowledge_cost": 0.0,
+        "unique_definitions_retrieved": 28.25,
+        "exact_duplicate_retrievals": 0.5,
+        "duplicate_definition_occurrences": 2.25,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0.25,
+        "no_new_relevant_information_calls": 4,
+        "retrieval_relevance": 0.23833767078724788,
+        "useful_query_rate": 0.35,
+        "knowledge_coverage_tool_only": 0.4583333333333333,
+        "ask_user_count": 2,
+        "knowledge_calls_before_first_ask": 5.25,
+        "knowledge_cost_before_first_ask": 2.75,
+        "first_ask_timing": 8.25,
+        "first_ask_normalized_position": 0.46118421052631575,
+        "elapsed_seconds": 39.1008460521698,
+        "relevant_definition_occurrences": 2,
+        "returned_definition_occurrences": 30.5,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 1.0,
+        "ambiguity_resolution_rate": 0.8875,
+        "user_semantic_resolution_rate": 0.75,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0.25,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0,
+        "semantic_redundancy_definition_occurrences": 0,
+        "semantic_redundancy_including_exact_calls": 0.5,
+        "semantic_redundancy_including_exact_definition_occurrences": 2.25,
+        "knowledge_coverage_ever_correct_seen": 1.0,
+        "simulator_incorrect_answer_count": 0,
+        "simulator_incomplete_answer_count": 0,
+        "unnecessary_ask_upper_bound": 0.125
+      },
+      "2": {
+        "repetition": 2,
+        "priority_success": 0.5,
+        "follow_up_success": 0.5,
+        "total_reward": 0.5,
+        "remaining_budget": 1.0,
+        "total_tool_calls": 17.75,
+        "recorded_tool_calls": 17.75,
+        "attempted_tool_calls": 17.75,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 7.75,
+        "knowledge_tool_cost": 4.25,
+        "knowledge_cost_including_names": 4.75,
+        "single_knowledge_calls": 7,
+        "get_all_knowledge_calls": 0.75,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 7.75,
+        "phase1_knowledge_cost": 4.25,
+        "phase2_knowledge_calls": 0,
+        "phase2_knowledge_cost": 0.0,
+        "unique_definitions_retrieved": 40,
+        "exact_duplicate_retrievals": 0.75,
+        "duplicate_definition_occurrences": 6,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0,
+        "no_new_relevant_information_calls": 6.25,
+        "retrieval_relevance": 0.16591478696741854,
+        "useful_query_rate": 0.34305555555555556,
+        "knowledge_coverage_tool_only": 0.4583333333333333,
+        "ask_user_count": 1.5,
+        "knowledge_calls_before_first_ask": 6.5,
+        "knowledge_cost_before_first_ask": 3.5,
+        "first_ask_timing": 9.5,
+        "first_ask_normalized_position": 0.5311747506019951,
+        "elapsed_seconds": 37.063963890075684,
+        "relevant_definition_occurrences": 3,
+        "returned_definition_occurrences": 46,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 1.0,
+        "ambiguity_resolution_rate": 0.8375,
+        "user_semantic_resolution_rate": 0.6666666666666666,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0.25,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0.25,
+        "semantic_redundancy_definition_occurrences": 0.25,
+        "semantic_redundancy_including_exact_calls": 1,
+        "semantic_redundancy_including_exact_definition_occurrences": 6.25,
+        "knowledge_coverage_ever_correct_seen": 1.0,
+        "simulator_incorrect_answer_count": 0,
+        "simulator_incomplete_answer_count": 0,
+        "unnecessary_ask_upper_bound": 0.125
+      },
+      "3": {
+        "repetition": 3,
+        "priority_success": 0.25,
+        "follow_up_success": 0.25,
+        "total_reward": 0.25,
+        "remaining_budget": 0.125,
+        "total_tool_calls": 18,
+        "recorded_tool_calls": 18,
+        "attempted_tool_calls": 18,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 6.75,
+        "knowledge_tool_cost": 3.5,
+        "knowledge_cost_including_names": 4.0,
+        "single_knowledge_calls": 6.5,
+        "get_all_knowledge_calls": 0.25,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 6.75,
+        "phase1_knowledge_cost": 3.5,
+        "phase2_knowledge_calls": 0,
+        "phase2_knowledge_cost": 0.0,
+        "unique_definitions_retrieved": 17,
+        "exact_duplicate_retrievals": 0.25,
+        "duplicate_definition_occurrences": 2.75,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0,
+        "no_new_relevant_information_calls": 5.25,
+        "retrieval_relevance": 0.2328125,
+        "useful_query_rate": 0.26666666666666666,
+        "knowledge_coverage_tool_only": 0.3333333333333333,
+        "ask_user_count": 2.25,
+        "knowledge_calls_before_first_ask": 6.75,
+        "knowledge_cost_before_first_ask": 3.5,
+        "first_ask_timing": 11,
+        "first_ask_normalized_position": 0.608815537084399,
+        "elapsed_seconds": 33.092386960983276,
+        "relevant_definition_occurrences": 1.75,
+        "returned_definition_occurrences": 19.75,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 0.875,
+        "ambiguity_resolution_rate": 0.725,
+        "user_semantic_resolution_rate": 0.41666666666666663,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0.5,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0,
+        "semantic_redundancy_definition_occurrences": 0,
+        "semantic_redundancy_including_exact_calls": 0.25,
+        "semantic_redundancy_including_exact_definition_occurrences": 2.75,
+        "knowledge_coverage_ever_correct_seen": 0.875,
+        "simulator_incorrect_answer_count": 0.25,
+        "simulator_incomplete_answer_count": 0.5,
+        "unnecessary_ask_upper_bound": 0.20833333333333331
+      }
+    }
+  },
+  "A": {
+    "n": 12,
+    "metrics": {
+      "repetition": {
+        "n_observed": 12,
+        "mean": 2,
+        "sample_sd": 0.8528028654224418
+      },
+      "priority_success": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.49236596391733095
+      },
+      "follow_up_success": {
+        "n_observed": 12,
+        "mean": 0.25,
+        "sample_sd": 0.45226701686664544
+      },
+      "total_reward": {
+        "n_observed": 12,
+        "mean": 0.30833333333333335,
+        "sample_sd": 0.4621261798043972
+      },
+      "remaining_budget": {
+        "n_observed": 12,
+        "mean": 0.125,
+        "sample_sd": 0.22613350843332272
+      },
+      "total_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.5,
+        "sample_sd": 2.0670576365276494
+      },
+      "recorded_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.5,
+        "sample_sd": 2.0670576365276494
+      },
+      "attempted_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.5,
+        "sample_sd": 2.0670576365276494
+      },
+      "budget_rejected_calls": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "knowledge_tool_calls": {
+        "n_observed": 12,
+        "mean": 5.333333333333333,
+        "sample_sd": 2.8709622502610936
+      },
+      "knowledge_tool_cost": {
+        "n_observed": 12,
+        "mean": 3.0416666666666665,
+        "sample_sd": 1.4993685539606534
+      },
+      "knowledge_cost_including_names": {
+        "n_observed": 12,
+        "mean": 3.5416666666666665,
+        "sample_sd": 1.4993685539606534
+      },
+      "single_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 4.583333333333333,
+        "sample_sd": 2.8109633849474367
+      },
+      "get_all_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 0.75,
+        "sample_sd": 0.45226701686664544
+      },
+      "name_discovery_calls": {
+        "n_observed": 12,
+        "mean": 1,
+        "sample_sd": 0.0
+      },
+      "phase1_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 5.333333333333333,
+        "sample_sd": 2.8709622502610936
+      },
+      "phase1_knowledge_cost": {
+        "n_observed": 12,
+        "mean": 3.0416666666666665,
+        "sample_sd": 1.4993685539606534
+      },
+      "phase2_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "phase2_knowledge_cost": {
+        "n_observed": 12,
+        "mean": 0.0,
+        "sample_sd": 0.0
+      },
+      "unique_definitions_retrieved": {
+        "n_observed": 12,
+        "mean": 39.833333333333336,
+        "sample_sd": 21.501937897160186
+      },
+      "exact_duplicate_retrievals": {
+        "n_observed": 12,
+        "mean": 0.6666666666666666,
+        "sample_sd": 0.6513389472789296
+      },
+      "duplicate_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 3.25,
+        "sample_sd": 3.3063300170760606
+      },
+      "repeated_failed_lookups": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "failed_knowledge_lookups": {
+        "n_observed": 12,
+        "mean": 0.25,
+        "sample_sd": 0.45226701686664544
+      },
+      "no_new_relevant_information_calls": {
+        "n_observed": 12,
+        "mean": 3.9166666666666665,
+        "sample_sd": 2.4293034292807376
+      },
+      "retrieval_relevance": {
+        "n_observed": 12,
+        "mean": 0.11260694391084027,
+        "sample_sd": 0.16146646286458863
+      },
+      "useful_query_rate": {
+        "n_observed": 12,
+        "mean": 0.45026455026455026,
+        "sample_sd": 0.2895937386541844
+      },
+      "knowledge_coverage_tool_only": {
+        "n_observed": 12,
+        "mean": 0.4166666666666667,
+        "sample_sd": 0.15075567228888181
+      },
+      "ask_user_count": {
+        "n_observed": 12,
+        "mean": 1.8333333333333333,
+        "sample_sd": 0.5773502691896257
+      },
+      "knowledge_calls_before_first_ask": {
+        "n_observed": 12,
+        "mean": 4.666666666666667,
+        "sample_sd": 2.902454551623922
+      },
+      "knowledge_cost_before_first_ask": {
+        "n_observed": 12,
+        "mean": 2.5833333333333335,
+        "sample_sd": 1.5496822743759933
+      },
+      "first_ask_timing": {
+        "n_observed": 12,
+        "mean": 8.5,
+        "sample_sd": 2.540579747724022
+      },
+      "first_ask_normalized_position": {
+        "n_observed": 12,
+        "mean": 0.47708108097039986,
+        "sample_sd": 0.10387881132486926
+      },
+      "context_tokens": {
+        "n_observed": 0,
+        "mean": null,
+        "sample_sd": null
+      },
+      "elapsed_seconds": {
+        "n_observed": 12,
+        "mean": 38.09941186507543,
+        "sample_sd": 10.39220560123661
+      },
+      "error": {
+        "n_observed": 0,
+        "mean": null,
+        "sample_sd": null
+      },
+      "relevant_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 2.5833333333333335,
+        "sample_sd": 1.781640374554423
+      },
+      "returned_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 43.083333333333336,
+        "sample_sd": 23.78486276962087
+      },
+      "no_ask": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "semantic_review_complete": {
+        "n_observed": 12,
+        "mean": 1,
+        "sample_sd": 0.0
+      },
+      "knowledge_coverage_tools_plus_user": {
+        "n_observed": 12,
+        "mean": 0.9583333333333334,
+        "sample_sd": 0.14433756729740643
+      },
+      "ambiguity_resolution_rate": {
+        "n_observed": 12,
+        "mean": 0.8583333333333334,
+        "sample_sd": 0.18195070927605805
+      },
+      "user_semantic_resolution_rate": {
+        "n_observed": 12,
+        "mean": 0.7222222222222222,
+        "sample_sd": 0.3282439759448873
+      },
+      "unnecessary_ask_count": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "partially_unnecessary_ask_count": {
+        "n_observed": 12,
+        "mean": 0.16666666666666666,
+        "sample_sd": 0.3892494720807615
+      },
+      "unnecessary_ask_rate": {
+        "n_observed": 12,
+        "mean": 0.0,
+        "sample_sd": 0.0
+      },
+      "semantic_redundancy_calls": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "semantic_redundancy_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "semantic_redundancy_including_exact_calls": {
+        "n_observed": 12,
+        "mean": 0.75,
+        "sample_sd": 0.753778361444409
+      },
+      "semantic_redundancy_including_exact_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 3.3333333333333335,
+        "sample_sd": 3.312053286059415
+      },
+      "knowledge_coverage_ever_correct_seen": {
+        "n_observed": 12,
+        "mean": 0.9583333333333334,
+        "sample_sd": 0.14433756729740643
+      },
+      "simulator_incorrect_answer_count": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "simulator_incomplete_answer_count": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "unnecessary_ask_upper_bound": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.19462473604038075
+      }
+    },
+    "relevance_micro": 0.059961315280464215,
+    "repetition_means": {
+      "1": {
+        "repetition": 1,
+        "priority_success": 0.25,
+        "follow_up_success": 0.25,
+        "total_reward": 0.25,
+        "remaining_budget": 0.125,
+        "total_tool_calls": 18,
+        "recorded_tool_calls": 18,
+        "attempted_tool_calls": 18,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 6,
+        "knowledge_tool_cost": 3.25,
+        "knowledge_cost_including_names": 3.75,
+        "single_knowledge_calls": 5.5,
+        "get_all_knowledge_calls": 0.5,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 6,
+        "phase1_knowledge_cost": 3.25,
+        "phase2_knowledge_calls": 0,
+        "phase2_knowledge_cost": 0.0,
+        "unique_definitions_retrieved": 28.5,
+        "exact_duplicate_retrievals": 0.5,
+        "duplicate_definition_occurrences": 3.75,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0,
+        "no_new_relevant_information_calls": 4.5,
+        "retrieval_relevance": 0.13252688172043012,
+        "useful_query_rate": 0.27361111111111114,
+        "knowledge_coverage_tool_only": 0.3333333333333333,
+        "ask_user_count": 1.75,
+        "knowledge_calls_before_first_ask": 6,
+        "knowledge_cost_before_first_ask": 3.25,
+        "first_ask_timing": 9.5,
+        "first_ask_normalized_position": 0.523172514619883,
+        "elapsed_seconds": 37.070296227931976,
+        "relevant_definition_occurrences": 2.5,
+        "returned_definition_occurrences": 32.25,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 0.875,
+        "ambiguity_resolution_rate": 0.8875,
+        "user_semantic_resolution_rate": 0.75,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0.25,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0,
+        "semantic_redundancy_definition_occurrences": 0,
+        "semantic_redundancy_including_exact_calls": 0.5,
+        "semantic_redundancy_including_exact_definition_occurrences": 3.75,
+        "knowledge_coverage_ever_correct_seen": 0.875,
+        "simulator_incorrect_answer_count": 0,
+        "simulator_incomplete_answer_count": 0,
+        "unnecessary_ask_upper_bound": 0.125
+      },
+      "2": {
+        "repetition": 2,
+        "priority_success": 0.5,
+        "follow_up_success": 0.25,
+        "total_reward": 0.425,
+        "remaining_budget": 0.125,
+        "total_tool_calls": 17.25,
+        "recorded_tool_calls": 17.25,
+        "attempted_tool_calls": 17.25,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 5.25,
+        "knowledge_tool_cost": 3.125,
+        "knowledge_cost_including_names": 3.625,
+        "single_knowledge_calls": 4.25,
+        "get_all_knowledge_calls": 1,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 5.25,
+        "phase1_knowledge_cost": 3.125,
+        "phase2_knowledge_calls": 0,
+        "phase2_knowledge_cost": 0.0,
+        "unique_definitions_retrieved": 51.5,
+        "exact_duplicate_retrievals": 1,
+        "duplicate_definition_occurrences": 3.75,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0.5,
+        "no_new_relevant_information_calls": 3.75,
+        "retrieval_relevance": 0.052203989125519615,
+        "useful_query_rate": 0.5307539682539683,
+        "knowledge_coverage_tool_only": 0.4583333333333333,
+        "ask_user_count": 2,
+        "knowledge_calls_before_first_ask": 4,
+        "knowledge_cost_before_first_ask": 2.25,
+        "first_ask_timing": 8.5,
+        "first_ask_normalized_position": 0.4809873949579832,
+        "elapsed_seconds": 37.37551021575928,
+        "relevant_definition_occurrences": 3,
+        "returned_definition_occurrences": 55.25,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 1.0,
+        "ambiguity_resolution_rate": 0.85,
+        "user_semantic_resolution_rate": 0.75,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0,
+        "semantic_redundancy_definition_occurrences": 0,
+        "semantic_redundancy_including_exact_calls": 1,
+        "semantic_redundancy_including_exact_definition_occurrences": 3.75,
+        "knowledge_coverage_ever_correct_seen": 1.0,
+        "simulator_incorrect_answer_count": 0.25,
+        "simulator_incomplete_answer_count": 0.25,
+        "unnecessary_ask_upper_bound": 0.0
+      },
+      "3": {
+        "repetition": 3,
+        "priority_success": 0.25,
+        "follow_up_success": 0.25,
+        "total_reward": 0.25,
+        "remaining_budget": 0.125,
+        "total_tool_calls": 17.25,
+        "recorded_tool_calls": 17.25,
+        "attempted_tool_calls": 17.25,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 4.75,
+        "knowledge_tool_cost": 2.75,
+        "knowledge_cost_including_names": 3.25,
+        "single_knowledge_calls": 4,
+        "get_all_knowledge_calls": 0.75,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 4.75,
+        "phase1_knowledge_cost": 2.75,
+        "phase2_knowledge_calls": 0,
+        "phase2_knowledge_cost": 0.0,
+        "unique_definitions_retrieved": 39.5,
+        "exact_duplicate_retrievals": 0.5,
+        "duplicate_definition_occurrences": 2.25,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0.25,
+        "no_new_relevant_information_calls": 3.5,
+        "retrieval_relevance": 0.15308996088657106,
+        "useful_query_rate": 0.5464285714285715,
+        "knowledge_coverage_tool_only": 0.4583333333333333,
+        "ask_user_count": 1.75,
+        "knowledge_calls_before_first_ask": 4,
+        "knowledge_cost_before_first_ask": 2.25,
+        "first_ask_timing": 7.5,
+        "first_ask_normalized_position": 0.4270833333333333,
+        "elapsed_seconds": 39.852429151535034,
+        "relevant_definition_occurrences": 2.25,
+        "returned_definition_occurrences": 41.75,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 1.0,
+        "ambiguity_resolution_rate": 0.8375,
+        "user_semantic_resolution_rate": 0.6666666666666666,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0.25,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0.25,
+        "semantic_redundancy_definition_occurrences": 0.25,
+        "semantic_redundancy_including_exact_calls": 0.75,
+        "semantic_redundancy_including_exact_definition_occurrences": 2.5,
+        "knowledge_coverage_ever_correct_seen": 1.0,
+        "simulator_incorrect_answer_count": 0,
+        "simulator_incomplete_answer_count": 0,
+        "unnecessary_ask_upper_bound": 0.125
+      }
+    }
+  },
+  "B": {
+    "n": 12,
+    "metrics": {
+      "repetition": {
+        "n_observed": 12,
+        "mean": 2,
+        "sample_sd": 0.8528028654224418
+      },
+      "priority_success": {
+        "n_observed": 12,
+        "mean": 0.25,
+        "sample_sd": 0.45226701686664544
+      },
+      "follow_up_success": {
+        "n_observed": 12,
+        "mean": 0.25,
+        "sample_sd": 0.45226701686664544
+      },
+      "total_reward": {
+        "n_observed": 12,
+        "mean": 0.25,
+        "sample_sd": 0.45226701686664544
+      },
+      "remaining_budget": {
+        "n_observed": 12,
+        "mean": 1.1666666666666667,
+        "sample_sd": 1.9694638556693238
+      },
+      "total_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.083333333333332,
+        "sample_sd": 3.088345639315455
+      },
+      "recorded_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.083333333333332,
+        "sample_sd": 3.088345639315455
+      },
+      "attempted_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.083333333333332,
+        "sample_sd": 3.088345639315455
+      },
+      "budget_rejected_calls": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "knowledge_tool_calls": {
+        "n_observed": 12,
+        "mean": 5.75,
+        "sample_sd": 1.815338686155987
+      },
+      "knowledge_tool_cost": {
+        "n_observed": 12,
+        "mean": 3.0416666666666665,
+        "sample_sd": 1.075730900224108
+      },
+      "knowledge_cost_including_names": {
+        "n_observed": 12,
+        "mean": 3.5416666666666665,
+        "sample_sd": 1.075730900224108
+      },
+      "single_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 5.416666666666667,
+        "sample_sd": 1.5642792899510294
+      },
+      "get_all_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.49236596391733095
+      },
+      "name_discovery_calls": {
+        "n_observed": 12,
+        "mean": 1,
+        "sample_sd": 0.0
+      },
+      "phase1_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 5.666666666666667,
+        "sample_sd": 1.9694638556693238
+      },
+      "phase1_knowledge_cost": {
+        "n_observed": 12,
+        "mean": 3.0,
+        "sample_sd": 1.1481209945740989
+      },
+      "phase2_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "phase2_knowledge_cost": {
+        "n_observed": 12,
+        "mean": 0.041666666666666664,
+        "sample_sd": 0.14433756729740643
+      },
+      "unique_definitions_retrieved": {
+        "n_observed": 12,
+        "mean": 20.666666666666668,
+        "sample_sd": 23.180451534284945
+      },
+      "exact_duplicate_retrievals": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.49236596391733095
+      },
+      "duplicate_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 2,
+        "sample_sd": 3.275251551754877
+      },
+      "repeated_failed_lookups": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "failed_knowledge_lookups": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "no_new_relevant_information_calls": {
+        "n_observed": 12,
+        "mean": 4.166666666666667,
+        "sample_sd": 1.9924098397912438
+      },
+      "retrieval_relevance": {
+        "n_observed": 12,
+        "mean": 0.2626995606985964,
+        "sample_sd": 0.21672355042460936
+      },
+      "useful_query_rate": {
+        "n_observed": 12,
+        "mean": 0.3337962962962963,
+        "sample_sd": 0.14800313820597794
+      },
+      "knowledge_coverage_tool_only": {
+        "n_observed": 12,
+        "mean": 0.375,
+        "sample_sd": 0.18969672765983203
+      },
+      "ask_user_count": {
+        "n_observed": 12,
+        "mean": 1.6666666666666667,
+        "sample_sd": 0.6513389472789296
+      },
+      "knowledge_calls_before_first_ask": {
+        "n_observed": 12,
+        "mean": 5.5,
+        "sample_sd": 2.195035721390843
+      },
+      "knowledge_cost_before_first_ask": {
+        "n_observed": 12,
+        "mean": 2.875,
+        "sample_sd": 1.2814232144554953
+      },
+      "first_ask_timing": {
+        "n_observed": 12,
+        "mean": 9,
+        "sample_sd": 2.215646837627989
+      },
+      "first_ask_normalized_position": {
+        "n_observed": 12,
+        "mean": 0.5215051517683097,
+        "sample_sd": 0.052845420281670476
+      },
+      "context_tokens": {
+        "n_observed": 0,
+        "mean": null,
+        "sample_sd": null
+      },
+      "elapsed_seconds": {
+        "n_observed": 12,
+        "mean": 34.044118801752724,
+        "sample_sd": 11.017094961598028
+      },
+      "error": {
+        "n_observed": 0,
+        "mean": null,
+        "sample_sd": null
+      },
+      "relevant_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 1.9166666666666667,
+        "sample_sd": 0.90033663737852
+      },
+      "returned_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 22.666666666666668,
+        "sample_sd": 26.223977000008404
+      },
+      "no_ask": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "semantic_review_complete": {
+        "n_observed": 12,
+        "mean": 1,
+        "sample_sd": 0.0
+      },
+      "knowledge_coverage_tools_plus_user": {
+        "n_observed": 12,
+        "mean": 0.9583333333333334,
+        "sample_sd": 0.14433756729740643
+      },
+      "ambiguity_resolution_rate": {
+        "n_observed": 12,
+        "mean": 0.7833333333333333,
+        "sample_sd": 0.23580937344825928
+      },
+      "user_semantic_resolution_rate": {
+        "n_observed": 12,
+        "mean": 0.5972222222222222,
+        "sample_sd": 0.4171714114509604
+      },
+      "unnecessary_ask_count": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "partially_unnecessary_ask_count": {
+        "n_observed": 12,
+        "mean": 0.16666666666666666,
+        "sample_sd": 0.3892494720807615
+      },
+      "unnecessary_ask_rate": {
+        "n_observed": 12,
+        "mean": 0.0,
+        "sample_sd": 0.0
+      },
+      "semantic_redundancy_calls": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "semantic_redundancy_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "semantic_redundancy_including_exact_calls": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.49236596391733095
+      },
+      "semantic_redundancy_including_exact_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 2.0833333333333335,
+        "sample_sd": 3.287948609787881
+      },
+      "knowledge_coverage_ever_correct_seen": {
+        "n_observed": 12,
+        "mean": 0.9583333333333334,
+        "sample_sd": 0.14433756729740643
+      },
+      "simulator_incorrect_answer_count": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "simulator_incomplete_answer_count": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "unnecessary_ask_upper_bound": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.19462473604038075
+      }
+    },
+    "relevance_micro": 0.08455882352941177,
+    "repetition_means": {
+      "1": {
+        "repetition": 1,
+        "priority_success": 0.25,
+        "follow_up_success": 0.25,
+        "total_reward": 0.25,
+        "remaining_budget": 1.0,
+        "total_tool_calls": 16.75,
+        "recorded_tool_calls": 16.75,
+        "attempted_tool_calls": 16.75,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 5.75,
+        "knowledge_tool_cost": 3.125,
+        "knowledge_cost_including_names": 3.625,
+        "single_knowledge_calls": 5.25,
+        "get_all_knowledge_calls": 0.5,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 5.75,
+        "phase1_knowledge_cost": 3.125,
+        "phase2_knowledge_calls": 0,
+        "phase2_knowledge_cost": 0.0,
+        "unique_definitions_retrieved": 28.25,
+        "exact_duplicate_retrievals": 0.5,
+        "duplicate_definition_occurrences": 2.25,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0.25,
+        "no_new_relevant_information_calls": 4.25,
+        "retrieval_relevance": 0.23823529411764707,
+        "useful_query_rate": 0.35,
+        "knowledge_coverage_tool_only": 0.4583333333333333,
+        "ask_user_count": 2,
+        "knowledge_calls_before_first_ask": 5.25,
+        "knowledge_cost_before_first_ask": 2.75,
+        "first_ask_timing": 8.25,
+        "first_ask_normalized_position": 0.4843137254901961,
+        "elapsed_seconds": 32.80677795410156,
+        "relevant_definition_occurrences": 2,
+        "returned_definition_occurrences": 30.5,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 1.0,
+        "ambiguity_resolution_rate": 0.8875,
+        "user_semantic_resolution_rate": 0.75,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0.25,
+        "semantic_redundancy_definition_occurrences": 0.25,
+        "semantic_redundancy_including_exact_calls": 0.5,
+        "semantic_redundancy_including_exact_definition_occurrences": 2.5,
+        "knowledge_coverage_ever_correct_seen": 1.0,
+        "simulator_incorrect_answer_count": 0,
+        "simulator_incomplete_answer_count": 0,
+        "unnecessary_ask_upper_bound": 0.0
+      },
+      "2": {
+        "repetition": 2,
+        "priority_success": 0.25,
+        "follow_up_success": 0.25,
+        "total_reward": 0.25,
+        "remaining_budget": 1.5,
+        "total_tool_calls": 17.25,
+        "recorded_tool_calls": 17.25,
+        "attempted_tool_calls": 17.25,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 5.75,
+        "knowledge_tool_cost": 3.0,
+        "knowledge_cost_including_names": 3.5,
+        "single_knowledge_calls": 5.5,
+        "get_all_knowledge_calls": 0.25,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 5.5,
+        "phase1_knowledge_cost": 2.875,
+        "phase2_knowledge_calls": 0.25,
+        "phase2_knowledge_cost": 0.125,
+        "unique_definitions_retrieved": 16.75,
+        "exact_duplicate_retrievals": 0.25,
+        "duplicate_definition_occurrences": 2,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0,
+        "no_new_relevant_information_calls": 4,
+        "retrieval_relevance": 0.31653005464480877,
+        "useful_query_rate": 0.3638888888888889,
+        "knowledge_coverage_tool_only": 0.3333333333333333,
+        "ask_user_count": 1.5,
+        "knowledge_calls_before_first_ask": 5.5,
+        "knowledge_cost_before_first_ask": 2.875,
+        "first_ask_timing": 9.25,
+        "first_ask_normalized_position": 0.5317890314020345,
+        "elapsed_seconds": 34.545560240745544,
+        "relevant_definition_occurrences": 2,
+        "returned_definition_occurrences": 18.75,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 1.0,
+        "ambiguity_resolution_rate": 0.7875,
+        "user_semantic_resolution_rate": 0.625,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0.25,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0,
+        "semantic_redundancy_definition_occurrences": 0,
+        "semantic_redundancy_including_exact_calls": 0.25,
+        "semantic_redundancy_including_exact_definition_occurrences": 2,
+        "knowledge_coverage_ever_correct_seen": 1.0,
+        "simulator_incorrect_answer_count": 0,
+        "simulator_incomplete_answer_count": 0.25,
+        "unnecessary_ask_upper_bound": 0.125
+      },
+      "3": {
+        "repetition": 3,
+        "priority_success": 0.25,
+        "follow_up_success": 0.25,
+        "total_reward": 0.25,
+        "remaining_budget": 1.0,
+        "total_tool_calls": 17.25,
+        "recorded_tool_calls": 17.25,
+        "attempted_tool_calls": 17.25,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 5.75,
+        "knowledge_tool_cost": 3.0,
+        "knowledge_cost_including_names": 3.5,
+        "single_knowledge_calls": 5.5,
+        "get_all_knowledge_calls": 0.25,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 5.75,
+        "phase1_knowledge_cost": 3.0,
+        "phase2_knowledge_calls": 0,
+        "phase2_knowledge_cost": 0.0,
+        "unique_definitions_retrieved": 17,
+        "exact_duplicate_retrievals": 0.25,
+        "duplicate_definition_occurrences": 1.75,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0,
+        "no_new_relevant_information_calls": 4.25,
+        "retrieval_relevance": 0.23333333333333334,
+        "useful_query_rate": 0.2875,
+        "knowledge_coverage_tool_only": 0.3333333333333333,
+        "ask_user_count": 1.5,
+        "knowledge_calls_before_first_ask": 5.75,
+        "knowledge_cost_before_first_ask": 3.0,
+        "first_ask_timing": 9.5,
+        "first_ask_normalized_position": 0.5484126984126985,
+        "elapsed_seconds": 34.78001821041107,
+        "relevant_definition_occurrences": 1.75,
+        "returned_definition_occurrences": 18.75,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 0.875,
+        "ambiguity_resolution_rate": 0.675,
+        "user_semantic_resolution_rate": 0.41666666666666663,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0.25,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0,
+        "semantic_redundancy_definition_occurrences": 0,
+        "semantic_redundancy_including_exact_calls": 0.25,
+        "semantic_redundancy_including_exact_definition_occurrences": 1.75,
+        "knowledge_coverage_ever_correct_seen": 0.875,
+        "simulator_incorrect_answer_count": 0,
+        "simulator_incomplete_answer_count": 0,
+        "unnecessary_ask_upper_bound": 0.125
+      }
+    }
+  },
+  "C": {
+    "n": 12,
+    "metrics": {
+      "repetition": {
+        "n_observed": 12,
+        "mean": 2,
+        "sample_sd": 0.8528028654224418
+      },
+      "priority_success": {
+        "n_observed": 12,
+        "mean": 0.4166666666666667,
+        "sample_sd": 0.5149286505444373
+      },
+      "follow_up_success": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.49236596391733095
+      },
+      "total_reward": {
+        "n_observed": 12,
+        "mean": 0.39166666666666666,
+        "sample_sd": 0.4907477288111819
+      },
+      "remaining_budget": {
+        "n_observed": 12,
+        "mean": 0.9583333333333334,
+        "sample_sd": 1.5293839124023607
+      },
+      "total_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.333333333333332,
+        "sample_sd": 2.188122205883115
+      },
+      "recorded_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.333333333333332,
+        "sample_sd": 2.188122205883115
+      },
+      "attempted_tool_calls": {
+        "n_observed": 12,
+        "mean": 17.333333333333332,
+        "sample_sd": 2.188122205883115
+      },
+      "budget_rejected_calls": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "knowledge_tool_calls": {
+        "n_observed": 12,
+        "mean": 5.666666666666667,
+        "sample_sd": 1.8257418583505538
+      },
+      "knowledge_tool_cost": {
+        "n_observed": 12,
+        "mean": 2.9166666666666665,
+        "sample_sd": 1.0187633620614691
+      },
+      "knowledge_cost_including_names": {
+        "n_observed": 12,
+        "mean": 3.4166666666666665,
+        "sample_sd": 1.0187633620614691
+      },
+      "single_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 5.5,
+        "sample_sd": 1.6787441193290353
+      },
+      "get_all_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 0.16666666666666666,
+        "sample_sd": 0.3892494720807615
+      },
+      "name_discovery_calls": {
+        "n_observed": 12,
+        "mean": 1,
+        "sample_sd": 0.0
+      },
+      "phase1_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 5.5,
+        "sample_sd": 1.9771421064483223
+      },
+      "phase1_knowledge_cost": {
+        "n_observed": 12,
+        "mean": 2.8333333333333335,
+        "sample_sd": 1.0940611029415575
+      },
+      "phase2_knowledge_calls": {
+        "n_observed": 12,
+        "mean": 0.16666666666666666,
+        "sample_sd": 0.3892494720807615
+      },
+      "phase2_knowledge_cost": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.19462473604038075
+      },
+      "unique_definitions_retrieved": {
+        "n_observed": 12,
+        "mean": 12.916666666666666,
+        "sample_sd": 18.792930650227028
+      },
+      "exact_duplicate_retrievals": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.49236596391733095
+      },
+      "duplicate_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 1.25,
+        "sample_sd": 2.490892501603683
+      },
+      "repeated_failed_lookups": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "failed_knowledge_lookups": {
+        "n_observed": 12,
+        "mean": 0.16666666666666666,
+        "sample_sd": 0.3892494720807615
+      },
+      "no_new_relevant_information_calls": {
+        "n_observed": 12,
+        "mean": 4,
+        "sample_sd": 2.0
+      },
+      "retrieval_relevance": {
+        "n_observed": 12,
+        "mean": 0.3009730069052103,
+        "sample_sd": 0.22243600535291386
+      },
+      "useful_query_rate": {
+        "n_observed": 12,
+        "mean": 0.33306878306878307,
+        "sample_sd": 0.18909259794418298
+      },
+      "knowledge_coverage_tool_only": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.21320071635561044
+      },
+      "ask_user_count": {
+        "n_observed": 12,
+        "mean": 1.75,
+        "sample_sd": 0.45226701686664544
+      },
+      "knowledge_calls_before_first_ask": {
+        "n_observed": 12,
+        "mean": 5.333333333333333,
+        "sample_sd": 2.229281716090851
+      },
+      "knowledge_cost_before_first_ask": {
+        "n_observed": 12,
+        "mean": 2.75,
+        "sample_sd": 1.2154310870109943
+      },
+      "first_ask_timing": {
+        "n_observed": 12,
+        "mean": 8.916666666666666,
+        "sample_sd": 1.5642792899510294
+      },
+      "first_ask_normalized_position": {
+        "n_observed": 12,
+        "mean": 0.514155640326306,
+        "sample_sd": 0.05998855100585461
+      },
+      "context_tokens": {
+        "n_observed": 0,
+        "mean": null,
+        "sample_sd": null
+      },
+      "elapsed_seconds": {
+        "n_observed": 12,
+        "mean": 34.98969099919001,
+        "sample_sd": 10.865709326325597
+      },
+      "error": {
+        "n_observed": 0,
+        "mean": null,
+        "sample_sd": null
+      },
+      "relevant_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 1.8333333333333333,
+        "sample_sd": 0.937436866561092
+      },
+      "returned_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 14.166666666666666,
+        "sample_sd": 21.255302368770923
+      },
+      "no_ask": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "semantic_review_complete": {
+        "n_observed": 12,
+        "mean": 1,
+        "sample_sd": 0.0
+      },
+      "knowledge_coverage_tools_plus_user": {
+        "n_observed": 12,
+        "mean": 0.9166666666666666,
+        "sample_sd": 0.19462473604038075
+      },
+      "ambiguity_resolution_rate": {
+        "n_observed": 12,
+        "mean": 0.7333333333333334,
+        "sample_sd": 0.2489371345735645
+      },
+      "user_semantic_resolution_rate": {
+        "n_observed": 12,
+        "mean": 0.5416666666666666,
+        "sample_sd": 0.3768891807222045
+      },
+      "unnecessary_ask_count": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "partially_unnecessary_ask_count": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "unnecessary_ask_rate": {
+        "n_observed": 12,
+        "mean": 0.0,
+        "sample_sd": 0.0
+      },
+      "semantic_redundancy_calls": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "semantic_redundancy_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "semantic_redundancy_including_exact_calls": {
+        "n_observed": 12,
+        "mean": 0.3333333333333333,
+        "sample_sd": 0.49236596391733095
+      },
+      "semantic_redundancy_including_exact_definition_occurrences": {
+        "n_observed": 12,
+        "mean": 1.25,
+        "sample_sd": 2.490892501603683
+      },
+      "knowledge_coverage_ever_correct_seen": {
+        "n_observed": 12,
+        "mean": 0.9583333333333334,
+        "sample_sd": 0.14433756729740643
+      },
+      "simulator_incorrect_answer_count": {
+        "n_observed": 12,
+        "mean": 0.08333333333333333,
+        "sample_sd": 0.28867513459481287
+      },
+      "simulator_incomplete_answer_count": {
+        "n_observed": 12,
+        "mean": 0,
+        "sample_sd": 0.0
+      },
+      "unnecessary_ask_upper_bound": {
+        "n_observed": 12,
+        "mean": 0.041666666666666664,
+        "sample_sd": 0.14433756729740643
+      }
+    },
+    "relevance_micro": 0.12941176470588237,
+    "repetition_means": {
+      "1": {
+        "repetition": 1,
+        "priority_success": 0.25,
+        "follow_up_success": 0,
+        "total_reward": 0.175,
+        "remaining_budget": 0,
+        "total_tool_calls": 17.75,
+        "recorded_tool_calls": 17.75,
+        "attempted_tool_calls": 17.75,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 5.25,
+        "knowledge_tool_cost": 2.75,
+        "knowledge_cost_including_names": 3.25,
+        "single_knowledge_calls": 5,
+        "get_all_knowledge_calls": 0.25,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 5.25,
+        "phase1_knowledge_cost": 2.75,
+        "phase2_knowledge_calls": 0,
+        "phase2_knowledge_cost": 0.0,
+        "unique_definitions_retrieved": 16.5,
+        "exact_duplicate_retrievals": 0.25,
+        "duplicate_definition_occurrences": 1.5,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0.25,
+        "no_new_relevant_information_calls": 3.75,
+        "retrieval_relevance": 0.23347457627118645,
+        "useful_query_rate": 0.29642857142857143,
+        "knowledge_coverage_tool_only": 0.3333333333333333,
+        "ask_user_count": 2,
+        "knowledge_calls_before_first_ask": 5,
+        "knowledge_cost_before_first_ask": 2.625,
+        "first_ask_timing": 8.5,
+        "first_ask_normalized_position": 0.47702205882352944,
+        "elapsed_seconds": 35.93955820798874,
+        "relevant_definition_occurrences": 1.75,
+        "returned_definition_occurrences": 18,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 0.75,
+        "ambiguity_resolution_rate": 0.625,
+        "user_semantic_resolution_rate": 0.41666666666666663,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0,
+        "semantic_redundancy_definition_occurrences": 0,
+        "semantic_redundancy_including_exact_calls": 0.25,
+        "semantic_redundancy_including_exact_definition_occurrences": 1.5,
+        "knowledge_coverage_ever_correct_seen": 0.875,
+        "simulator_incorrect_answer_count": 0.25,
+        "simulator_incomplete_answer_count": 0,
+        "unnecessary_ask_upper_bound": 0.0
+      },
+      "2": {
+        "repetition": 2,
+        "priority_success": 0.5,
+        "follow_up_success": 0.5,
+        "total_reward": 0.5,
+        "remaining_budget": 1.875,
+        "total_tool_calls": 17.5,
+        "recorded_tool_calls": 17.5,
+        "attempted_tool_calls": 17.5,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 6.5,
+        "knowledge_tool_cost": 3.25,
+        "knowledge_cost_including_names": 3.75,
+        "single_knowledge_calls": 6.5,
+        "get_all_knowledge_calls": 0,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 6.25,
+        "phase1_knowledge_cost": 3.125,
+        "phase2_knowledge_calls": 0.25,
+        "phase2_knowledge_cost": 0.125,
+        "unique_definitions_retrieved": 6,
+        "exact_duplicate_retrievals": 0.5,
+        "duplicate_definition_occurrences": 0.5,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0,
+        "no_new_relevant_information_calls": 4.75,
+        "retrieval_relevance": 0.2861111111111111,
+        "useful_query_rate": 0.2861111111111111,
+        "knowledge_coverage_tool_only": 0.3333333333333333,
+        "ask_user_count": 1.25,
+        "knowledge_calls_before_first_ask": 6.25,
+        "knowledge_cost_before_first_ask": 3.125,
+        "first_ask_timing": 9.75,
+        "first_ask_normalized_position": 0.5612781954887218,
+        "elapsed_seconds": 34.28029555082321,
+        "relevant_definition_occurrences": 1.75,
+        "returned_definition_occurrences": 6.5,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 1.0,
+        "ambiguity_resolution_rate": 0.7375,
+        "user_semantic_resolution_rate": 0.5416666666666666,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0,
+        "semantic_redundancy_definition_occurrences": 0,
+        "semantic_redundancy_including_exact_calls": 0.5,
+        "semantic_redundancy_including_exact_definition_occurrences": 0.5,
+        "knowledge_coverage_ever_correct_seen": 1.0,
+        "simulator_incorrect_answer_count": 0,
+        "simulator_incomplete_answer_count": 0,
+        "unnecessary_ask_upper_bound": 0.0
+      },
+      "3": {
+        "repetition": 3,
+        "priority_success": 0.5,
+        "follow_up_success": 0.5,
+        "total_reward": 0.5,
+        "remaining_budget": 1.0,
+        "total_tool_calls": 16.75,
+        "recorded_tool_calls": 16.75,
+        "attempted_tool_calls": 16.75,
+        "budget_rejected_calls": 0,
+        "knowledge_tool_calls": 5.25,
+        "knowledge_tool_cost": 2.75,
+        "knowledge_cost_including_names": 3.25,
+        "single_knowledge_calls": 5,
+        "get_all_knowledge_calls": 0.25,
+        "name_discovery_calls": 1,
+        "phase1_knowledge_calls": 5,
+        "phase1_knowledge_cost": 2.625,
+        "phase2_knowledge_calls": 0.25,
+        "phase2_knowledge_cost": 0.125,
+        "unique_definitions_retrieved": 16.25,
+        "exact_duplicate_retrievals": 0.25,
+        "duplicate_definition_occurrences": 1.75,
+        "repeated_failed_lookups": 0,
+        "failed_knowledge_lookups": 0.25,
+        "no_new_relevant_information_calls": 3.5,
+        "retrieval_relevance": 0.3833333333333333,
+        "useful_query_rate": 0.41666666666666663,
+        "knowledge_coverage_tool_only": 0.3333333333333333,
+        "ask_user_count": 2,
+        "knowledge_calls_before_first_ask": 4.75,
+        "knowledge_cost_before_first_ask": 2.5,
+        "first_ask_timing": 8.5,
+        "first_ask_normalized_position": 0.5041666666666667,
+        "elapsed_seconds": 34.74921923875809,
+        "relevant_definition_occurrences": 2,
+        "returned_definition_occurrences": 18,
+        "no_ask": 0,
+        "semantic_review_complete": 1,
+        "knowledge_coverage_tools_plus_user": 1.0,
+        "ambiguity_resolution_rate": 0.8375,
+        "user_semantic_resolution_rate": 0.6666666666666666,
+        "unnecessary_ask_count": 0,
+        "partially_unnecessary_ask_count": 0.25,
+        "unnecessary_ask_rate": 0.0,
+        "semantic_redundancy_calls": 0,
+        "semantic_redundancy_definition_occurrences": 0,
+        "semantic_redundancy_including_exact_calls": 0.25,
+        "semantic_redundancy_including_exact_definition_occurrences": 1.75,
+        "knowledge_coverage_ever_correct_seen": 1.0,
+        "simulator_incorrect_answer_count": 0,
+        "simulator_incomplete_answer_count": 0,
+        "unnecessary_ask_upper_bound": 0.125
+      }
+    }
+  }
+}

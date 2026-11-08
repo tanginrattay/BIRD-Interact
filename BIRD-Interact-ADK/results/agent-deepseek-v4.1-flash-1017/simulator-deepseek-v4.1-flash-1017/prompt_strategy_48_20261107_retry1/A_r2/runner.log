@@ -1,0 +1,40 @@
+2026-11-07 16:56:21,159 __main__ INFO Result output: /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107_retry1/A_r2/eval_a_interact.json
+2026-11-07 16:56:21,216 __main__ INFO a-interact: Evaluating 4 tasks with concurrency=1
+2026-11-07 16:56:21,216 __main__ INFO === Task 1/4: credit_11 ===
+2026-11-07 16:56:21,216 orchestrator.ainteract INFO Starting task: credit_11 (db: credit)
+2026-11-07 16:56:21,558 httpx INFO HTTP Request: POST http://localhost:6002/init_task "HTTP/1.1 200 OK"
+2026-11-07 16:56:21,654 httpx INFO HTTP Request: POST http://localhost:6001/init_task "HTTP/1.1 200 OK"
+2026-11-07 16:56:21,655 orchestrator.ainteract INFO   [credit_11] Services initialized
+2026-11-07 16:56:22,104 httpx INFO HTTP Request: POST http://localhost:6000/init_session "HTTP/1.1 200 OK"
+2026-11-07 16:57:15,167 httpx INFO HTTP Request: POST http://localhost:6000/run_session "HTTP/1.1 200 OK"
+2026-11-07 16:57:15,172 orchestrator.ainteract INFO Task credit_11 done. Reward: 0.00, Budget used: 22.0, Time: 54.0s
+2026-11-07 16:57:15,321 httpx INFO HTTP Request: POST http://localhost:6002/cleanup_task "HTTP/1.1 200 OK"
+2026-11-07 16:57:15,327 __main__ INFO === Task 2/4: virtual_1 ===
+2026-11-07 16:57:15,327 orchestrator.ainteract INFO Starting task: virtual_1 (db: virtual)
+2026-11-07 16:57:15,689 httpx INFO HTTP Request: POST http://localhost:6002/init_task "HTTP/1.1 200 OK"
+2026-11-07 16:57:15,712 httpx INFO HTTP Request: POST http://localhost:6001/init_task "HTTP/1.1 200 OK"
+2026-11-07 16:57:15,713 orchestrator.ainteract INFO   [virtual_1] Services initialized
+2026-11-07 16:57:15,723 httpx INFO HTTP Request: POST http://localhost:6000/init_session "HTTP/1.1 200 OK"
+2026-11-07 16:57:39,804 httpx INFO HTTP Request: POST http://localhost:6000/run_session "HTTP/1.1 200 OK"
+2026-11-07 16:57:39,806 orchestrator.ainteract INFO Task virtual_1 done. Reward: 1.00, Budget used: 19.5, Time: 24.5s
+2026-11-07 16:57:40,188 httpx INFO HTTP Request: POST http://localhost:6002/cleanup_task "HTTP/1.1 200 OK"
+2026-11-07 16:57:40,195 __main__ INFO === Task 3/4: polar_M_4 ===
+2026-11-07 16:57:40,195 orchestrator.ainteract INFO Starting task: polar_M_4 (db: polar)
+2026-11-07 16:57:40,554 httpx INFO HTTP Request: POST http://localhost:6002/init_task "HTTP/1.1 200 OK"
+2026-11-07 16:57:40,579 httpx INFO HTTP Request: POST http://localhost:6001/init_task "HTTP/1.1 200 OK"
+2026-11-07 16:57:40,580 orchestrator.ainteract INFO   [polar_M_4] Services initialized
+2026-11-07 16:57:40,591 httpx INFO HTTP Request: POST http://localhost:6000/init_session "HTTP/1.1 200 OK"
+2026-11-07 16:58:18,611 httpx INFO HTTP Request: POST http://localhost:6000/run_session "HTTP/1.1 200 OK"
+2026-11-07 16:58:18,612 orchestrator.ainteract INFO Task polar_M_4 done. Reward: 0.00, Budget used: 24.0, Time: 38.4s
+2026-11-07 16:58:18,809 httpx INFO HTTP Request: POST http://localhost:6002/cleanup_task "HTTP/1.1 200 OK"
+2026-11-07 16:58:18,821 __main__ INFO === Task 4/4: cybermarket_1 ===
+2026-11-07 16:58:18,822 orchestrator.ainteract INFO Starting task: cybermarket_1 (db: cybermarket)
+2026-11-07 16:58:19,129 httpx INFO HTTP Request: POST http://localhost:6002/init_task "HTTP/1.1 200 OK"
+2026-11-07 16:58:19,152 httpx INFO HTTP Request: POST http://localhost:6001/init_task "HTTP/1.1 200 OK"
+2026-11-07 16:58:19,153 orchestrator.ainteract INFO   [cybermarket_1] Services initialized
+2026-11-07 16:58:19,163 httpx INFO HTTP Request: POST http://localhost:6000/init_session "HTTP/1.1 200 OK"
+2026-11-07 16:58:51,470 httpx INFO HTTP Request: POST http://localhost:6000/run_session "HTTP/1.1 200 OK"
+2026-11-07 16:58:51,472 orchestrator.ainteract INFO Task cybermarket_1 done. Reward: 0.70, Budget used: 20.0, Time: 32.7s
+2026-11-07 16:58:51,750 httpx INFO HTTP Request: POST http://localhost:6002/cleanup_task "HTTP/1.1 200 OK"
+2026-11-07 16:58:51,770 __main__ INFO 
+Done! Tasks: 4, Avg Reward: 0.4250, P1: 2/4 (50.0%), P2: 1/4 (25.0%)

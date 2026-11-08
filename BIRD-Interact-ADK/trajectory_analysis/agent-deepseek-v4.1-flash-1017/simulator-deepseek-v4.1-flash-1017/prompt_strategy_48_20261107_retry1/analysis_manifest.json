@@ -1,0 +1,572 @@
+[
+  {
+    "path": "EVALUATION_PROTOCOL.md",
+    "bytes": 7263,
+    "sha256": "0ac6765efb74a389e64f6c20ef0859bced01e575c857142943176b77fbeb7384"
+  },
+  {
+    "path": "FINDINGS.md",
+    "bytes": 10667,
+    "sha256": "ecfe6234e88a40346e9422a7e2aeba03dcb07684cf1114ed4e8cb70253762148"
+  },
+  {
+    "path": "PROMPTS.md",
+    "bytes": 14178,
+    "sha256": "ef4d89a83725ebf6c850bb4bdab565355d10aebd69bbfdaf4ad11fdb6047d005"
+  },
+  {
+    "path": "README.md",
+    "bytes": 15289,
+    "sha256": "a4e846019a3b3de9b17455be0b1b290e2e1e2daa35596e45109b10fc3e1be325"
+  },
+  {
+    "path": "REVIEW_CHECKLIST.md",
+    "bytes": 2101,
+    "sha256": "43c695f83b636b330e6d283d5a054a5036301bcdf7f49666305a0ab38094cf85"
+  },
+  {
+    "path": "analyze.py",
+    "bytes": 11439,
+    "sha256": "3ddce5c55c42a8399830087b1bd14f06cb7ac8954e44e516724a3cab575a439b"
+  },
+  {
+    "path": "build_report.py",
+    "bytes": 9272,
+    "sha256": "823772198a2f5fa712a16d44efd39c9b2291d6d9167fb64064ba9c8ea1689e35"
+  },
+  {
+    "path": "case_notes.json",
+    "bytes": 3389,
+    "sha256": "f2a88a9ac50bb89c20be1ce808dc78a9812ee6e8f480ac63a1a563c96aa9abce"
+  },
+  {
+    "path": "finalize_archive.py",
+    "bytes": 8033,
+    "sha256": "cfb5461ccecd5e1205d90a6e152457d6731d2053d392e3df9d53e1e6052f9a5f"
+  },
+  {
+    "path": "group_summary.json",
+    "bytes": 57480,
+    "sha256": "a812d6f70507dd0eb07bb7a94737203b76b1eee4775d8882deab934f99fa42ed"
+  },
+  {
+    "path": "normalize_reviews.py",
+    "bytes": 2159,
+    "sha256": "d839d87b66b08d494f5f7b35bd98508ea277a2b80f1ed2eb412c208f63666541"
+  },
+  {
+    "path": "per_run_metrics.csv",
+    "bytes": 11851,
+    "sha256": "22b2765d869543496af104f01e621619c76a0894b90673204068e47fd00ea005"
+  },
+  {
+    "path": "per_run_metrics.json",
+    "bytes": 101942,
+    "sha256": "0df10f4d2e62b575d3a8ce7030d910faaef79ac134d68298562cab38986522a3"
+  },
+  {
+    "path": "per_task_summary.json",
+    "bytes": 230650,
+    "sha256": "7e215cbae39b2babdae65cd61dd87dc7edda4f35fa9ed497036d6f0b8e9e1c39"
+  },
+  {
+    "path": "record_review.py",
+    "bytes": 4139,
+    "sha256": "6ed98bc2b3d56486d807abf7202abf3d78b6535546d6378ddb0fa419716dc7b1"
+  },
+  {
+    "path": "retrieval_evidence.json",
+    "bytes": 530441,
+    "sha256": "62703f4b2e8751b0d419ac228532bee5e24495524516e61375ee3ea3238ca094"
+  },
+  {
+    "path": "semantic_annotations.json",
+    "bytes": 93372,
+    "sha256": "25396aa7982f0dde1055df7f8f1a4dbab16bff0930c251acd40105f391569c56"
+  },
+  {
+    "path": "source_manifest.json",
+    "bytes": 2904,
+    "sha256": "e4b7f041f9d10c4311b89c1aef48f1060ac468801a1dd812cfd77f6f921076b8"
+  },
+  {
+    "path": "task_cards/A_r1__credit_11.md",
+    "bytes": 14355,
+    "sha256": "a94379e3ecf98ee4c563553bb9b18a3d0b12066a956ad992f9160af747a90fe4"
+  },
+  {
+    "path": "task_cards/A_r1__cybermarket_1.md",
+    "bytes": 9810,
+    "sha256": "242d0670f5d036cafc55e04e740522d5c08aa3b768c64fe84d97c6d3c6709b54"
+  },
+  {
+    "path": "task_cards/A_r1__polar_M_4.md",
+    "bytes": 18000,
+    "sha256": "deb91ec667f9e4a70d7f76fc225fe3eed1b444c697d8c7e1da2c2988aff533de"
+  },
+  {
+    "path": "task_cards/A_r1__virtual_1.md",
+    "bytes": 16842,
+    "sha256": "b94189919dc840ab83a7a61b41cc6b9a1b143e3eb3e6d920a7c2ac1204256fe3"
+  },
+  {
+    "path": "task_cards/A_r2__credit_11.md",
+    "bytes": 18671,
+    "sha256": "da948e7e4f0189c16b11e22f2028dfd33c048c7c6c7b5fec7dab511dae844096"
+  },
+  {
+    "path": "task_cards/A_r2__cybermarket_1.md",
+    "bytes": 13313,
+    "sha256": "91b0d32c2688b96d9fc923cd734a7b9c7ccc41703522e1bf17a7c89325a3876c"
+  },
+  {
+    "path": "task_cards/A_r2__polar_M_4.md",
+    "bytes": 17043,
+    "sha256": "36f1df5388ea62f69870da8ff4fc1cc81c23f0190c5968a333e4edd8fbcbf38b"
+  },
+  {
+    "path": "task_cards/A_r2__virtual_1.md",
+    "bytes": 17155,
+    "sha256": "e012af049dc72203b40352955b872505d654cb0db86a6e95526dac130503d997"
+  },
+  {
+    "path": "task_cards/A_r3__credit_11.md",
+    "bytes": 12934,
+    "sha256": "9d177d50092f744a98476233588a45ba55b937ea9c887812ccd9a3c35daa347f"
+  },
+  {
+    "path": "task_cards/A_r3__cybermarket_1.md",
+    "bytes": 14915,
+    "sha256": "44b738646121ba6f37ec5f4c2ed28c362148ff255ede9ff7777dbcfa51035739"
+  },
+  {
+    "path": "task_cards/A_r3__polar_M_4.md",
+    "bytes": 17251,
+    "sha256": "cc44a22c624a1fe544de3ede7026f1c305bd5ab85225cc16a32f63e220b30d4c"
+  },
+  {
+    "path": "task_cards/A_r3__virtual_1.md",
+    "bytes": 12410,
+    "sha256": "c8dd47a1f72a7632a938bbb3edc056abbfeffdb12305187678af31d2a2cec4b7"
+  },
+  {
+    "path": "task_cards/B_r1__credit_11.md",
+    "bytes": 15789,
+    "sha256": "1f913d7531ea39885a18725c8d2f8d7d26c3eecfe76604edacf135115e87c62b"
+  },
+  {
+    "path": "task_cards/B_r1__cybermarket_1.md",
+    "bytes": 13196,
+    "sha256": "402167216a2c69613858d51a0c7dc15d1b164a757af0ce93e179fd1067c970cf"
+  },
+  {
+    "path": "task_cards/B_r1__polar_M_4.md",
+    "bytes": 17780,
+    "sha256": "d914aa00f3150808fb3f90866646351da9eed97289d78435fa08d732a50b85ff"
+  },
+  {
+    "path": "task_cards/B_r1__virtual_1.md",
+    "bytes": 12366,
+    "sha256": "6758fb4a730c6f15ff180ef5e260cca1e2cc1a8006c84de40fc6a1016bd356dc"
+  },
+  {
+    "path": "task_cards/B_r2__credit_11.md",
+    "bytes": 14368,
+    "sha256": "2f83b9d6e46b1c70350f045a5d1e0e9dff5b20c62614e8526e4dde327849e182"
+  },
+  {
+    "path": "task_cards/B_r2__cybermarket_1.md",
+    "bytes": 9723,
+    "sha256": "bbc7e4a94182c9d36544d11db0a31352dea5b11b2d7354789b29931da55605da"
+  },
+  {
+    "path": "task_cards/B_r2__polar_M_4.md",
+    "bytes": 18425,
+    "sha256": "2f5def6bf62271895fccca3bf77e2fe702e86f0cbfd0d8bc7a94088d71907b20"
+  },
+  {
+    "path": "task_cards/B_r2__virtual_1.md",
+    "bytes": 12655,
+    "sha256": "0caeb303a0ad69cee73f3a1984cfc1c20eb61622c817054eb0382bf017473ce5"
+  },
+  {
+    "path": "task_cards/B_r3__credit_11.md",
+    "bytes": 14270,
+    "sha256": "538cec87fdb9d03181236c99501b04d173c0de25eae48fe79434c964df191ba5"
+  },
+  {
+    "path": "task_cards/B_r3__cybermarket_1.md",
+    "bytes": 10430,
+    "sha256": "dec61b10e411745bee199b08b870ef359b26a244e714b11a7ed0867200bed9a6"
+  },
+  {
+    "path": "task_cards/B_r3__polar_M_4.md",
+    "bytes": 18311,
+    "sha256": "774f41af6d574f231fc97b7b52d5f585be8c21b04066480c201b2c8424a48271"
+  },
+  {
+    "path": "task_cards/B_r3__virtual_1.md",
+    "bytes": 12119,
+    "sha256": "3d25cf63384188bb898094a7e1dd53a29c5f2e9fdb80887a599c4ace5d2446aa"
+  },
+  {
+    "path": "task_cards/C_r1__credit_11.md",
+    "bytes": 14055,
+    "sha256": "bfedb54e84e4d7e8d8b82e04582420fe814a64fc857606dbd56fcd38d6ced059"
+  },
+  {
+    "path": "task_cards/C_r1__cybermarket_1.md",
+    "bytes": 9582,
+    "sha256": "b05c6389c7fcc9dd945d2e3fc21ed5116444036793494c031c2304270d81de2d"
+  },
+  {
+    "path": "task_cards/C_r1__polar_M_4.md",
+    "bytes": 18269,
+    "sha256": "a6f061f137c82898a137b84ad906dad9fa7232ab9df53f9fa45614a91085ed63"
+  },
+  {
+    "path": "task_cards/C_r1__virtual_1.md",
+    "bytes": 13304,
+    "sha256": "5d6d352526b9626ea1316bc3e53dc62dd2077e916b22d1c807d5f54eb97d66e7"
+  },
+  {
+    "path": "task_cards/C_r2__credit_11.md",
+    "bytes": 14841,
+    "sha256": "ced13f77ccc97503b6e959f0df0eb53ff4e9ad6ebeb25edcade7089ef7aecc54"
+  },
+  {
+    "path": "task_cards/C_r2__cybermarket_1.md",
+    "bytes": 11238,
+    "sha256": "d876585cdf5e38d0d36a6ea8bc51b2a52aac3ad014c31222fe38d29e7c638222"
+  },
+  {
+    "path": "task_cards/C_r2__polar_M_4.md",
+    "bytes": 16263,
+    "sha256": "a15054ae07d54f148a6cd27a09f1fb9bda5dce6c516139bcf46304861ab54b30"
+  },
+  {
+    "path": "task_cards/C_r2__virtual_1.md",
+    "bytes": 11918,
+    "sha256": "e915a317476281c3f42b14930e065cd0431e33570ab60ef7a17b176a31f1bbee"
+  },
+  {
+    "path": "task_cards/C_r3__credit_11.md",
+    "bytes": 12295,
+    "sha256": "f4c1c06902ddcba382186ebc0e122a71e2b11230ae1c572a4bc08ebd9be00257"
+  },
+  {
+    "path": "task_cards/C_r3__cybermarket_1.md",
+    "bytes": 10824,
+    "sha256": "9cce3783305e7196ae5e98c2e576324bbd965385072bdd7e6594c9bae8a21f42"
+  },
+  {
+    "path": "task_cards/C_r3__polar_M_4.md",
+    "bytes": 18519,
+    "sha256": "a4700ea55183c25adc8ad781ffb22b963afe5bda8da9a2f3f6e2cd0e73f53a78"
+  },
+  {
+    "path": "task_cards/C_r3__virtual_1.md",
+    "bytes": 12412,
+    "sha256": "89f9860238b98713283d88d08e6344b31ca9092b7c5235bc396e95304737e53c"
+  },
+  {
+    "path": "task_cards/baseline_r1__credit_11.md",
+    "bytes": 15018,
+    "sha256": "8b97f72cf0947a8f95c0e7f838ba2d9b57d083a3b2e77ec531e358a81c2505e4"
+  },
+  {
+    "path": "task_cards/baseline_r1__cybermarket_1.md",
+    "bytes": 14643,
+    "sha256": "f06184a0db9db4df3d7af31ac6a8dcab4e5a868194a1e2df2d6637d912200ae7"
+  },
+  {
+    "path": "task_cards/baseline_r1__polar_M_4.md",
+    "bytes": 18046,
+    "sha256": "e893b33b9a7d14950a69cd05f4a7ca8cd25464bef42043fbb09545472c8de098"
+  },
+  {
+    "path": "task_cards/baseline_r1__virtual_1.md",
+    "bytes": 12047,
+    "sha256": "31f43ccb796fbe804b7315734640e0fc99fef83c17bcbf60d54a24cc0c6af3cb"
+  },
+  {
+    "path": "task_cards/baseline_r2__credit_11.md",
+    "bytes": 11714,
+    "sha256": "5a7f91dcfa4a7ac719fa57f666fcbaa6189319832deb38518129d81e3a196be5"
+  },
+  {
+    "path": "task_cards/baseline_r2__cybermarket_1.md",
+    "bytes": 18014,
+    "sha256": "73fada09fbed0724c488135510918ac6aa70c71fdf22a1aa4677d1d4880e4ca9"
+  },
+  {
+    "path": "task_cards/baseline_r2__polar_M_4.md",
+    "bytes": 19300,
+    "sha256": "da1ff63f2b16a005408055434d2c881d4803c1d8b0e8795a50083146b83ec4e4"
+  },
+  {
+    "path": "task_cards/baseline_r2__virtual_1.md",
+    "bytes": 17630,
+    "sha256": "72311606ef155c5bd8e51d9566ed984fde98cd5c6587e8ba6a925d1a3972a992"
+  },
+  {
+    "path": "task_cards/baseline_r3__credit_11.md",
+    "bytes": 15426,
+    "sha256": "9e4908348093488fb8a73953ac8df31fc971d9246d7a23344976e1eda00bdb24"
+  },
+  {
+    "path": "task_cards/baseline_r3__cybermarket_1.md",
+    "bytes": 10252,
+    "sha256": "72a5ba8f3fe38598d4d86a0b0ee0af5255038c3707ea25c7683c97f6cc6ad5bf"
+  },
+  {
+    "path": "task_cards/baseline_r3__polar_M_4.md",
+    "bytes": 21649,
+    "sha256": "78c128c57d51096dc03c30986abe7ca8507c298ea901f23717abc52ee877ada9"
+  },
+  {
+    "path": "task_cards/baseline_r3__virtual_1.md",
+    "bytes": 13534,
+    "sha256": "b7fb54b3ac099e50c41d3eecf92fd815a751a992562c909a546c3721d540cb40"
+  },
+  {
+    "path": "trajectory/A_r1__credit_11.md",
+    "bytes": 75792,
+    "sha256": "b41babfadc43adef98aa833c7b160dcbab060a538c4323e03646577b0693a6a9"
+  },
+  {
+    "path": "trajectory/A_r1__cybermarket_1.md",
+    "bytes": 50944,
+    "sha256": "c25e633b196bc4b137b775afad4c48a08fddd1e5737fc0ae8cad19e32fe7cf41"
+  },
+  {
+    "path": "trajectory/A_r1__polar_M_4.md",
+    "bytes": 70855,
+    "sha256": "de08bf613ac684fcd7d89528bc3df033d643059c220631d91e318c085398b5c0"
+  },
+  {
+    "path": "trajectory/A_r1__virtual_1.md",
+    "bytes": 68121,
+    "sha256": "db14f6d6b1d40af51a0bd3a1262264b92e53a1d0dd19187c3674a0570dee7492"
+  },
+  {
+    "path": "trajectory/A_r2__credit_11.md",
+    "bytes": 82638,
+    "sha256": "7dfbe959ed98128a3b9d3f7abeca5aa7bf910203a2c03763a75d0ded1c0b3c87"
+  },
+  {
+    "path": "trajectory/A_r2__cybermarket_1.md",
+    "bytes": 66908,
+    "sha256": "ff56ad1adcde022a9d477c267ea84e024fe46aee5f1b1859bf3e73f15733d4d4"
+  },
+  {
+    "path": "trajectory/A_r2__polar_M_4.md",
+    "bytes": 70500,
+    "sha256": "d341f67c5d9adfeed84c9000c032057e98bd6f3713fc40f473559cef35a46138"
+  },
+  {
+    "path": "trajectory/A_r2__virtual_1.md",
+    "bytes": 58909,
+    "sha256": "6281a59ec92b6403c295f8d8b8d772d70c91dc8eca46cec091bb09f0152b4684"
+  },
+  {
+    "path": "trajectory/A_r3__credit_11.md",
+    "bytes": 69528,
+    "sha256": "e0a4acc0c1bf019af96f3792151a3710b90fe79d6289dcdd533cf5627f68d3a9"
+  },
+  {
+    "path": "trajectory/A_r3__cybermarket_1.md",
+    "bytes": 56396,
+    "sha256": "b7b71d9e57f6dfa564168600bd19c4f8c1d7c4b94c60690740730699a2ec7390"
+  },
+  {
+    "path": "trajectory/A_r3__polar_M_4.md",
+    "bytes": 71805,
+    "sha256": "f2728c98b6e9632913357e60c7b3d96efa76e6a66a5282afc5a391d1f23a33f3"
+  },
+  {
+    "path": "trajectory/A_r3__virtual_1.md",
+    "bytes": 64752,
+    "sha256": "a23b3c3640698bbed5931813bf723eb461b213700e89eb561d0aa6fdb25df19a"
+  },
+  {
+    "path": "trajectory/B_r1__credit_11.md",
+    "bytes": 74767,
+    "sha256": "ee143681fd9f3d8fd4cbd196cbcfbf989dd6ddadb5d6de80868ccd190238d95b"
+  },
+  {
+    "path": "trajectory/B_r1__cybermarket_1.md",
+    "bytes": 53944,
+    "sha256": "75cc64fe9593629501fe8c4df502fd3a5ce35b74e11764ebd28c9401fadaf74f"
+  },
+  {
+    "path": "trajectory/B_r1__polar_M_4.md",
+    "bytes": 71528,
+    "sha256": "703385c0053ee7d043f50070e62cb943e14ab86ed01cc8ef6e689ff091aa9d04"
+  },
+  {
+    "path": "trajectory/B_r1__virtual_1.md",
+    "bytes": 55359,
+    "sha256": "b1c31141ccd2098e0c065291b72ee8555f3666a63aec68f918b1309aad3f1dd3"
+  },
+  {
+    "path": "trajectory/B_r2__credit_11.md",
+    "bytes": 76130,
+    "sha256": "097251c9aa7c13718cc4e3a1378957587a8d35f8c83cf5ab8164e7fd93e369fd"
+  },
+  {
+    "path": "trajectory/B_r2__cybermarket_1.md",
+    "bytes": 47408,
+    "sha256": "ff3e2fff087e5229fd49fa8634f1e43c1178a84b4c8a3a774fa7548add28f78b"
+  },
+  {
+    "path": "trajectory/B_r2__polar_M_4.md",
+    "bytes": 77811,
+    "sha256": "1cfb45a45819d40319f66e82af17bd577180be7c62afb54e4718e2601d12a38f"
+  },
+  {
+    "path": "trajectory/B_r2__virtual_1.md",
+    "bytes": 56807,
+    "sha256": "911f77692bdc195d5d7274691cb3a67779553c493a2db1d994e99a5c4b8326f3"
+  },
+  {
+    "path": "trajectory/B_r3__credit_11.md",
+    "bytes": 69724,
+    "sha256": "34459d9642123fd455b78e88e24c480bb18aba39c8235ab2cfc84789caf2d328"
+  },
+  {
+    "path": "trajectory/B_r3__cybermarket_1.md",
+    "bytes": 51402,
+    "sha256": "f0076e1169e4424feeebbb1cda3f65890eb334e179c46815792f296c211d4d7c"
+  },
+  {
+    "path": "trajectory/B_r3__polar_M_4.md",
+    "bytes": 76723,
+    "sha256": "5cafcc4c56ccf8e01c782274866d34abc019f517ff397a16fe55cc8893a892b1"
+  },
+  {
+    "path": "trajectory/B_r3__virtual_1.md",
+    "bytes": 47969,
+    "sha256": "806fa7da79ee96a98cb5587e1bc5561661736f10532c3cb21328d1bb9cb774d5"
+  },
+  {
+    "path": "trajectory/C_r1__credit_11.md",
+    "bytes": 69228,
+    "sha256": "081b51aecda86c55986a27c33d42c7aee3263a61223edad10a38520124d62f20"
+  },
+  {
+    "path": "trajectory/C_r1__cybermarket_1.md",
+    "bytes": 49095,
+    "sha256": "cb903df947579663da9439f0d3ccf35357741dc0ba9435d32e8f83c464ac2542"
+  },
+  {
+    "path": "trajectory/C_r1__polar_M_4.md",
+    "bytes": 70533,
+    "sha256": "51fc74f0260a95a2f8d331e619ebb46d2d99ca2a8fb497e3a6d26f0208c706fa"
+  },
+  {
+    "path": "trajectory/C_r1__virtual_1.md",
+    "bytes": 67917,
+    "sha256": "9bb92e348bd0c4f2a9d2281540c3542d71b993c801a3231d03b9495d7d5138a5"
+  },
+  {
+    "path": "trajectory/C_r2__credit_11.md",
+    "bytes": 77447,
+    "sha256": "5f62820fb5bd9d0f990c073b550f7170e7ff4106f259ae87b749d4b3dbe2bbe1"
+  },
+  {
+    "path": "trajectory/C_r2__cybermarket_1.md",
+    "bytes": 52185,
+    "sha256": "99d9a0ca46fa04d4a35385f677f829289b81ba520a3ef0fcd2f73e15b7ee9935"
+  },
+  {
+    "path": "trajectory/C_r2__polar_M_4.md",
+    "bytes": 73743,
+    "sha256": "046a177e1360498559129812abb5d9104aa599818d5b8a47258031dd6c77650b"
+  },
+  {
+    "path": "trajectory/C_r2__virtual_1.md",
+    "bytes": 50952,
+    "sha256": "b5d879c29e1140c541e81415015002b39bf4b8fda625701e72f60cfafd3f1b01"
+  },
+  {
+    "path": "trajectory/C_r3__credit_11.md",
+    "bytes": 85651,
+    "sha256": "aa836d68eaa601485b5a6b431ae1cefbb5927432e570f995d43b75af67e321e5"
+  },
+  {
+    "path": "trajectory/C_r3__cybermarket_1.md",
+    "bytes": 52080,
+    "sha256": "411c555874bc538d8a6c72560f4e7d39d62683e708328c15f04d905a7a86681c"
+  },
+  {
+    "path": "trajectory/C_r3__polar_M_4.md",
+    "bytes": 76933,
+    "sha256": "c006d84f6a92cbad0ed2deb4f3237488d7e73f68153fcd5bde46336025f8b124"
+  },
+  {
+    "path": "trajectory/C_r3__virtual_1.md",
+    "bytes": 52683,
+    "sha256": "d05e6ec770f06d87224a11725d2db48f5985d2b6d08678205190b63729e64080"
+  },
+  {
+    "path": "trajectory/baseline_r1__credit_11.md",
+    "bytes": 76852,
+    "sha256": "91def764ab30f259eb8bc5145c4fdbdcc725e4567c9b64cda907a6408f5f84cd"
+  },
+  {
+    "path": "trajectory/baseline_r1__cybermarket_1.md",
+    "bytes": 57510,
+    "sha256": "abe9de11c61cba066572cf3e4f248f204d24b4060b5693d188685bb580df19b8"
+  },
+  {
+    "path": "trajectory/baseline_r1__polar_M_4.md",
+    "bytes": 71714,
+    "sha256": "ceef59da6ea36416e2a56697622cd51b8bfef15b1f260a741a47c6891a6df4b8"
+  },
+  {
+    "path": "trajectory/baseline_r1__virtual_1.md",
+    "bytes": 72366,
+    "sha256": "e48f9deab3061f225619eb0a6af980ea6e28c0446b5618327040452a279a8e26"
+  },
+  {
+    "path": "trajectory/baseline_r2__credit_11.md",
+    "bytes": 78993,
+    "sha256": "6b1b5f023684cbd2e78e10adfe72a5965098e1d42c89dc5c22dda89e68d1bf5e"
+  },
+  {
+    "path": "trajectory/baseline_r2__cybermarket_1.md",
+    "bytes": 65392,
+    "sha256": "bc8b235db3fd1f573992abdf5b9276b370d619b1902b5fdf429e4a5bafaeb2b8"
+  },
+  {
+    "path": "trajectory/baseline_r2__polar_M_4.md",
+    "bytes": 78909,
+    "sha256": "97f976147390340fb98d79ca1e164c2e324700b57cbf8a0a582647beec8cee16"
+  },
+  {
+    "path": "trajectory/baseline_r2__virtual_1.md",
+    "bytes": 61052,
+    "sha256": "fe5873fd18d132c04d926c6071df8f840a2aebc46b8681e4e99f5e0949b04627"
+  },
+  {
+    "path": "trajectory/baseline_r3__credit_11.md",
+    "bytes": 69856,
+    "sha256": "1ae14fc2882723d93cbb872617d88c0b76135098bd7ec48d58a61afb2d42f3fa"
+  },
+  {
+    "path": "trajectory/baseline_r3__cybermarket_1.md",
+    "bytes": 49236,
+    "sha256": "5dfef82a3237233f569ee32a0ac3d6cb108454eedbc465682f46ae3596feee5b"
+  },
+  {
+    "path": "trajectory/baseline_r3__polar_M_4.md",
+    "bytes": 74238,
+    "sha256": "dc68d01dd403bf65422a0bbedaf4ed68f922ec6c2acc50813137a0c7970e9d4d"
+  },
+  {
+    "path": "trajectory/baseline_r3__virtual_1.md",
+    "bytes": 50668,
+    "sha256": "4bea56c6d96598f4b6ca531894f10231b083eebf7e30e6a517e569cd9652ad75"
+  }
+]

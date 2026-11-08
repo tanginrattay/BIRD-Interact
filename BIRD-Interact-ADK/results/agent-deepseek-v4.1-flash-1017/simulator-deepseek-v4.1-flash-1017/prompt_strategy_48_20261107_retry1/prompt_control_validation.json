@@ -1,0 +1,22 @@
+{
+  "baseline": {
+    "full_instruction_matches_archive": true,
+    "non_prompt_agent_configuration_identical": true,
+    "instruction_sha256": "a43338edfe4679f538c1c747029a866eb2facf8e02dd419762879dc4e0738ce0"
+  },
+  "A": {
+    "full_instruction_matches_archive": true,
+    "non_prompt_agent_configuration_identical": true,
+    "instruction_sha256": "57bbd2618cd6f32d49030b573eca6af56c0a2e54cee43d6af60acf04af81a2aa"
+  },
+  "B": {
+    "full_instruction_matches_archive": true,
+    "non_prompt_agent_configuration_identical": true,
+    "instruction_sha256": "7b2dee03da1898d95999e3604f6afd4ba007aa49e90ecc0e80450979d5319f5c"
+  },
+  "C": {
+    "full_instruction_matches_archive": true,
+    "non_prompt_agent_configuration_identical": true,
+    "instruction_sha256": "66f43216e1493e04b625085801cbc5b96292119527eb2eff0196a61135489cab"
+  }
+}

@@ -1,0 +1,6 @@
+Additional strategy: Cost-only knowledge retrieval
+Consider only tool-call costs in this additional strategy; do not introduce a new information-state management procedure, context-burden valuation, or ambiguity taxonomy.
+Before retrieving knowledge, estimate how many distinct definitions this task is likely to require.
+- If you expect to need only 1–2 definitions, prefer get_knowledge_definition (0.5 bird-coins per call).
+- If you expect to need 3 or more distinct definitions, consider get_all_knowledge_definitions first (1 bird-coin), since it may cost less.
+- Do not repeat a single-definition query for knowledge already obtained through an all-definitions query.

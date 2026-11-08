@@ -1,0 +1,86 @@
+[
+  {
+    "case": "credit_11: information acquired but SQL still differs",
+    "runs": [
+      "baseline_r1__credit_11"
+    ],
+    "evidence": [
+      "knowledge KB7 at tool3, user rules at ask8, denominators at ask15",
+      "final submit19 SQL: EXTRACT(QUARTER ...) loses year; multiplies fractions by100; repeats cohort-level native rate; adds LEAST caps"
+    ],
+    "interpretation": "Coverage and successful use differ. Multiple SQL discrepancies coexist with the inherited KB/GT capping inconsistency; do not attribute failure solely to that inconsistency."
+  },
+  {
+    "case": "virtual_1: known predicate not used",
+    "runs": [
+      "B_r1__virtual_1"
+    ],
+    "evidence": [
+      "tool3 KB49 includes GIQ>50 AND spendusd<100",
+      "ask9 provides GIQ formula and Free/Basic mapping",
+      "submit18 omits spendusd<100 despite having retrieved it"
+    ],
+    "interpretation": "State-aware prompt does not ensure known constraints enter final SQL."
+  },
+  {
+    "case": "polar_M_4: task form remains missing",
+    "runs": [
+      "A_r1__polar_M_4"
+    ],
+    "evidence": [
+      "ask11 WRMI correct; ask19 exact fields/non-null scope",
+      "submit20 is SELECT, while reference requires CREATE OR REPLACE VIEW water_management_view"
+    ],
+    "interpretation": "Formula retrieval alone does not resolve intended artifact and required object name."
+  },
+  {
+    "case": "polar_M_4: incorrect simulator correction",
+    "runs": [
+      "C_r1__polar_M_4"
+    ],
+    "evidence": [
+      "ask10 gives correct raw-waterlevel formula",
+      "ask12 incorrectly recommends waterlevelpercent/100",
+      "submit20 follows extra normalization and still emits SELECT with extra equipmenttype"
+    ],
+    "interpretation": "Repeated verification exposes simulator error; this is one contributing problem, not the only reason for failure."
+  },
+  {
+    "case": "cybermarket_1: cheaper but incomplete coverage",
+    "runs": [
+      "A_r1__cybermarket_1",
+      "baseline_r1__cybermarket_1"
+    ],
+    "evidence": [
+      "A asks7 exact TCR and11 no-limit; never retrieves KB23 or asks for laundering filters",
+      "A submit15 uses TAS>75/Crypto_B/escrow/routing predicate",
+      "baseline bulk9 KB23 and ask10 supply correct predicate/formula; both phases pass"
+    ],
+    "interpretation": "Lower knowledge cost can coexist with missing predicate knowledge and lower success."
+  },
+  {
+    "case": "cybermarket_1: clarification content matters at equal P1 cost",
+    "runs": [
+      "C_r1__cybermarket_1",
+      "C_r3__cybermarket_1"
+    ],
+    "evidence": [
+      "Both use 3 P1 definition calls costing1.5 and 2 P1 asks",
+      "C_r1 ask9 asks only formula; no laundering thresholds supplied; task fails",
+      "C_r3 ask9 also asks suspicion thresholds; reply supplies all four; both phases pass"
+    ],
+    "interpretation": "Illustrative trace contrast, not a causal estimate from two stochastic runs."
+  },
+  {
+    "case": "cybermarket_1: semantic re-fetch after user answer",
+    "runs": [
+      "baseline_r2__cybermarket_1",
+      "B_r1__cybermarket_1"
+    ],
+    "evidence": [
+      "baseline ask7 gives full predicates, query8 retrieves the same KB23 facts",
+      "B ask5 gives full predicates, bulk7 returns the same KB23 facts plus other definitions"
+    ],
+    "interpretation": "Cross-source semantic redundancy is evaluated separately from exact repeated IDs."
+  }
+]

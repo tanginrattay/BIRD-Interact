@@ -1,0 +1,43 @@
+{
+  "experiment": "prompt_strategy_48_20261107",
+  "git_head": "81384036930d22f993849dd8eaba9bfe65e0d89b",
+  "system_agent_model": "deepseek/deepseek-flash",
+  "user_sim_model": "deepseek/deepseek-flash",
+  "model_version_reference": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "model_version": "DeepSeek-V4.1-Flash-1017 (official alias mapping; not an immutable snapshot ID)",
+  "prompt_version": "v1",
+  "user_sim_pipeline": "two_stage",
+  "thinking": false,
+  "agent_temperature": 0,
+  "agent_max_tokens": 4096,
+  "simulator_temperature": 0,
+  "simulator_action_max_tokens": 200,
+  "simulator_response_max_tokens": 1024,
+  "patience": 3,
+  "concurrency": 1,
+  "task_ids": [
+    "credit_11",
+    "virtual_1",
+    "polar_M_4",
+    "cybermarket_1"
+  ],
+  "repetitions": 3,
+  "planned_runs": 48,
+  "seed": null,
+  "seed_note": "No configured model/simulator seed; original sampling behavior retained.",
+  "prompts_sha256": {
+    "C_appendix.txt": "a236b6212e209b90ee55b2b57bbddf23a37d4e0ee6b630e2115c198dd7f18883",
+    "C.txt": "66f43216e1493e04b625085801cbc5b96292119527eb2eff0196a61135489cab",
+    "A.txt": "57bbd2618cd6f32d49030b573eca6af56c0a2e54cee43d6af60acf04af81a2aa",
+    "baseline.txt": "a43338edfe4679f538c1c747029a866eb2facf8e02dd419762879dc4e0738ce0",
+    "B.txt": "7b2dee03da1898d95999e3604f6afd4ba007aa49e90ecc0e80450979d5319f5c",
+    "B_appendix.txt": "43b93aebf133a5779d95719d0ff5d739e63ee0ccad91a884c4d57672fd34228b",
+    "A_appendix.txt": "6a9521eade9464ddf1325bb14be55addec49269c2a60ba562351a11c8d0b42e0"
+  },
+  "initial_budgets": {
+    "credit_11": 22,
+    "virtual_1": 20,
+    "polar_M_4": 24,
+    "cybermarket_1": 20
+  }
+}

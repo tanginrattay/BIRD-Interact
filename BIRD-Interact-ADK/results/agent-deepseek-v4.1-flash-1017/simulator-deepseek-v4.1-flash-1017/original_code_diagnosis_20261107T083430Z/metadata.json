@@ -1,0 +1,14 @@
+{
+  "purpose": "Diagnose original vs optional-prompt-loading code before resuming 48-run experiment",
+  "task": "credit_11",
+  "git_head": "81384036930d22f993849dd8eaba9bfe65e0d89b",
+  "original_agent_sha256": "73100e73c653320a6500308e4cb9f611cff8381770ca9d40423b26f1dc40605c",
+  "modified_agent_sha256": "d28dbb42fa29607cb0720b44d9ed0f05f3c62dbe4f13bb114ada22f73daf47d0",
+  "original_runner_timeout_seconds": 1800,
+  "proxy_policy": "Inherited unchanged; use original start_services.sh defaults",
+  "planned_conditions": [
+    "original_HEAD",
+    "modified_with_appendix_unset"
+  ],
+  "experiment_runs": false
+}

@@ -1,0 +1,1275 @@
+{
+  "credit_11": {
+    "source": "bird-interact-lite/credit/credit_kb.jsonl",
+    "source_sha256": "82344a5a9d963493eb83a2ea86bdcfec86acb1fa30e2e96e4c9e81a0e3a51afe",
+    "deleted_ids": [
+      14,
+      50
+    ],
+    "visible_entries": [
+      {
+        "id": 0,
+        "knowledge": "Debt-to-Income Ratio (DTI)",
+        "description": "Calculates the proportion of a customer's monthly income that goes toward debt payments.",
+        "definition": "DTI = \\frac{\\text{Total Monthly Debt Payments}}{\\text{Monthly Income}} = debincratio"
+      },
+      {
+        "id": 1,
+        "knowledge": "Credit Utilization Ratio (CUR)",
+        "description": "Measures how much of available credit a customer is currently using.",
+        "definition": "CUR = \\frac{\\text{Total Credit Used}}{\\text{Total Credit Limit}} = credutil"
+      },
+      {
+        "id": 2,
+        "knowledge": "Loan-to-Value Ratio (LTV)",
+        "description": "Calculates the ratio of loan amount to the value of the asset securing the loan.",
+        "definition": "LTV = \\frac{\\text{Mortgage Balance}}{\\text{Property Value}} = \\frac{\\text{propfinancialdata.mortgagebits.mortbalance}}{\\text{propfinancialdata.propvalue}}"
+      },
+      {
+        "id": 3,
+        "knowledge": "Customer Lifetime Value (CLV)",
+        "description": "Measures the total worth of a customer to the financial institution over the entire relationship.",
+        "definition": "CLV = custlifeval, which factors in product usage, tenure, profitability, and expected future transactions."
+      },
+      {
+        "id": 4,
+        "knowledge": "Net Worth",
+        "description": "Calculates the financial value of a customer by subtracting liabilities from assets.",
+        "definition": "Net Worth = \\text{Total Assets} - \\text{Total Liabilities} = totassets - totliabs = networth"
+      },
+      {
+        "id": 5,
+        "knowledge": "Credit Health Score (CHS)",
+        "description": "Composite score measuring overall credit wellness based on multiple factors.",
+        "definition": "CHS = 0.4 × \\frac{credscore}{850} + 0.2 × (1 - credutil) + 0.2 × (1 - debincratio) + 0.1 × \\frac{credageyrs}{20} + 0.1 × (1 - \\frac{delinqcount + latepaycount + choffs + bankr}{10}), \\text{where each component is capped at 1.0}"
+      },
+      {
+        "id": 6,
+        "knowledge": "Financial Stability Index (FSI)",
+        "description": "Measures a customer's overall financial stability combining income, savings, and debt factors.",
+        "definition": "FSI = 0.3 × (1 - debincratio) + 0.3 × \\frac{liqassets}{mthincome × 6} + 0.2 × \\frac{bankaccbal}{mthincome × 3} + 0.2 × \\frac{savamount}{mthincome × 12}, \\text{where each component is capped at 1.0}"
+      },
+      {
+        "id": 7,
+        "knowledge": "Customer Engagement Score (CES)",
+        "description": "Quantifies how actively a customer uses bank products and services.",
+        "definition": "CES = 0.4 × produsescore + 0.3 × chanusescore + 0.2 × bankrelscore + 0.1 × \\frac{custservint}{10}, \\text{where each component is capped at 1.0}"
+      },
+      {
+        "id": 8,
+        "knowledge": "Risk-Adjusted Return (RAR)",
+        "description": "Measures the profitability of a customer relationship adjusted for credit risk.",
+        "definition": "RAR = profitscore × (1 - \\frac{risklev}{4}), \\text{where risklev is converted to a numeric scale: Low=1, Medium=2, High=3, Very High=4}"
+      },
+      {
+        "id": 9,
+        "knowledge": "Account Health Index (AHI)",
+        "description": "Composite measure of account quality considering age, mix, and payment history.",
+        "definition": "AHI = 0.4 × \\frac{avgaccage}{10} + 0.3 × accmixscore + 0.3 × payconsist, \\text{where each component is capped at 1.0}"
+      },
+      {
+        "id": 10,
+        "knowledge": "Prime Customer",
+        "description": "Identifies customers with excellent creditworthiness and financial stability.",
+        "definition": "A customer with credscore > 720, defhist of 'Excellent' or 'Good', and risklev of 'Low'."
+      },
+      {
+        "id": 11,
+        "knowledge": "Financially Vulnerable",
+        "description": "Identifies customers who may be financially stressed or at risk.",
+        "definition": "A customer with debincratio > 0.5, liqassets < mthincome × 3, and at least one of: delinqcount > 0, latepaycount > 1, or ovrfreq of 'Frequent'."
+      },
+      {
+        "id": 12,
+        "knowledge": "High-Value Customer",
+        "description": "Identifies customers with significant value to the institution.",
+        "definition": "A customer with custlifeval in the top quartile, tenureyrs > 5, and crossratio > 0.5."
+      },
+      {
+        "id": 13,
+        "knowledge": "Credit Builder",
+        "description": "Identifies customers actively working to establish or improve credit.",
+        "definition": "A customer with credageyrs < 3, credinq > 2 in the past year, and recentbeh of 'Improving'."
+      },
+      {
+        "id": 15,
+        "knowledge": "Investment Focused",
+        "description": "Identifies customers with significant investment activity and sophistication.",
+        "definition": "A customer with chaninvdatablock.invcluster.investport of 'Moderate' or 'Aggressive', chaninvdatablock.invcluster.investexp of 'Extensive', and investamt > 0.3 × totassets."
+      },
+      {
+        "id": 16,
+        "knowledge": "Revolving Credit Dependent",
+        "description": "Identifies customers who heavily rely on revolving credit.",
+        "definition": "A customer with credutil > 0.7, cardcount > 2, and cardpayhist of 'Fair' or 'Poor'."
+      },
+      {
+        "id": 17,
+        "knowledge": "Property Risk Exposure",
+        "description": "Assesses risk related to a customer's property investment.",
+        "definition": "A customer with propfinancialdata.propown of 'Own', LTV > 0.8, and propfinancialdata.mortgagebits.mortpayhist of 'Fair' or 'Poor'."
+      },
+      {
+        "id": 18,
+        "knowledge": "Frequent Credit Seeker",
+        "description": "Identifies customers frequently seeking new credit.",
+        "definition": "A customer with hardinq > 3 in the past six months, seekbeh of 'High', and newaccage < 1."
+      },
+      {
+        "id": 19,
+        "knowledge": "Over-Extended",
+        "description": "Identifies customers who are financially over-extended.",
+        "definition": "A customer with DTI > 0.43, CUR > 0.8, and at least one of: ovrfreq of 'Frequent', bouncecount > 0 in the past three months."
+      },
+      {
+        "id": 20,
+        "knowledge": "Credit Score Categories",
+        "description": "Illustrates the meaning of different credit score ranges.",
+        "definition": "Credit scores (credscore) typically range from 300-850. 300-579: Poor, 580-669: Fair, 670-739: Good, 740-799: Very Good, 800-850: Excellent, Otherwise: Unknown. Higher scores indicate lower credit risk."
+      },
+      {
+        "id": 21,
+        "knowledge": "Income Stability Score",
+        "description": "Illustrates the meaning of income stability scores.",
+        "definition": "Income stability (incstabscore) ranges from 0-10. Scores below 3 indicate highly variable income, 3-6 indicates moderate stability, and above 6 indicates highly stable income sources."
+      },
+      {
+        "id": 22,
+        "knowledge": "Debt-to-Income Ratio Interpretation",
+        "description": "Illustrates what different debt-to-income ratios mean for lending decisions.",
+        "definition": "Debt-to-Income ratio (debincratio) ranges from 0-1 (or above). Below 0.36 is typically considered excellent, 0.36-0.43 is good, 0.43-0.50 is concerning, and above 0.50 is risky for new credit approval."
+      },
+      {
+        "id": 23,
+        "knowledge": "Credit Utilization Impact",
+        "description": "Illustrates how credit utilization affects credit scores.",
+        "definition": "Credit Utilization (credutil) ranges from 0-1 (or above). Utilization under 0.30 is optimal for credit scores, 0.30-0.50 has moderate negative impact, 0.50-0.70 has significant negative impact, and above 0.70 severely impacts credit scores."
+      },
+      {
+        "id": 24,
+        "knowledge": "Loan-to-Value Ratio Significance",
+        "description": "Illustrates what different LTV ratios mean for mortgage lending.",
+        "definition": "Loan-to-Value ratio (LTV) typically ranges from 0-1 (or above). Below 0.80 generally avoids private mortgage insurance requirements, 0.80-0.95 typically requires PMI, and above 0.95 indicates high leverage and increased lending risk."
+      },
+      {
+        "id": 25,
+        "knowledge": "Risk Level Classifications",
+        "description": "Illustrates what different risk level classifications mean.",
+        "definition": "Risk level (risklev) values indicate likelihood of default or financial difficulty. 'Low' indicates minimal risk, 'Medium' indicates moderate risk requiring standard monitoring, 'High' indicates significant risk requiring enhanced monitoring, and 'Very High' indicates severe risk requiring active intervention."
+      },
+      {
+        "id": 26,
+        "knowledge": "Payment History Quality",
+        "description": "Illustrates what different payment history classifications indicate.",
+        "definition": "Payment history (defhist, mortpayhist, rentpayhist, cardpayhist, loanpayhist) classifications indicate reliability. 'Excellent' indicates no late payments, 'Good' indicates minimal late payments, 'Fair' indicates occasional missed payments, 'Poor' indicates regular missed payments, 'Current' indicates being up to date, and 'Past' indicates historical data."
+      },
+      {
+        "id": 27,
+        "knowledge": "Cross-Sell Ratio Meaning",
+        "description": "Illustrates what different cross-sell ratio values indicate.",
+        "definition": "Cross-sell ratio (crossratio) ranges from 0-1. Values below 0.2 indicate minimal product relationships, 0.2-0.5 indicates moderate opportunity, and above 0.5 indicates strong existing relationship with high additional sales potential."
+      },
+      {
+        "id": 28,
+        "knowledge": "Account Mix Score Interpretation",
+        "description": "Illustrates what different account mix scores represent.",
+        "definition": "Account mix score (accmixscore) ranges from 0-1. Higher scores indicate a healthy diversity of account types (revolving, installment, mortgage, etc.), which positively impacts credit scores and indicates financial sophistication."
+      },
+      {
+        "id": 29,
+        "knowledge": "Churn Rate Significance",
+        "description": "Illustrates what different churn rate values indicate about customer retention risk.",
+        "definition": "Churn rate (churnrate) ranges from 0-1. Values below 0.1 indicate low attrition risk, 0.1-0.2 indicates moderate risk, 0.2-0.3 indicates high risk, and above 0.3 indicates severe risk of customer loss requiring immediate relationship management intervention."
+      },
+      {
+        "id": 30,
+        "knowledge": "Total Debt Service Ratio (TDSR)",
+        "description": "Extended debt ratio that accounts for all financial obligations including housing costs.",
+        "definition": "TDSR = DTI + \\frac{\\text{Housing Costs}}{\\text{Monthly Income}}, \\text{where Housing Costs are determined by propfinancialdata and DTI is the Debt-to-Income Ratio}"
+      },
+      {
+        "id": 31,
+        "knowledge": "Credit Quality Index (CQI)",
+        "description": "Comprehensive measure of overall credit quality incorporating credit score and utilization.",
+        "definition": "CQI = 0.6 × \\frac{credscore}{850} + 0.4 × (1 - CUR), \\text{where CUR is the Credit Utilization Ratio}"
+      },
+      {
+        "id": 32,
+        "knowledge": "Housing Affordability Ratio (HAR)",
+        "description": "Measures the affordability of housing costs relative to income.",
+        "definition": "HAR = \\frac{\\text{Monthly Housing Payment}}{\\text{Monthly Income}} × 100\\%, \\text{where Monthly Housing Payment is derived from propfinancialdata and LTV calculations}"
+      },
+      {
+        "id": 33,
+        "knowledge": "Financial Vulnerability Score (FVS)",
+        "description": "Quantifies financial fragility by combining debt burden and savings adequacy.",
+        "definition": "FVS = 0.5 × DTI + 0.5 × (1 - \\frac{liqassets}{mthincome × 6}), \\text{where DTI is the Debt-to-Income Ratio and the second term measures emergency fund adequacy}"
+      },
+      {
+        "id": 34,
+        "knowledge": "Customer Retention Risk (CRR)",
+        "description": "Calculates risk of customer attrition based on engagement and satisfaction metrics.",
+        "definition": "CRR = 0.4 × churnrate + 0.3 × (1 - CES) + 0.3 × \\frac{complainthist}{3}, \\text{where CES is the Customer Engagement Score and complainthist is converted to numeric (Low=1, Medium=2, High=3)}"
+      },
+      {
+        "id": 35,
+        "knowledge": "Asset Liquidity Ratio (ALR)",
+        "description": "Measures the proportion of customer assets that can be quickly converted to cash.",
+        "definition": "ALR = \\frac{liqassets}{totassets} = \\frac{liqassets}{Net Worth + totliabs}, \\text{where Net Worth is the difference between assets and liabilities}"
+      },
+      {
+        "id": 36,
+        "knowledge": "Credit Risk Intensity (CRI)",
+        "description": "Advanced measure of credit risk that incorporates payment history and account diversity.",
+        "definition": "CRI = 0.5 × (1 - \\frac{credscore}{850}) + 0.3 × \\frac{delinqcount + latepaycount + choffs}{10} + 0.2 × (1 - AHI), \\text{where AHI is the Account Health Index}"
+      },
+      {
+        "id": 37,
+        "knowledge": "Investment Portfolio Quality (IPQ)",
+        "description": "Evaluates the quality and performance of customer's investment allocations.",
+        "definition": "IPQ = 0.4 × RAR + 0.4 × \\frac{investamt}{totassets} + 0.2 × \\frac{chaninvdatablock.invcluster.investexp}{3}, \\text{where RAR is the Risk-Adjusted Return and investexp is converted to numeric (Limited=1, Moderate=2, Extensive=3)}"
+      },
+      {
+        "id": 38,
+        "knowledge": "Banking Relationship Strength (BRS)",
+        "description": "Quantifies the depth and quality of a customer's banking relationship.",
+        "definition": "BRS = 0.3 × bankrelscore + 0.3 × (1 - churnrate) + 0.4 × CES, \\text{where CES is the Customer Engagement Score}"
+      },
+      {
+        "id": 39,
+        "knowledge": "Credit Health Momentum (CHM)",
+        "description": "Measures the trajectory of a customer's credit health over time.",
+        "definition": "CHM = CHS × (1 + \\Delta_\\text{recentbeh}), \\text{where CHS is the Credit Health Score and } \\Delta_\\text{recentbeh} \\text{ is +0.1 for 'Improving', 0 for 'Stable', and -0.1 for 'Deteriorating'}"
+      },
+      {
+        "id": 40,
+        "knowledge": "Mortgage Risk Profile",
+        "description": "Identifies customers with elevated mortgage-related risk factors.",
+        "definition": "A customer with high LTV (Loan-to-Value Ratio > 0.9), negative equity risk (LTV > 1.0), or payment stress (propfinancialdata.mortgagebits.mortpayhist of 'Fair' or 'Poor')."
+      },
+      {
+        "id": 41,
+        "knowledge": "Credit Utilization Alert",
+        "description": "Identifies customers with problematic credit utilization patterns.",
+        "definition": "A customer with CUR (Credit Utilization Ratio) > 0.8, an increasing trend in utilization, and limited available credit (totcredlimit < mthincome × 2)."
+      },
+      {
+        "id": 42,
+        "knowledge": "Financial Stress Indicator",
+        "description": "Identifies customers showing multiple signs of financial difficulty.",
+        "definition": "A customer with FVS (Financial Vulnerability Score) > 0.7, recent payment issues (delinqcount > 0 or latepaycount > 0 in past six months), and negative Net Worth."
+      },
+      {
+        "id": 43,
+        "knowledge": "Premium Banking Candidate",
+        "description": "Identifies customers who are good candidates for premium banking services.",
+        "definition": "A customer with high CQI (Credit Quality Index > 0.8), strong FSI (Financial Stability Index > 0.7), and significant assets (totassets > $250,000)."
+      },
+      {
+        "id": 44,
+        "knowledge": "Digital Channel Opportunity",
+        "description": "Identifies customers who would benefit from increased digital engagement.",
+        "definition": "A customer with low digital engagement (chaninvdatablock.onlineuse not 'High' and chaninvdatablock.mobileuse not 'High') but high BRS (Banking Relationship Strength > 0.7) and multiple products (produsescore > 0.5)."
+      },
+      {
+        "id": 45,
+        "knowledge": "Credit Building Opportunity",
+        "description": "Identifies customers who would benefit from credit-building products.",
+        "definition": "A customer with limited credit history (credageyrs < 2), low CQI (Credit Quality Index < 0.6), but positive banking behavior (bouncecount = 0 and bankrelscore > 0.6)."
+      },
+      {
+        "id": 46,
+        "knowledge": "Investment Services Target",
+        "description": "Identifies customers who are good candidates for investment services.",
+        "definition": "A customer with high ALR (Asset Liquidity Ratio > 0.3) and strong income (mthincome > $5,000)."
+      },
+      {
+        "id": 47,
+        "knowledge": "Declining Credit Health",
+        "description": "Identifies customers with deteriorating credit health requiring intervention.",
+        "definition": "A customer with negative CHM (Credit Health Momentum < 0), increasing CRI (Credit Risk Intensity growing by >10% in 6 months), and rising DTI (Debt-to-Income Ratio increasing by >5% in 6 months)."
+      },
+      {
+        "id": 48,
+        "knowledge": "Relationship Attrition Risk",
+        "description": "Identifies customers at high risk of ending their banking relationship.",
+        "definition": "A customer with high CRR (Customer Retention Risk > 0.7), declining product usage (decreasing produsescore), and competitive shopping behavior (hardinq > 2 in past 3 months)."
+      },
+      {
+        "id": 49,
+        "knowledge": "Cross-Sell Priority",
+        "description": "Identifies customers who should be prioritized for cross-selling efforts.",
+        "definition": "A customer with strong CES (Customer Engagement Score > 0.7), positive CQI (Credit Quality Index > 0.7), and unrealized product potential (crossratio > 0.5 but produsescore < 0.5)."
+      },
+      {
+        "id": 51,
+        "knowledge": "Cohort Quarter",
+        "description": "Quarter of the year when the customer started with the institution.",
+        "definition": "Quarter of the year when the customer started with the institution (scoring date minus tenure years)"
+      }
+    ]
+  },
+  "virtual_1": {
+    "source": "bird-interact-lite/virtual/virtual_kb.jsonl",
+    "source_sha256": "f4967a884d1130cbc7da4d7de8e108a8498d2f8eb6d91e94cae7df820b6afec9",
+    "deleted_ids": [
+      34
+    ],
+    "visible_entries": [
+      {
+        "id": 0,
+        "knowledge": "fans.statustag",
+        "description": "Explains the meaning of fan account status and its impact on platform interactions",
+        "definition": "Fan status typically falls into four categories: 'Active' indicates normal users with full access to all features; 'VIP' represents premium users with privileged services; 'Inactive' refers to dormant accounts with no login for over 30 days, with some features restricted; 'Blocked' means accounts temporarily or permanently banned due to violations, with no access to platform features."
+      },
+      {
+        "id": 1,
+        "knowledge": "fans.tierstep",
+        "description": "Explains the practical significance of fan tier levels",
+        "definition": "Fan tiers (tierstep) start at 1 and increase progressively, representing different loyalty levels and privileges: Tiers 1-3 are 'Entry-level' fans (newly joined), tiers 4-7 represent 'Mid-level' fans (stable supporters), tiers 8-10 are 'High-level fans (long-term loyal followers), and tiers above 10 are 'Core' fans (foundational idol supporters). Any accounts with missing or invalid tier values are classified as 'Undefined' and require administrative review. Each tier level grants new privileges and increases platform visibility."
+      },
+      {
+        "id": 2,
+        "knowledge": "virtualidols.kindtag",
+        "description": "Explains technical and performance characteristics of different virtual idol types",
+        "definition": "'2D' represents two-dimensional animated characters, suitable for anime-style performances with limited interactivity; '3D' refers to three-dimensional modeled characters with more natural movements capable of complex performances; 'AI Generated' indicates characters created using AI technology with high uniqueness but requiring consistency monitoring; 'Mixed Reality' describes characters that can interact with real-world elements, requiring the highest technical threshold."
+      },
+      {
+        "id": 3,
+        "knowledge": "membershipandspending.membkind",
+        "description": "Explains the benefit differences between membership types",
+        "definition": "'Free' users can access only basic content with approximately 10 hours of viewable content per month; 'Basic' members (about $5 monthly) receive reduced ads and access to additional content; 'Premium' members (about $10-15 monthly) get ad-free experience, exclusive content, and priority viewing; 'Diamond' members (above $25 monthly) receive all benefits plus 1-on-1 interaction opportunities and physical merchandise."
+      },
+      {
+        "id": 4,
+        "knowledge": "engagement.actfreq",
+        "description": "Analyzes the significance of interaction frequency for fan classification",
+        "definition": "'Daily' users log into the platform at least once per day on average; 'Weekly' users log in 3-5 times per week; 'Monthly' users log in 1-2 times per month; 'Occasional' users have login intervals exceeding one month. Interaction frequency affects platform push priority, content recommendations, and event invitations, with Daily users considered the platform's core active group."
+      },
+      {
+        "id": 5,
+        "knowledge": "engagement.engrate",
+        "description": "Explains the calculation basis and business significance of fan engagement rate",
+        "definition": "Engagement rate (engrate) typically ranges from 0 to 1.000, with higher values indicating more active fans. 0-0.200 represents low engagement (viewing only without participation), 0.201-0.500 indicates moderate engagement (occasional comments and likes), 0.501-0.800 shows high engagement (frequent comments and sharing), and 0.801-1.000 represents ultra-high engagement (comprehensive deep participation in content co-creation). Platforms generally consider rates above 0.500 as quality fans."
+      },
+      {
+        "id": 6,
+        "knowledge": "socialcommunity.community_engagement.content_creation.contqualrate",
+        "description": "Explains content quality rating standards and classification",
+        "definition": "Content quality rating (contqualrate) ranges from 0-10.0: 0-3.9 points indicate low-quality content (potentially violating rules or poor quality); 4.0-6.9 points represent medium-quality content (meeting basic platform standards); 7.0-8.9 points indicate high-quality content (well-produced and creative); 9.0-10.0 points represent premium content (platform recommendation level). Quality ratings affect content recommendations, exposure, and creator incentives."
+      },
+      {
+        "id": 7,
+        "knowledge": "interactions.gifttot_interactions.giftvalusd",
+        "description": "Explains the statistical significance of gift quantity and value",
+        "definition": "gifttot represents the total number of gifts sent by fans, typically classified as: fewer than 10 is considered minimal gifting, 10-50 represents moderate support, and above 50 indicates substantial support; giftvalusd represents the USD value of gifts, generally $1-5 for small support, $5-20 for moderate support, $20-100 for large support, and above $100 for super support. Both metrics combined assess a fan's economic support level."
+      },
+      {
+        "id": 8,
+        "knowledge": "retentionandinfluence.churnflag",
+        "description": "Explains the judgment basis for churn risk rating",
+        "definition": "'None' indicates extremely low churn risk, with users maintaining high-frequency interaction and recent consumption; 'Low' represents slight churn risk with slightly decreased login frequency; 'Medium' indicates moderate churn risk with significantly decreased interaction and consumption frequency and increased login intervals; 'High' represents severe churn risk with no logins or interactions in the past 14-30 days, requiring immediate intervention."
+      },
+      {
+        "id": 9,
+        "knowledge": "loyaltyandachievements.reward_progress.loyalty.loypts",
+        "description": "Explains the accumulation and application value of loyalty points",
+        "definition": "Loyalty points (loypts) are cumulative rewards for fan activities: 0-1000 points is entry-level (redeemable for basic digital items); 1001-5000 points is intermediate level (redeemable for limited-time privileges and mid-level digital items); 5001-20000 points is advanced level (redeemable for limited merchandise and activity priorities); above 20000 points is expert level (invitations to participate in platform decisions and idol development). Points are typically earned through logins, purchases, and activity participation."
+      },
+      {
+        "id": 10,
+        "knowledge": "Fan Engagement Index (FEI)",
+        "description": "A comprehensive metric measuring fan activity level with platform and virtual idols",
+        "definition": "FEI = (engrate \\times 0.4) + (\\frac{socintscore}{100} \\times 0.3) + (\\frac{actdayswk}{7} \\times 0.2) + (\\frac{avgsesscount}{10} \\times 0.1), \\text{ where weights reflect each factor's different contribution to engagement, with results ranging from 0-1. Higher values indicate more engaged fans.}"
+      },
+      {
+        "id": 11,
+        "knowledge": "Monetization Value (MV)",
+        "description": "Calculates the monetary value a fan brings to the platform over time",
+        "definition": "MV = spendusd \\times \\left(1 + \\frac{membdays}{365} \\times 0.5\\right) \\times \\left(1 + \\frac{gifttot}{10} \\times 0.2\\right), \\text{ where the formula adjusts spending based on membership duration and gift activity to reflect long-term value.}"
+      },
+      {
+        "id": 12,
+        "knowledge": "Content Creation Impact Score (CCIS)",
+        "description": "Measures the impact of fan-created content on the community",
+        "definition": "CCIS = contqualrate \\times \\left(\\frac{ugcval}{10}\\right) \\times \\left(1 + \\frac{follcount}{100} \\times 0.5\\right), \\text{ where content quality is multiplied by normalized content volume and amplified by follower reach.}"
+      },
+      {
+        "id": 13,
+        "knowledge": "Retention Risk Factor (RRF)",
+        "description": "Quantifies the risk of fan churn based on multiple behavioral indicators",
+        "definition": "RRF = (1 - intconsist) \\times 2 + \\left(\\frac{CURRENT\\_DATE - lastlogdt}{30}\\right) \\times 0.5 + \\left(\\frac{churnflag\\_numeric}{3}\\right) \\times 2, \\text{ where churnflag\\_numeric maps churnflag enum: None=0, Low=1, Medium=2, High=3.}"
+      },
+      {
+        "id": 14,
+        "knowledge": "Social Influence Multiplier (SIM)",
+        "description": "Calculates how much a fan amplifies content through their social network",
+        "definition": "SIM = \\left(\\frac{follcount}{100}\\right) \\times (engrate \\times 2) \\times (viralcont + 1) \\times 0.5, \\text{ reflecting the fan's ability to spread content through their network based on their following, engagement level, and history of creating viral content.}"
+      },
+      {
+        "id": 15,
+        "knowledge": "Loyalty Progression Rate (LPR)",
+        "description": "Measures how quickly a fan is accumulating loyalty within the system",
+        "definition": "LPR = \\left(\\frac{loypts}{membdays}\\right) \\times (1 + (engrate \\times 2)), \\text{ showing points earned per day adjusted by engagement level to identify rapidly advancing fans.}"
+      },
+      {
+        "id": 16,
+        "knowledge": "Fan Lifetime Value (FLV)",
+        "description": "Projects the total economic value of a fan throughout their relationship with the platform",
+        "definition": "FLV = MV \\times \\left(1 - \\frac{RRF}{10}\\right) \\times (1 + FEI) \\times 24, \\text{ estimating 24-month value adjusted by retention risk and engagement level.}"
+      },
+      {
+        "id": 17,
+        "knowledge": "Community Contribution Index (CCI)",
+        "description": "Measures a fan's overall contribution to the virtual idol community",
+        "definition": "CCI = (CCIS \\times 0.4) + (SIM \\times 0.3) + (collabcount \\times 0.1) + (FEI \\times 0.2), \\text{ balancing content creation, social influence, collaboration activity, and general engagement.}"
+      },
+      {
+        "id": 18,
+        "knowledge": "Event ROI Potential (ERP)",
+        "description": "Estimates the potential return on investment for inviting a fan to exclusive events",
+        "definition": "ERP = FLV \\times \\left(\\frac{evtpart\\_numeric}{3}\\right) \\times \\left(\\frac{tierstep}{5}\\right) \\times \\left(1 + \\frac{inflscore}{100}\\right), \\text{ where evtpart\\_numeric maps participation\\_summary.event\\_attendance.evtpart enum values: Never=0, Rare=1, Regular=2, Always=3. Higher scores indicate fans likely to generate more value when included in events.}"
+      },
+      {
+        "id": 19,
+        "knowledge": "Support Efficiency Index (SEI)",
+        "description": "Measures the efficiency of platform resources spent on supporting a fan",
+        "definition": "SEI = \\frac{satrate}{(supptix + 1)} \\times \\left(1 + \\frac{FLV}{100}\\right), \\text{ where higher values indicate fans who provide good platform ratings with minimal support requirements, adjusted by their lifetime value.}"
+      },
+      {
+        "id": 20,
+        "knowledge": "Superfan",
+        "description": "Identifies fans with exceptional platform value and engagement",
+        "definition": "A fan with tierstep ≥ 8, FEI > 0.7, and MV > 200, representing the highest value segment providing substantial financial support while maintaining high engagement."
+      },
+      {
+        "id": 21,
+        "knowledge": "Content Creator",
+        "description": "Identifies fans who actively produce and share idol-related content",
+        "definition": "A fan with ugcval > 20, contqualrate > 7.0, and at least one of: artsubs > 3, ficsubs > 2, or coverperfcnt > 0. These fans contribute significantly to community content ecosystem."
+      },
+      {
+        "id": 22,
+        "knowledge": "Social Amplifier",
+        "description": "Identifies fans who significantly extend idol content reach",
+        "definition": "A fan with follcount > 500, SIM > 2.0, and viralcont ≥ 1, representing users who effectively spread idol content through their substantial social networks."
+      },
+      {
+        "id": 23,
+        "knowledge": "Churn Candidate",
+        "description": "Identifies fans at immediate risk of platform abandonment",
+        "definition": "A fan with RRF > 3.5, lastlogdt more than 20 days in the past, and engrate < 0.2, requiring immediate retention efforts."
+      },
+      {
+        "id": 24,
+        "knowledge": "Silent Supporter",
+        "description": "Identifies financially supportive fans with low social visibility",
+        "definition": "A fan with MV > 100, engrate < 0.3, and chatmsg/sesscount ratio < 0.5, representing valuable economic contributors who prefer to observe rather than actively participate in community activities."
+      },
+      {
+        "id": 25,
+        "knowledge": "Community Pillar",
+        "description": "Identifies fans who form the foundation of the idol community",
+        "definition": "A fan with CCI > 7, actfreq = 'Daily', membdays > 180, and community_engagement.group_involvement.grprole = 'Moderator' or community_engagement.group_involvement.grprole = 'Leader'. These fans play essential roles in maintaining community structure and culture."
+      },
+      {
+        "id": 26,
+        "knowledge": "Potential Ambassador",
+        "description": "Identifies fans with high potential to represent the idol brand",
+        "definition": "A fan with inflscore > 75, trustval > 8.5, FEI > 0.6, and contqualrate > 8.0, representing candidates for official ambassador programs who can authentically promote the idol."
+      },
+      {
+        "id": 27,
+        "knowledge": "Whale",
+        "description": "Identifies fans who provide extraordinary financial support",
+        "definition": "A fan with giftvalusd > 500 or spendusd > 1000 within a 90-day period, regardless of other engagement metrics. These fans form the financial backbone of idol economic ecosystems."
+      },
+      {
+        "id": 28,
+        "knowledge": "Event Champion",
+        "description": "Identifies fans who excel at event participation and promotion",
+        "definition": "A fan with participation_summary.event_attendance.evtpart = 'Always', ERP > 50, and hashuse > 15, representing users who consistently attend events and actively promote them through social channels."
+      },
+      {
+        "id": 29,
+        "knowledge": "Multi-Idol Supporter",
+        "description": "Identifies fans who support multiple virtual idols on the platform",
+        "definition": "A fan who has interacted (interactfanpivot appears multiple times with different interactidolpivot values) with at least 2 different idols, with engrate > 0.4 for each. These fans spread their support across the platform ecosystem rather than focusing on a single idol."
+      },
+      {
+        "id": 30,
+        "knowledge": "Premium Engagement Ratio (PER)",
+        "description": "Measures the relationship between fan spending and their engagement level",
+        "definition": "PER = \\frac{MV}{FEI \\times 100}, \\text{ where higher values indicate fans who spend more relative to their engagement level.}"
+      },
+      {
+        "id": 31,
+        "knowledge": "Content Quality to Engagement Ratio (CQER)",
+        "description": "Measures how a fan's content quality relates to their overall engagement",
+        "definition": "CQER = \\frac{contqualrate}{engrate \\times 10}, \\text{ where values above 1.0 indicate fans producing content of quality higher than their general engagement level would predict.}"
+      },
+      {
+        "id": 32,
+        "knowledge": "Investment Recovery Period (IRP)",
+        "description": "Estimates how many months it will take to recover platform investment in a fan",
+        "definition": "IRP = \\frac{supptix \\times 30}{MV \\times (1 - \\frac{RRF}{10})}, \\text{ where supptix represents support tickets as a proxy for platform resources invested in the fan.}"
+      },
+      {
+        "id": 33,
+        "knowledge": "Tier Acceleration Factor (TAF)",
+        "description": "Measures how quickly a fan is advancing through tier levels relative to platform norms",
+        "definition": "TAF = \\frac{tierstep}{\\sqrt{membdays}} \\times \\frac{10}{\\sqrt{365}}, \\text{ normalized to annual scale for consistent comparison across fans with different membership durations.}"
+      },
+      {
+        "id": 35,
+        "knowledge": "Social Conversion Rate (SCR)",
+        "description": "Measures a fan's ability to convert their social network into active platform participants",
+        "definition": "SCR = \\frac{refcount}{(socialcommunity.community\\_engagement->>'network.follcount')::int} \\times 100, \\text{ expressed as a percentage of followers successfully converted to platform users.}"
+      },
+      {
+        "id": 36,
+        "knowledge": "Content Quality Consistency (CQC)",
+        "description": "Measures the consistency of a fan's content quality relative to their engagement consistency",
+        "definition": "CQC = contqualrate \\times intconsist \\times \\frac{ugcval}{10}, \\text{ where intconsist measures interaction consistency on a scale of 0-1.}"
+      },
+      {
+        "id": 37,
+        "knowledge": "Loyalty Value Ratio (LVR)",
+        "description": "Evaluates the relationship between a fan's loyalty points and their economic value",
+        "definition": "LVR = \\frac{loypts}{MV \\times 10}, \\text{ where higher values indicate fans accumulating loyalty faster than their spending would predict.}"
+      },
+      {
+        "id": 38,
+        "knowledge": "Event Response Factor (ERF)",
+        "description": "Measures a fan's response rate to official events and activities",
+        "definition": "ERF = \\frac{(eventsandclub.participation\\_summary->>'event\\_attendance.onevtatt')::int + (eventsandclub.participation\\_summary->>'event\\_attendance.offevtatt')::int}{10} \\times \\left(1 + \\frac{FEI}{2}\\right), \\text{ where onevtatt and offevtatt represent online and offline events attended.}"
+      },
+      {
+        "id": 39,
+        "knowledge": "Churn Prevention Investment (CPI)",
+        "description": "Calculates the optimal investment for preventing churn based on fan value and risk",
+        "definition": "CPI = FLV \\times \\frac{RRF}{5} \\times 0.1, \\text{ suggesting investing up to 10\\% of at-risk value, scaled according to churn risk level.}"
+      },
+      {
+        "id": 40,
+        "knowledge": "High-Value Content Creator",
+        "description": "Identifies fans who produce exceptional quality content with significant reach",
+        "definition": "A fan who produces content with contqualrate > 8.5, has follcount > 1000, and maintains ugcval > 20, representing the elite tier of community content producers."
+      },
+      {
+        "id": 41,
+        "knowledge": "Engagement-Deficient Whale",
+        "description": "Identifies high-spending fans with surprisingly low engagement",
+        "definition": "A fan with giftvalusd > 500 or spendusd > 1000, but with FEI < 0.3, indicating significant financial contribution despite limited platform participation."
+      },
+      {
+        "id": 42,
+        "knowledge": "Rapidly Ascending Fan",
+        "description": "Identifies fans who are progressing through membership tiers at an accelerated rate",
+        "definition": "A fan with TAF > 1.5 and LPR > 20, demonstrating exceptional speed in advancing through tier levels and accumulating loyalty points."
+      },
+      {
+        "id": 43,
+        "knowledge": "Quality Inconsistent Creator",
+        "description": "Identifies fans who produce occasional high-quality content but lack consistency",
+        "definition": "A fan who has created at least one content piece with contqualrate > 8.5 but maintains an overall CQC < 5, indicating talent but inconsistent output."
+      },
+      {
+        "id": 44,
+        "knowledge": "Retention Risk Superfan",
+        "description": "Identifies high-value fans showing early warning signs of potential churn",
+        "definition": "A fan with tierstep ≥ 8, FEI > 0.7, and MV > 200, but also showing RRF > 2.0, representing significant value at risk of being lost."
+      },
+      {
+        "id": 45,
+        "knowledge": "Loyalty Underperformer",
+        "description": "Identifies fans with unusually low loyalty points relative to their spending",
+        "definition": "A fan with LVR < 0.5 and MV > 150, indicating a lower than expected loyalty point accumulation compared to their economic contribution."
+      },
+      {
+        "id": 46,
+        "knowledge": "Premium Service Candidate",
+        "description": "Identifies fans who would benefit from and likely pay for enhanced support services",
+        "definition": "A fan with SEI < 0.8, MV > 300, and supptix > 5, representing users who require substantial support and have demonstrated significant economic value."
+      },
+      {
+        "id": 47,
+        "knowledge": "Social Network Underutilizer",
+        "description": "Identifies fans with large social networks but low conversion to platform activity",
+        "definition": "A fan with follcount > 1000 but SCR < 0.5%, indicating a substantial but largely untapped potential for platform growth through their social connections."
+      },
+      {
+        "id": 48,
+        "knowledge": "Tier-Stuck Veteran",
+        "description": "Identifies long-term fans who have stalled in tier progression",
+        "definition": "A fan with membdays > 365, engrate > 0.4, but TAF < 0.5, representing users who remain engaged but are advancing through tier levels more slowly than expected."
+      },
+      {
+        "id": 49,
+        "knowledge": "Gift-Focused Supporter",
+        "description": "Identifies fans whose primary support comes through gifting rather than direct spending",
+        "definition": "A fan with GIQ > 50 but spendusd < 100, showing a preference for gift-based support mechanisms over traditional subscription or purchase options."
+      },
+      {
+        "id": 50,
+        "knowledge": "Content Creator Classification",
+        "description": "Categorizes fans based on their content creation quality, volume, and reach",
+        "definition": "Fans are classified into three categories based on content metrics: 'High-Value Content Creator' identifies fans with exceptional content quality (contqualrate > 8.5), significant reach (follcount > 1000), and substantial content volume (ugcval > 20); 'Content Creator' identifies fans who produce good quality content (contqualrate > 7.0) with substantial volume (ugcval > 20); 'Regular Fan' applies to all others who don't meet content creator thresholds, representing the standard user base who primarily consume rather than create content."
+      },
+      {
+        "id": 51,
+        "knowledge": "Content Preference Classification",
+        "description": "Categorizes fans based on their primary content consumption preferences",
+        "definition": "Uses the contpref field to classify viewers: contpref = 'Music' maps to 'Content Consumer (Music)', contpref = 'Dance' maps to 'Content Consumer (Dance)', contpref = 'Gaming' maps to 'Content Consumer (Gaming)', and all other values map to 'General Content Consumer'. This classification enables targeted content delivery and personalized marketing."
+      },
+      {
+        "id": 52,
+        "knowledge": "Churn Risk Numeric Mapping",
+        "description": "Converts the churn risk enum values to numeric form for analytical calculations",
+        "definition": "Transforms the churnflag enum values into numeric equivalents for use in calculations and risk models: 'None' maps to 0 (representing minimal risk), 'Low' maps to 1 (representing slight risk), 'Medium' maps to 2 (representing moderate risk), and 'High' maps to 3 (representing severe risk). This numeric mapping enables mathematical operations in retention analysis formulas, especially for the Retention Risk Factor (RRF) calculation."
+      },
+      {
+        "id": 53,
+        "knowledge": "Fan Value Segmentation",
+        "description": "Classifies fans into value tiers based on their Fan Lifetime Value (FLV) relative to platform-wide percentiles",
+        "definition": "Segments fans into four distinct value categories using percentile thresholds: 'Top Tier' identifies fans with FLV above the 90th percentile (p90), representing the platform's most valuable users; 'High Value' identifies fans with FLV between the 75th and 90th percentiles (p75 to p90); 'Medium Value' identifies fans with FLV between the 50th and 75th percentiles (median to p75); 'Low Value' applies to all fans with FLV below the median (p50). This segmentation enables targeted retention strategies, premium service offerings, and resource allocation based on projected economic contribution."
+      },
+      {
+        "id": 54,
+        "knowledge": "Enhanced Churn Risk Severity Classification",
+        "description": "Defines detailed categorization for high-risk churn candidates requiring intervention",
+        "definition": "Enhances the standard churn risk classification by adding a 'Severe' category for critically at-risk users. The classification uses precise RRF thresholds: 'Severe' identifies users with RRF > 4.5 requiring immediate intervention and executive attention; 'High' identifies users with RRF between 3.5-4.5 requiring prioritized retention campaigns; 'Medium' applies to users with RRF between 2.5-3.5 requiring standard monitoring. This refined classification enables more targeted allocation of retention resources based on urgency level and churn probability."
+      }
+    ]
+  },
+  "polar_M_4": {
+    "source": "bird-interact-lite/polar/polar_kb.jsonl",
+    "source_sha256": "d980e657893f43c3e622add7c21ad5dc56ab485c3987b8531fa5508db8c9abbc",
+    "deleted_ids": [
+      7
+    ],
+    "visible_entries": [
+      {
+        "id": 0,
+        "knowledge": "Equipment Efficiency Rating (EER)",
+        "description": "A composite metric that evaluates the overall efficiency of equipment based on performance, reliability, and environmental impact.",
+        "definition": "EER = \\frac{performanceindex + reliabilityindex}{2} \\times (1 - \\frac{environmentalimpactindex}{10}), \\text{ where higher values indicate more efficient equipment with better performance and lower environmental impact.}"
+      },
+      {
+        "id": 1,
+        "knowledge": "Operational Readiness Score (ORS)",
+        "description": "Quantifies how ready equipment is for immediate deployment based on operational status and maintenance schedule.",
+        "definition": "ORS = \\begin{cases} 10 \\times (1 - \\frac{operationhours}{maintenancecyclehours}) & \\text{if operationalstatus = 'Active'} \\\\ 5 \\times (1 - \\frac{operationhours}{maintenancecyclehours}) & \\text{if operationalstatus = 'Standby'} \\\\ 0 & \\text{otherwise} \\end{cases}"
+      },
+      {
+        "id": 2,
+        "knowledge": "Energy Sustainability Index (ESI)",
+        "description": "Measures the sustainability of an equipment's energy usage by evaluating energy efficiency and renewable sources.",
+        "definition": "ESI = energyefficiencypercent \\times \\begin{cases} 1.5 & \\text{if powersource IN ('Solar', 'Wind')} \\\\ 1.2 & \\text{if powersource = 'Hybrid'} \\\\ 1.0 & \\text{if powersource = 'Battery'} \\\\ 0.7 & \\text{if powersource = 'Diesel'} \\\\ 0 & \\text{otherwise} \\end{cases}, \\text{ providing higher ratings for renewable energy and lower ratings for fossil fuels.}"
+      },
+      {
+        "id": 3,
+        "knowledge": "Structural Safety Factor (SSF)",
+        "description": "Evaluates the safety margin of structures under extreme weather conditions.",
+        "definition": "SSF = \\frac{100 - structuralloadpercent}{100} \\times \\begin{cases} 0.5 & \\text{if snowloadkgm2 > 100 or windspeedms > 20} \\\\ 0.8 & \\text{if snowloadkgm2 > 50 or windspeedms > 10} \\\\ 1.0 & \\text{otherwise} \\end{cases}"
+      },
+      {
+        "id": 4,
+        "knowledge": "Communication Reliability Index (CRI)",
+        "description": "Assesses the reliability of communication systems based on signal metrics and antenna status.",
+        "definition": "CRI = \\begin{cases} 0 & \\text{if antennastatus = 'Error'} \\\\ 5 & \\text{if antennastatus = 'Warning'} \\\\ 10 & \\text{if antennastatus = 'Normal'} \\\\ 0 & \\text{otherwise} \\end{cases} \\times (1 - \\frac{signalmetrics.latency\\_ms}{1000}), \\text{ where lower latency and better antenna status result in higher reliability.}"
+      },
+      {
+        "id": 5,
+        "knowledge": "Vehicle Performance Coefficient (VPC)",
+        "description": "A metric that evaluates vehicle performance based on mechanical condition and operational efficiency.",
+        "definition": "VPC = (1 - \\frac{brakepadwearpercent + trackwearpercent}{200}) \\times \\frac{vehiclespeedkmh}{50} \\times \\frac{engineloadpercent}{100}, \\text{ where lower wear percentages and optimal engine load contribute to better performance.}"
+      },
+      {
+        "id": 6,
+        "knowledge": "Thermal Insulation Efficiency (TIE)",
+        "description": "Measures how effectively a structure retains heat based on insulation status and heat loss rate.",
+        "definition": "TIE = \\begin{cases} 0.9 - \\frac{heatlossratekwh}{10} & \\text{if insulationstatus = 'Good'} \\\\ 0.6 - \\frac{heatlossratekwh}{10} & \\text{if insulationstatus = 'Fair'} \\\\ 0.3 - \\frac{heatlossratekwh}{10} & \\text{if insulationstatus = 'Poor'} \\end{cases}, \\text{ where lower heat loss and better insulation result in higher efficiency.}"
+      },
+      {
+        "id": 8,
+        "knowledge": "Scientific Equipment Reliability (SER)",
+        "description": "Quantifies the reliability of scientific equipment based on calibration status and measurement accuracy.",
+        "definition": "SER = measurementaccuracypercent \\times \\begin{cases} 1.0 & \\text{if calibrationstatus = 'Valid'} \\\\ 0.7 & \\text{if calibrationstatus = 'Due'} \\\\ 0.3 & \\text{if calibrationstatus = 'Expired'} \\end{cases}, \\text{ where valid calibration and high accuracy result in more reliable scientific data.}"
+      },
+      {
+        "id": 9,
+        "knowledge": "Renewable Energy Contribution (REC)",
+        "description": "Calculates the percentage contribution of renewable energy sources to the total power generation.",
+        "definition": "REC = \\frac{renewablemetrics.solar.output\\_w + renewablemetrics.wind.output\\_w}{fuelcelloutputw + renewablemetrics.solar.output\\_w + renewablemetrics.wind.output\\_w} \\times 100, \\text{ where higher values indicate greater reliance on renewable energy.}"
+      },
+      {
+        "id": 10,
+        "knowledge": "Extreme Weather Readiness (EWR)",
+        "description": "Evaluates how prepared equipment and structures are for extreme weather conditions.",
+        "definition": "A composite rating where equipment is considered 'Extreme Weather Ready' if it maintains an SSF > 0.7 and has operational heating systems (heaterstatus not 'Off'), proper insulation (insulationstatus not 'Poor'), and functional emergency systems (emergencylightstatus = 'On' or 'Testing')."
+      },
+      {
+        "id": 11,
+        "knowledge": "Critical Equipment",
+        "description": "Identifies equipment that is essential for life support and safety in polar environments.",
+        "definition": "Equipment is designated as 'Critical' if it belongs to the 'Safety' equipment type, has a safety index > 0.8, and is associated with any of these life-critical systems: lifesupportstatus, oxygensupplystatus, or heater systems where temperatures are below freezing (externaltemperaturec < 0)."
+      },
+      {
+        "id": 12,
+        "knowledge": "Maintenance Priority Level",
+        "description": "Classifies equipment based on the urgency of required maintenance.",
+        "definition": "Equipment is categorized into maintenance priority levels: 'Immediate Attention' (operationhours > maintenancecyclehours OR operationalstatus = 'Repair'), 'Scheduled Service' (operationhours > 0.8 * maintenancecyclehours), and 'Routine Maintenance' (all other cases), helping prioritize resource allocation."
+      },
+      {
+        "id": 13,
+        "knowledge": "Energy Sustainability Classification",
+        "description": "Categories equipment based on their energy sustainability index for environmental impact assessment.",
+        "definition": "Equipment is classified as 'Green' (ESI > 0.8), 'Intermediate' (ESI between 0.4 and 0.8), or 'High Impact' (ESI < 0.4), with Green indicating environmentally sustainable operations."
+      },
+      {
+        "id": 14,
+        "knowledge": "Communication Zone Status",
+        "description": "Evaluates the communication coverage and reliability in different operational zones.",
+        "definition": "A zone is classified as having 'Reliable Coverage' when equipment within it maintains a CRI > 7, has active satellite connections (signalmetrics.satellite_status = 'Connected'), and supports emergency beacon functionality (emergencybeaconstatus != 'Inactive')."
+      },
+      {
+        "id": 15,
+        "knowledge": "Vehicle Operational Safety Threshold",
+        "description": "Defines the safety threshold for vehicle operations based on multiple safety factors.",
+        "definition": "A vehicle is considered 'Safe for Operation' when it maintains a VPC > 0.6, has brake fluid levels above 50%, brake pad wear below 70%, adequate tire pressure (tiremetrics.pressure_kpa > 200), and is operated within recommended load limits (vehicleloadkg within manufacturer specifications)."
+      },
+      {
+        "id": 16,
+        "knowledge": "Scientific Data Reliability Classification",
+        "description": "Classifies scientific data based on equipment reliability and calibration status.",
+        "definition": "Scientific data is classified as 'Research Grade' when collected by equipment with SER > 0.9, with valid calibration status, and under appropriate environmental conditions for the equipment type."
+      },
+      {
+        "id": 17,
+        "knowledge": "Cabin Habitability Standard",
+        "description": "Defines the minimum standards for habitable cabin conditions in polar environments.",
+        "definition": "A cabin meets 'Habitability Standards' when it maintains internal temperature (cabinclimate.temperature_c) between 18-24°C, oxygen levels (cabinclimate.o2_percent) above 19.5%, CO2 levels (cabinclimate.co2_ppm) below 1000 ppm, functioning ventilation systems, and operational heating systems."
+      },
+      {
+        "id": 18,
+        "knowledge": "Water Conservation Requirement",
+        "description": "Specifies the conditions under which water conservation measures must be implemented.",
+        "definition": "Water conservation measures must be implemented when the WRMI falls below 0.5, indicating either low water levels, poor water quality, or high waste tank levels that require immediate attention to maintain sustainable water usage."
+      },
+      {
+        "id": 19,
+        "knowledge": "Sustainable Energy Operation",
+        "description": "Defines the conditions for energy-sustainable operations in polar environments.",
+        "definition": "An operation is considered 'Energy-Sustainable' when it maintains a REC above 70% (meaning more than 70% of energy comes from renewable sources) while maintaining full operational capability and adequate power reserves for at least 48 hours in case of emergency."
+      },
+      {
+        "id": 20,
+        "knowledge": "reliabilityindex",
+        "description": "Illustrates the significance of reliability index measurements in equipment durability.",
+        "definition": "The reliability index typically ranges from 0 to 1, where values below 0.5 indicate equipment that fails frequently and requires constant maintenance, values between 0.5-0.8 represent equipment with occasional failures that require regular maintenance, and values above 0.8 indicate highly reliable equipment with minimal downtime."
+      },
+      {
+        "id": 21,
+        "knowledge": "operationhours",
+        "description": "Illustrates the meaning and importance of equipment operation hours.",
+        "definition": "Operation hours represent the cumulative time an equipment has been in active use. New equipment typically has low hours (0-100), mid-life equipment shows moderate hours (100-1000), while equipment approaching maintenance or replacement typically exceeds 1000 hours. The ratio of operation hours to maintenance cycle hours is critical for preventative maintenance scheduling."
+      },
+      {
+        "id": 22,
+        "knowledge": "externaltemperaturec",
+        "description": "Illustrates the significance of external temperature readings in polar environments.",
+        "definition": "External temperature in polar regions typically ranges from -70°C to 10°C. Temperatures below -40°C represent extreme cold requiring special equipment protection measures, -20°C to -40°C require standard cold weather protocols, while temperatures above -20°C are considered relatively mild for polar operations but still require normal cold weather precautions."
+      },
+      {
+        "id": 23,
+        "knowledge": "windspeedms",
+        "description": "Illustrates the impact of wind speed measurements on operations and safety.",
+        "definition": "Wind speeds in polar environments typically range from 0 to 60 m/s. Speeds below 5 m/s represent calm conditions, 5-15 m/s indicate moderate winds with minor operational impact, 15-25 m/s represent strong winds requiring additional safety measures, and speeds above 25 m/s indicate dangerous conditions that may require suspension of outdoor activities and securing of equipment."
+      },
+      {
+        "id": 24,
+        "knowledge": "powerconsumptionw",
+        "description": "Illustrates the significance of power consumption measurements in energy management.",
+        "definition": "Power consumption measured in watts varies by equipment type. Small scientific instruments typically consume 5-50W, communication equipment 20-200W, heating systems 500-5000W, and vehicle systems 1000-10000W. Understanding consumption patterns is crucial for power budgeting and determining appropriate power source sizing in isolated polar environments."
+      },
+      {
+        "id": 25,
+        "knowledge": "Water Quality Classification System (WQCS)",
+        "description": "A standardized system that categorizes water quality for health, safety, and operational purposes in polar environments.",
+        "definition": "Water is classified into five quality categories based on its quality index: 'High-Quality' WHEN (waterqualityindex >= 91), suitable for all purposes including direct consumption; 'Good' WHEN (waterqualityindex >= 71 AND waterqualityindex < 91), safe for consumption after standard treatment; 'Moderate' WHEN (waterqualityindex >= 51 AND waterqualityindex < 71), acceptable for washing but not consumption; 'Poor' WHEN (waterqualityindex >= 26 AND waterqualityindex < 51), suitable only for limited non-contact uses; 'Unsafe' WHEN (waterqualityindex < 26), unsuitable for any use and requiring immediate remediation."
+      },
+      {
+        "id": 26,
+        "knowledge": "cabinclimate.co2_ppm",
+        "description": "Illustrates the health and cognitive implications of carbon dioxide levels in enclosed environments.",
+        "definition": "CO2 levels in enclosed spaces like cabins are measured in parts per million (ppm). Levels below 600 ppm indicate excellent ventilation, 600-1000 ppm represent good air quality, 1000-2500 ppm indicate poor ventilation that may cause drowsiness and reduced cognitive function, while levels above 2500 ppm may cause headaches, sleepiness, and significantly impaired cognitive performance."
+      },
+      {
+        "id": 27,
+        "knowledge": "energyefficiencypercent",
+        "description": "Illustrates the meaning and importance of energy efficiency percentages.",
+        "definition": "Energy efficiency percentage typically ranges from 10% to 99%. Values below 30% indicate inefficient systems typical of older equipment, 30-60% represent standard efficiency for conventional equipment, 60-80% indicate high-efficiency modern systems, while values above 80% represent cutting-edge technology with optimal efficiency that minimizes energy waste and operational costs."
+      },
+      {
+        "id": 28,
+        "knowledge": "safetyindex",
+        "description": "Illustrates the significance of safety index ratings for operational risk assessment.",
+        "definition": "Safety index typically ranges from 0 to 1, where values below 0.5 indicate equipment with significant safety concerns requiring immediate attention or limited operation, values between 0.5-0.7 represent equipment with acceptable safety for normal operations with appropriate precautions, and values above 0.7 indicate equipment with excellent safety features suitable for all operational conditions including those with elevated risks."
+      },
+      {
+        "id": 29,
+        "knowledge": "fuelcellefficiencypercent",
+        "description": "Illustrates the technical significance of fuel cell efficiency ratings.",
+        "definition": "Fuel cell efficiency percentages typically range from 40% to 90%. Values below 50% represent older or degraded fuel cell technology, 50-70% indicate standard efficiency modern fuel cells suitable for general applications, and values above 70% represent high-performance fuel cells with optimal conversion of chemical energy to electrical power with minimal waste heat generation."
+      },
+      {
+        "id": 30,
+        "knowledge": "Overall Safety Performance Index (OSPI)",
+        "description": "Comprehensively evaluates equipment's overall safety performance based on safety index and equipment efficiency rating",
+        "definition": "OSPI = safetyindex × EER × 0.8"
+      },
+      {
+        "id": 31,
+        "knowledge": "Polar Transportation Efficiency Coefficient (PTEC)",
+        "description": "Measures vehicle transportation efficiency in polar conditions, considering vehicle performance and energy sustainability",
+        "definition": "PTEC = VPC × (0.6 + 0.4 × ESI ÷ 100)"
+      },
+      {
+        "id": 32,
+        "knowledge": "Base Station Communication Stability Index (BSCSI)",
+        "description": "Evaluates the stability and reliability of polar base station communication systems",
+        "definition": "BSCSI = CRI × (1 + 0.2 × signalmetrics.radio_strength_dbm ÷ 100) × (1 - 0.01 × (1000 - signalmetrics.latency_ms))"
+      },
+      {
+        "id": 33,
+        "knowledge": "Life Support System Reliability (LSSR)",
+        "description": "Evaluates the reliability of life support systems under polar conditions",
+        "definition": "LSSR = 0.7 × ORS + 0.3 × TIE"
+      },
+      {
+        "id": 34,
+        "knowledge": "Scientific Mission Success Probability (SMSP)",
+        "description": "Predicts the probability of successful completion of scientific missions",
+        "definition": "SMSP = SER × (0.8 + 0.2 × CRI ÷ 10)"
+      },
+      {
+        "id": 35,
+        "knowledge": "Resource Self-Sufficiency Index (RSSI)",
+        "description": "Measures a polar site's self-sufficiency in terms of resources",
+        "definition": "RSSI = 0.6 × REC + 0.4 × WRMI"
+      },
+      {
+        "id": 36,
+        "knowledge": "Extreme Climate Adaptation Coefficient (ECAC)",
+        "description": "Evaluates equipment adaptation capability under extreme climate conditions",
+        "definition": "ECAC = SSF × (1 + TIE × 0.5) × \\begin{cases} 0.7 & \\text{if externaltemperaturec < -30} \\\\ 0.85 & \\text{if externaltemperaturec < -15} \\\\ 1.0 & \\text{otherwise} \\end{cases}"
+      },
+      {
+        "id": 37,
+        "knowledge": "Long-term Operational Stability Score (LOSS)",
+        "description": "Evaluates the stability of equipment during long-term operation",
+        "definition": "LOSS = 0.5 × EER + 0.5 × ORS × (1 - \\frac{operationhours}{20000})"
+      },
+      {
+        "id": 38,
+        "knowledge": "Energy-Water Resource Integration Index (EWRII)",
+        "description": "Evaluates the integration efficiency of energy and water resource management",
+        "definition": "EWRII = 0.5 × ESI + 0.5 × WRMI × (1 - \\frac{heatertemperaturec}{100})"
+      },
+      {
+        "id": 39,
+        "knowledge": "Comprehensive Operational Reliability Indicator (CORI)",
+        "description": "Comprehensively assesses the overall reliability of polar equipment operations",
+        "definition": "CORI = 0.4 × EER + 0.4 × ORS + 0.2 × CRI"
+      },
+      {
+        "id": 40,
+        "knowledge": "Extreme Operating Conditions (EOC)",
+        "description": "Defines the extreme environmental conditions under which equipment can safely operate",
+        "definition": "Equipment is considered to 'operate safely under extreme conditions' when its SSF > 0.65 and ECAC > 0.8."
+      },
+      {
+        "id": 41,
+        "knowledge": "Emergency Response Readiness Status (ERRS)",
+        "description": "Assesses a polar site's preparedness to respond to emergency situations",
+        "definition": "A polar site is rated as 'emergency response ready' when its critical equipment maintains OSPI > 0.75 and LSSR > 0.8, with emergencycommunicationstatus = 'Operational' and backuppowerstatus = 'Active' and batterystatus.level_percent > 85."
+      },
+      {
+        "id": 42,
+        "knowledge": "Sustainable Polar Operations (SPO)",
+        "description": "Defines sustainability standards for polar operations",
+        "definition": "Polar operations are defined as 'sustainable' when the site maintains RSSI > 0.7 and EWRII > 0.65, with wastemanagementstatus = 'Normal' and environmentalimpactindex < 6.0."
+      },
+      {
+        "id": 43,
+        "knowledge": "Critical Scientific Equipment Status (CSES)",
+        "description": "Determines the operational status and reliability of critical scientific equipment",
+        "definition": "Scientific equipment is classified as 'Fully Operational' (SER > 0.9 and SMSP > 0.85), 'Degraded Operation' (SER > 0.7 and SMSP > 0.6), or 'Needs Repair' (other cases)."
+      },
+      {
+        "id": 44,
+        "knowledge": "Polar Vehicle Safe Operation Conditions (PVSOC)",
+        "description": "Determines the conditions for safe operation of polar vehicles",
+        "definition": "Polar vehicles are considered 'suitable for polar missions' when they maintain PTEC > 0.7 and VPC > 0.75, with operationalstatus = 'Active' and safetyindex ≥ 0.8."
+      },
+      {
+        "id": 45,
+        "knowledge": "Communication Network Resilience Assessment (CNRA)",
+        "description": "Assesses the resilience and interference resistance of polar communication networks",
+        "definition": "Communication networks are assessed as having 'High Resilience' (CRI > 0.8 and BSCSI > 0.85), 'Medium Resilience' (CRI > 0.6 and BSCSI > 0.7), or 'Low Resilience' (other cases)."
+      },
+      {
+        "id": 46,
+        "knowledge": "Critical Infrastructure Protection Level (CIPL)",
+        "description": "Determines the protection level for polar critical infrastructure",
+        "definition": "Infrastructure is assigned protection level 'A' (SSF > 0.8, LOSS > 0.85, and OSPI > 0.9), 'B' (SSF > 0.7, LOSS > 0.75, and OSPI > 0.8), or 'C' (other cases)."
+      },
+      {
+        "id": 47,
+        "knowledge": "Long-term Scientific Mission Viability (LSMV)",
+        "description": "Assesses the viability of long-term scientific missions under polar conditions",
+        "definition": "Scientific missions are assessed as 'long-term viable' when all involved scientific equipment maintains SMSP > 0.8 and overall site operations maintain CORI > 0.75, with calibrationstatus = 'Valid' and dataloggingstatus = 'Active'."
+      },
+      {
+        "id": 48,
+        "knowledge": "Polar Base Energy Security Status (PBESS)",
+        "description": "Determines the security status of energy supply for polar bases",
+        "definition": "A polar base is assessed as being in an 'energy secure' state when it maintains REC > 65%, ESI > 0.7, and RSSI > 0.75, with batterystatus.level_percent > 75 and hydrogenlevelpercent > 70."
+      },
+      {
+        "id": 49,
+        "knowledge": "Comprehensive Environmental Adaptability Rating (CEAR)",
+        "description": "Assesses the overall adaptability of equipment and systems to the polar environment",
+        "definition": "Equipment and systems are rated as having 'Excellent Adaptability' (ECAC > 0.85 and SSF > 0.8 and thermalsolarwindandgrid.insulationstatus = 'Good'), 'Good Adaptability' (ECAC > 0.7 and SSF > 0.65 and thermalsolarwindandgrid.insulationstatus != 'Poor'), or 'Limited Adaptability' (other cases)."
+      },
+      {
+        "id": 50,
+        "knowledge": "Extreme Weather Readiness Status (EWRS)",
+        "description": "A binary classification system that determines if equipment has met all necessary conditions to safely operate during extreme weather events.",
+        "definition": "Equipment is classified as 'Extreme Weather Ready' WHEN (SSF > 0.7) AND (heaterstatus != 'Off') AND (insulationstatus != 'Poor') AND (emergencylightstatus IN ('On', 'Testing')); OTHERWISE equipment is classified as 'Not Ready'. This evaluation combines structural integrity checks with essential operational systems status to determine immediate readiness for extreme weather exposure."
+      },
+      {
+        "id": 51,
+        "knowledge": "Life Support Reliability Classification (LSRC)",
+        "description": "Categorizes life support systems into reliability classes based on their LSSR score for operational decision-making.",
+        "definition": "Life support systems are classified into three reliability categories: 'High Reliability' WHEN (LSSR >= 0.8), 'Moderate Reliability' WHEN (LSSR >= 0.6 AND LSSR < 0.8), and 'Low Reliability' WHEN (LSSR < 0.6)."
+      },
+      {
+        "id": 52,
+        "knowledge": "Energy Sustainability Classification System (ESCS)",
+        "description": "A comprehensive classification system that categorizes operational energy sustainability based on renewable energy contribution percentages.",
+        "definition": "Operations are classified into three sustainability levels: 'Energy-Sustainable' WHEN (REC > 70); 'Moderately Sustainable' WHEN (REC > 50 AND REC <= 70); 'Low Sustainability' WHEN (REC <= 50)."
+      },
+      {
+        "id": 53,
+        "knowledge": "Water Resource Management Status Classification (WRMSC)",
+        "description": "A comprehensive classification system that categorizes water resource management status based on WRMI values to guide operational decisions.",
+        "definition": "Water management operations are classified into three status levels: 'Conservation Needed' WHEN (WRMI < 0.5), indicating critical resource limitations requiring immediate conservation measures; 'Monitoring Advised' WHEN (WRMI >= 0.5 AND WRMI < 0.7), representing adequate but vigilant management requiring regular system monitoring; 'Sustainable Management' WHEN (WRMI >= 0.7), indicating optimal water resource utilization suitable for unrestricted operations."
+      }
+    ]
+  },
+  "cybermarket_1": {
+    "source": "bird-interact-lite/cybermarket/cybermarket_kb.jsonl",
+    "source_sha256": "b4a5dc174b6abc19ef0e5efdc0c55a8aad46d57efef2c987a1f7ec7c43f06f18",
+    "deleted_ids": [
+      16
+    ],
+    "visible_entries": [
+      {
+        "id": 0,
+        "knowledge": "cybermarket|markets|mktclass",
+        "description": "Explains the market classification system and its business implications",
+        "definition": "Market classes define the primary business model: 'Forum' platforms focus on information exchange and community interactions with minimal direct transactions; 'Service' markets specialize in offering digital services rather than goods; 'Marketplace' denotes traditional product-focused platforms with diverse inventory; 'Exchange' indicates financial transaction services predominantly featuring cryptocurrency trading."
+      },
+      {
+        "id": 1,
+        "knowledge": "cybermarket|markets|sizecluster",
+        "description": "Illustrates the significance of market size classification",
+        "definition": "Size clusters represent market scale and reach: 'Small' markets typically have under 10,000 monthly users and limited vendor presence; 'Medium' markets host 10,000-50,000 monthly users with moderate vendor diversity; 'Large' markets serve 50,000-100,000 users with extensive product catalogs; 'Mega' markets exceed 100,000 monthly users with comprehensive vendor networks and represent the highest-risk monitoring targets."
+      },
+      {
+        "id": 2,
+        "knowledge": "cybermarket|transactions|paymethod",
+        "description": "Explains the significance of different payment methods",
+        "definition": "Payment methods represent varying degrees of anonymity and traceability: 'Crypto_A' typically refers to Bitcoin, offering pseudonymous transactions with public ledgers; 'Crypto_B' often indicates Monero or similar privacy coins with enhanced transaction obfuscation; 'Crypto_C' represents emerging or niche cryptocurrencies; 'Token' indicates platform-specific value exchange systems that operate outside traditional blockchain networks."
+      },
+      {
+        "id": 3,
+        "knowledge": "cybermarket|transactions|txstatus",
+        "description": "Explains the transaction lifecycle stages and their implications",
+        "definition": "'Pending' represents initiated but incomplete transactions awaiting verification or escrow conditions; 'Completed' indicates successfully executed transactions with all parties satisfied; 'Cancelled' denotes transactions terminated before completion, often requiring refund processing; 'Disputed' represents contested transactions requiring arbitration, indicating potential fraud or service failure."
+      },
+      {
+        "id": 4,
+        "knowledge": "cybermarket|products|prodtheme",
+        "description": "Clarifies product theme classifications and their enforcement implications",
+        "definition": "'Digital' products include software, account credentials, and virtual goods requiring no physical shipping; 'Data' encompasses information packages like databases, personal information, and intellectual property; 'Service' refers to activities rather than tangible products, including hacking, documentation, or technical assistance; 'Physical' indicates tangible goods requiring actual shipment through delivery networks, representing the highest exposure risk category."
+      },
+      {
+        "id": 5,
+        "knowledge": "cybermarket|communication|vpnflag",
+        "description": "Explains the significance of VPN detection in communication analysis",
+        "definition": "'Yes' indicates confirmed VPN usage, demonstrating deliberate attempts to mask true location and identity; 'No' suggests direct connections potentially revealing actual user locations; 'Suspected' indicates communication patterns consistent with VPN usage but lacking definitive confirmation, requiring further investigation to determine the true level of identity obfuscation."
+      },
+      {
+        "id": 6,
+        "knowledge": "cybermarket|communication|langpattern",
+        "description": "Explains the significance of language pattern classification",
+        "definition": "'Consistent' indicates uniform linguistic patterns suggesting single-user accounts with established communication habits; 'Variable' indicates significant linguistic variations that may signal multiple users sharing an account or automated translation tools; 'Suspicious' denotes deliberate attempts to mask writing style through syntax switching or unnatural language patterns often associated with deception attempts."
+      },
+      {
+        "id": 7,
+        "knowledge": "cybermarket|vendors|vendchecklvl",
+        "description": "Illustrates the vendor verification system and trustworthiness indicators",
+        "definition": "'Basic' vendors have completed minimal verification steps, typically only email and captcha verification with limited platform history; 'Advanced' vendors have undergone additional verification including identification consistency checks and longer positive platform history; 'Premium' vendors represent the highest verification tier, having submitted verifiable identity elements and maintained extended positive transaction records with minimal disputes."
+      },
+      {
+        "id": 8,
+        "knowledge": "cybermarket|riskanalysis|moneyrisk",
+        "description": "Explains the significance of money laundering risk classification",
+        "definition": "'Low' indicates minimal risk patterns with transparent transaction flows and consistent monetary behavior; 'Medium' suggests some unusual patterns warranting monitoring but insufficient evidence for immediate action; 'High' represents significant red flags such as rapid fund transfers, unusual transaction chains, or known high-risk wallet associations; 'Unknown' indicates insufficient data to properly assess risk, itself often considered a risk indicator due to potential deliberate obfuscation."
+      },
+      {
+        "id": 9,
+        "knowledge": "cybermarket|securitymonitoring|alertsev",
+        "description": "Explains the alert severity classification system",
+        "definition": "'Low' alerts indicate minor anomalies requiring minimal attention and posing limited security risk; 'Medium' alerts signal notable deviations from baseline behavior requiring investigation within standard timeframes; 'High' alerts denote significant security concerns demanding prompt attention and intervention; 'Critical' alerts represent severe and immediate security threats requiring urgent action and potential emergency response protocols."
+      },
+      {
+        "id": 10,
+        "knowledge": "Market Risk Score (MRS)",
+        "description": "Calculates overall risk level of a market based on multiple factors",
+        "definition": "MRS = \\frac{dlyflow}{1000} + (esccomprate \\times 0.2) + (interscore \\times 0.3) + (vendcount \\times 0.1) - \\frac{mktspan}{100}, \\text{where higher scores indicate greater risk exposure requiring enhanced monitoring.}"
+      },
+      {
+        "id": 11,
+        "knowledge": "Vendor Trust Index (VTI)",
+        "description": "Measures vendor reliability based on transaction history",
+        "definition": "VTI = \\frac{vendsucccount}{vendtxcount} \\times 100 - \\frac{venddisputecount}{vendtxcount} \\times 50 + (vendrate \\times 5), \\text{where higher scores indicate more trustworthy vendors.}"
+      },
+      {
+        "id": 12,
+        "knowledge": "Transaction Anomaly Score (TAS)",
+        "description": "Detects unusual transactions based on multiple variables",
+        "definition": "TAS = \\frac{payamtusd}{1000} \\times \\frac{txfinishhrs}{24} \\times \\left(1 + \\frac{escrowhrs}{100}\\right) \\times \\left(1 - \\frac{esccomprate}{100}\\right), \\text{where esccomprate is from the associated market, and higher scores indicate more suspicious transactions.}"
+      },
+      {
+        "id": 13,
+        "knowledge": "Communication Security Risk (CSR)",
+        "description": "Evaluates the security risk of a communication channel",
+        "definition": "CSR = (iptally \\times 5) + (tornodecount \\times 2) + (vpnflag\\_numeric \\times 30) + \\frac{brwsrunique}{10} + (susppatscore \\times 3) + (riskindiccount \\times 4), \\text{where vpnflag\\_numeric maps Yes=1, Suspected=0.5, No=0, and higher scores indicate greater security concerns.}"
+      },
+      {
+        "id": 14,
+        "knowledge": "Wallet Risk Index (WRI)",
+        "description": "Assesses the risk level of cryptocurrency wallets",
+        "definition": "WRI = (fraudprob \\times 100) + (wallrisksc \\times 0.5) - \\frac{wallage}{30} + (wallturnrt \\times 10) + \\frac{txvel}{10}, \\text{where higher scores indicate potentially suspicious wallet activity.}"
+      },
+      {
+        "id": 15,
+        "knowledge": "Market Stability Index (MSI)",
+        "description": "Measures the operational stability of a market",
+        "definition": "MSI = \\frac{mktspan}{365} \\times \\frac{esccomprate}{100} \\times \\left(1 - \\frac{\\sum venddisputecount}{\\sum vendtxcount} \\right) \\times 100, \\text{where higher scores indicate more stable markets less likely to disappear suddenly.}"
+      },
+      {
+        "id": 17,
+        "knowledge": "Security Posture Score (SPS)",
+        "description": "Evaluates the overall security posture of an entity",
+        "definition": "SPS = (100 - (vulntally \\times 5)) + (securitymeasurecount \\times 2) + (sessionsecurityscore \\times 0.5) + (privprotscore \\times 0.3) - (fpprob \\times 100), \\text{where higher scores indicate stronger security postures.}"
+      },
+      {
+        "id": 18,
+        "knowledge": "Investigation Priority Score (IPS)",
+        "description": "Determines how urgently an investigation should be handled",
+        "definition": "IPS = (lawinterest\\_numeric \\times 30) + (regrisklvl\\_numeric \\times 20) + (fraudprob \\times 100) - (compliancescore \\times 0.5) + (notescount \\times 2), \\text{where lawinterest\\_numeric and regrisklvl\\_numeric map Low=1, Medium=2, High=3, Unknown=2, and higher scores indicate higher priority.}"
+      },
+      {
+        "id": 19,
+        "knowledge": "Anonymity Protection Level (APL)",
+        "description": "Measures how well a user's identity is protected",
+        "definition": "APL = (vpnflag\\_numeric \\times 30) + (tornodecount \\times 2) + (encryptmethod\\_numeric \\times 15) + (connpatscore \\times 0.2) + \\frac{brwsrunique}{20}, \\text{where vpnflag\\_numeric maps Yes=1, Suspected=0.5, No=0, encryptmethod\\_numeric maps Standard=1, Enhanced=2, Custom=3, else=0 and higher scores indicate stronger anonymity protections.}"
+      },
+      {
+        "id": 20,
+        "knowledge": "High-Risk Market",
+        "description": "Identifies markets with significant operational risk factors",
+        "definition": "A market with MRS > 500, having more than 100 vendors, a daily flow exceeding 5000 transactions, and at least one 'High' security alert. These markets typically have the highest potential for illicit activity and represent priority monitoring targets for investigators."
+      },
+      {
+        "id": 21,
+        "knowledge": "Trusted Vendor",
+        "description": "Identifies vendors with established positive reputation",
+        "definition": "A vendor with VTI > 80, vendchecklvl of 'Advanced' or 'Premium', a dispute rate below 5% of total transactions, and an active history exceeding 90 days. These vendors represent stabilizing forces within markets and typically pose lower immediate enforcement priorities."
+      },
+      {
+        "id": 22,
+        "knowledge": "Suspicious Transaction Pattern",
+        "description": "Identifies transactions with characteristics suggesting potential illegal activity",
+        "definition": "A transaction with TAS > 75, payment in privacy-focused cryptocurrencies (Crypto_B), escrow disabled or minimized (escrowused = 'No' or escrowhrs < 24), and unusual routing complexity (routecomplexity = 'Complex'). These transactions often represent high-risk activities requiring further investigation."
+      },
+      {
+        "id": 23,
+        "knowledge": "Money Laundering Indicator",
+        "description": "Identifies transaction patterns consistent with money laundering",
+        "definition": "A transaction chain with TCR > 150, involving wallets less than 30 days old (wallage < 30), high turnover rates (wallturnrt > 5), and at least 3 linked transactions (linkedtxcount >= 3). These patterns often indicate attempts to obscure the source or destination of funds."
+      },
+      {
+        "id": 24,
+        "knowledge": "High-Security Entity",
+        "description": "Identifies entities with strong security practices",
+        "definition": "An entity with SPS > 80, using military-grade encryption, implementing 2FA or multi-factor authentication, and maintaining fewer than 5 vulnerabilities (vulntally < 5). These entities represent lower security breach risks but may indicate sophisticated operators requiring specialized investigation approaches."
+      },
+      {
+        "id": 25,
+        "knowledge": "Priority Investigation Target",
+        "description": "Identifies cases requiring immediate investigative attention",
+        "definition": "An investigation with IPS > 200, high law enforcement interest (lawinterest = 'High'), involving a suspicious transaction pattern, and connected to a high-risk market. These cases represent the highest priority for resource allocation and immediate intervention."
+      },
+      {
+        "id": 26,
+        "knowledge": "Identity-Protected User",
+        "description": "Identifies users with robust anonymity protections",
+        "definition": "A user with APL > 100, consistently using TOR (tornodecount > 20), employing VPN protection (vpnflag = 'Yes'), and utilizing custom encryption methods. These users demonstrate sophisticated operational security requiring specialized investigation techniques."
+      },
+      {
+        "id": 27,
+        "knowledge": "Market Migration Indicator",
+        "description": "Identifies signs of users migrating between markets",
+        "definition": "A pattern where multiple vendors (vendregistry) and buyers (buyregistry) associated with one market (mktregistry) begin appearing on another market within a short timeframe (less than 30 days), often following security incidents or market instability. These migrations typically indicate market disruption events requiring adjustments to monitoring priorities."
+      },
+      {
+        "id": 28,
+        "knowledge": "Sophisticated Operational Security",
+        "description": "Identifies entities employing advanced security practices",
+        "definition": "An entity demonstrating APL > 120, consistently using variable language patterns (langpattern = 'Variable'), maintaining minimal communication (msgtally < 10), and employing multiple transaction chains (txchainlen > 5). These patterns indicate professional-level operational security possibly linking to organized criminal activity."
+      },
+      {
+        "id": 29,
+        "knowledge": "Cross-Platform Operator",
+        "description": "Identifies entities operating across multiple cybermarket platforms",
+        "definition": "An entity identified through matching cryptographic or communication fingerprints (keymatchcount > 30) operating on three or more markets simultaneously, maintaining consistent security practices, and exhibiting similar transaction patterns across platforms. These operators represent higher-value intelligence targets due to their broader cybermarket ecosystem involvement."
+      },
+      {
+        "id": 30,
+        "knowledge": "Market Vulnerability Index (MVI)",
+        "description": "Evaluates a market's susceptibility to disruption or shutdown",
+        "definition": "MVI = (100 - MSI) + (COUNT(CASE WHEN alertsev IS NOT NULL THEN 1 END) / 10) \\times (alertsev_numeric \\times 2) - (vendcount \\times 0.05) + (COUNT(CASE WHEN lawinterest = 'High' THEN 1 END) / 5), \\text{where alertsev_numeric maps Low=1, Medium=2, High=3, Critical=4 as defined in the alert severity system, and higher scores indicate greater vulnerability to disruption.}"
+      },
+      {
+        "id": 31,
+        "knowledge": "Vendor Network Centrality (VNC)",
+        "description": "Measures a vendor's connectedness within the market ecosystem",
+        "definition": "VNC = (COUNT(DISTINCT mktref) \\times 5) + \\frac{vendtxcount}{50} + (VTI \\times 0.1) - (1 - sizecluster_numeric) \\times 10, \\text{where sizecluster_numeric maps Small=1, Medium=2, Large=3, Mega=4 as described in the market size classification, and higher scores indicate more central market positioning.}"
+      },
+      {
+        "id": 32,
+        "knowledge": "Product Risk Exposure (PRE)",
+        "description": "Quantifies the regulatory exposure risk associated with product listings",
+        "definition": "PRE = prodtheme_weight + (escrowused_numeric \\times 10) - \\frac{escrowhrs}{24} + \\frac{payamtusd}{500}, \\text{where prodtheme_weight assigns Digital=10, Data=20, Service=30, Physical=50 based on the product theme classification, and escrowused_numeric is 0 if escrow is used and 1 if not.}"
+      },
+      {
+        "id": 33,
+        "knowledge": "Communication Pattern Risk (CPR)",
+        "description": "Evaluates how suspicious a communication pattern is based on multiple factors",
+        "definition": "CPR = (langpattern_numeric \\times 15) + (CSR \\times 0.2) + (msgtally \\times 0.5) - (1 - vpnflag_numeric) \\times 20, \\text{where langpattern_numeric maps Consistent=1, Variable=2, Suspicious=3 as explained in the language pattern classification, and higher scores represent more suspicious communication behavior.}"
+      },
+      {
+        "id": 34,
+        "knowledge": "Transaction Velocity Metric (TVM)",
+        "description": "Measures the rapidity and volume of transactions from a single source",
+        "definition": "TVM = \\frac{COUNT(txregistry)}{(MAX(eventstamp) - MIN(eventstamp))} \\times \\frac{payamtusd}{500} \\times (1 + (paymethod\\_weight \\times 0.1)), \\text{where paymethod\\_weight assigns Crypto\\_A=1, Crypto\\_B=3, Crypto\\_C=2, Token=2 based on the payment method classifications defined in cybermarket|transactions|paymethod, and higher values indicate potentially suspicious transaction velocity.}"
+      },
+      {
+        "id": 35,
+        "knowledge": "Market Diversification Score (MDS)",
+        "description": "Evaluates the diversity of products and vendors within a market",
+        "definition": "MDS = \\frac{COUNT(DISTINCT prodsubcat)}{5} + \\frac{vendcount}{50} + \\frac{COUNT(txregistry)}{vendcount} \\times 0.5 - \\frac{mktclass\\_weight}{10}, \\text{where mktclass\\_weight assigns Forum=1, Service=2, Marketplace=4, Exchange=3 as per the market classification system defined in cybermarket|markets|mktclass, and higher scores represent greater market diversification.}"
+      },
+      {
+        "id": 36,
+        "knowledge": "Operational Security Index (OSI)",
+        "description": "Quantifies an entity's operational security practices",
+        "definition": "OSI = (APL \\times 0.5) + (SPS \\times 0.2) + (tornodecount \\times 2) + (CASE WHEN encryptmethod = 'Standard' THEN 1 WHEN encryptmethod = 'Enhanced' THEN 2 WHEN encryptmethod = 'Custom' THEN 3 ELSE 0 END \\times 5) - (iptally \\times 0.5), \\text{where APL and SPS are defined by the Anonymity Protection Level and Security Posture Score respectively, and higher scores indicate stronger operational security.}"
+      },
+      {
+        "id": 37,
+        "knowledge": "Vendor Relationship Strength (VRS)",
+        "description": "Measures the strength of relationships between a vendor and their customers",
+        "definition": "VRS = (vendrate \\times 10) + \\frac{vendsucccount}{vendtxcount} \\times 50 + (vendchecklvl_numeric \\times 15) - \\frac{venddisputecount}{vendtxcount} \\times 100, \\text{where vendchecklvl_numeric maps Basic=1, Advanced=2, Premium=3, else=0 according to the vendor verification system, and higher scores represent stronger vendor-customer relationships.}"
+      },
+      {
+        "id": 38,
+        "knowledge": "Cross-Platform Risk Amplification (CPRA)",
+        "description": "Measures how risk increases when an entity operates across multiple platforms",
+        "definition": "CPRA = (keymatchcount \\times 3) + (COUNT(DISTINCT mktref) \\times 10) + (WRI \\times 0.2) + (\\frac{mktspan}{365} \\times 5) - (\\frac{compliancescore}{20}), \\text{where WRI is defined by the Wallet Risk Index, platformcount is the count of distinct markets an entity operates on, and higher values indicate greater cross-platform risk.}"
+      },
+      {
+        "id": 39,
+        "knowledge": "Money Flow Complexity (MFC)",
+        "description": "Quantifies the complexity of money flows in transaction chains",
+        "definition": "MFC = (txchainlen \\times 5) + (linkedtxcount \\times 3) + (moneyrisk_numeric \\times 15) + (TCR \\times 0.2) - (profilecomplete \\times 10), \\text{where moneyrisk_numeric maps Low=1, Medium=2, High=3, Unknown=2 according to the money laundering risk classification, and higher scores indicate more complex money flows.}"
+      },
+      {
+        "id": 40,
+        "knowledge": "Unstable Market",
+        "description": "Identifies markets at high risk of imminent shutdown or disruption",
+        "definition": "A market with MVI > 75, MSI < 40, and at least one 'Critical' security alert (alertsev = 'Critical'). These markets typically show signs of administrative instability, declining transaction volumes, and may suggest potential exit scam preparation or law enforcement attention."
+      },
+      {
+        "id": 41,
+        "knowledge": "Market Kingpin",
+        "description": "Identifies vendors with exceptional influence and reach across multiple markets",
+        "definition": "A vendor with VNC > 85, operating on at least 3 different markets (COUNT(DISTINCT mktref) >= 3), with 'Premium' verification level (vendchecklvl = 'Premium'), and displaying the characteristics of a Trusted Vendor. These operators represent significant intelligence targets due to their wide-reaching influence."
+      },
+      {
+        "id": 42,
+        "knowledge": "High-Exposure Product",
+        "description": "Identifies products with elevated regulatory risk factors",
+        "definition": "A product with PRE > 60, in the 'Physical' theme category as defined in the product theme classification, without escrow protection (escrowused = 'No'), and transacted with privacy-focused cryptocurrency (paymethod = 'Crypto_B'). These products require immediate monitoring due to their heightened risk profile."
+      },
+      {
+        "id": 43,
+        "knowledge": "Deceptive Communication Pattern",
+        "description": "Identifies communication exhibiting signs of deliberate deception",
+        "definition": "A communication with CPR > 70, 'Suspicious' language patterns as defined in the language pattern classification, high CSR values (CSR > 80), and frequently changing connection parameters. These patterns suggest deliberate attempts to obfuscate identity and intentions."
+      },
+      {
+        "id": 44,
+        "knowledge": "Flash Transaction Cluster",
+        "description": "Identifies unusually rapid transaction sequences potentially indicating coordinated activity",
+        "definition": "A group of transactions with TVM > 50 from related sources, using privacy-focused cryptocurrencies (paymethod = 'Crypto_B') as defined in the payment method classification, completed within a short timeframe (MAX(eventstamp) - MIN(eventstamp) < 24 hours), and involving minimal escrow time (escrowhrs < 12). Such clusters often indicate coordinated market manipulation or 'smurfing' behavior."
+      },
+      {
+        "id": 45,
+        "knowledge": "Diversified Marketplace",
+        "description": "Identifies markets with exceptional product and vendor diversity",
+        "definition": "A market with MDS > 65, at least 15 distinct product categories (COUNT(DISTINCT prodsubcat) >= 15), high vendor count (vendcount > 200), and 'Marketplace' classification (mktclass = 'Marketplace') as defined in the market classification system. These markets typically present challenging enforcement targets due to their diversified nature."
+      },
+      {
+        "id": 46,
+        "knowledge": "OpSec Specialist",
+        "description": "Identifies entities employing exceptionally sophisticated operational security",
+        "definition": "An entity with OSI > 85, demonstrating Sophisticated Operational Security characteristics, with exceptionally high APL scores (APL > 120), and using either 'Enhanced' or 'Custom' encryption methods (encryptmethod IN ('Enhanced', 'Custom')). These entities represent high-value intelligence targets requiring specialized investigation techniques."
+      },
+      {
+        "id": 47,
+        "knowledge": "Customer Loyalty Network",
+        "description": "Identifies vendor-customer networks with unusual loyalty patterns",
+        "definition": "A network centered on a vendor with VRS > 90, having repeated transactions with the same buyers (> 5 transactions per buyer), receiving exceptionally high ratings (vendrate > 4.8), and 'Advanced' or 'Premium' verification level as defined in the vendor verification system. These networks often indicate established trust circles warranting deeper investigation."
+      },
+      {
+        "id": 48,
+        "knowledge": "Multi-Platform Threat Entity",
+        "description": "Identifies high-risk entities operating across multiple cybermarket platforms",
+        "definition": "An entity with CPRA > 80, displaying Cross-Platform Operator characteristics, with high Wallet Risk Index scores (WRI > 70), and consistently employing the same operational security tactics across platforms. These entities represent priority targets for coordinated investigation efforts due to their expanded reach."
+      },
+      {
+        "id": 49,
+        "knowledge": "Complex Money Laundering Operation",
+        "description": "Identifies sophisticated financial obfuscation schemes",
+        "definition": "A transaction network with MFC > 90, displaying Money Laundering Indicator characteristics, high TCR scores (TCR > 180), and 'High' money laundering risk classification as defined in the money laundering risk system. These operations represent the most sophisticated financial obfuscation attempts requiring specialized financial investigation approaches."
+      }
+    ]
+  }
+}

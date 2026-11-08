@@ -1,0 +1,11 @@
+{
+  "CONDA_PREFIX": "/home/nimir/miniconda3/envs/bird-interact",
+  "NO_PROXY": "*.zjusct.io,*.alicdn.com,*.mmstat.com,*.alimmdn.com,*.taobao.com,*.aliyun.com,*.alidns.com,*.dingtalkapps.com,*.dingtalk.com,*.cc98.org,*.zju.edu.cn,172.31.*,172.30.*,172.29.*,172.28.*,172.27.*,172.26.*,172.25.*,172.24.*,172.23.*,172.22.*,172.21.*,172.20.*,172.19.*,172.18.*,172.17.*,172.16.*,10.*,192.168.*,127.*,localhost,<local>",
+  "no_proxy": "*.zjusct.io,*.alicdn.com,*.mmstat.com,*.alimmdn.com,*.taobao.com,*.aliyun.com,*.alidns.com,*.dingtalkapps.com,*.dingtalk.com,*.cc98.org,*.zju.edu.cn,172.31.*,172.30.*,172.29.*,172.28.*,172.27.*,172.26.*,172.25.*,172.24.*,172.23.*,172.22.*,172.21.*,172.20.*,172.19.*,172.18.*,172.17.*,172.16.*,10.*,192.168.*,127.*,localhost,<local>",
+  "AINTERACT_PROMPT_APPENDIX": null,
+  "agent_sha256": "73100e73c653320a6500308e4cb9f611cff8381770ca9d40423b26f1dc40605c",
+  "model": "deepseek/deepseek-flash",
+  "simulator": "deepseek/deepseek-flash",
+  "prompt_version": "v1",
+  "patience": 3
+}

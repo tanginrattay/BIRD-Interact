@@ -1,0 +1,50 @@
+[
+  {
+    "path": "A_r1/eval_a_interact.json",
+    "sha256": "ed319aec5728816ee0790154e0de35b2c6ed3c00661594121bd60eda0d46a6c0"
+  },
+  {
+    "path": "A_r2/eval_a_interact.json",
+    "sha256": "0c9e30663d44f7880e13275a0f4f744955094c96856d906bd51e135ba09d2299"
+  },
+  {
+    "path": "A_r3/eval_a_interact.json",
+    "sha256": "ed4164ebcbf5fc7f0dbbee0c6910eeb141340b4274fb9bfc6bc78246d67c9ec0"
+  },
+  {
+    "path": "B_r1/eval_a_interact.json",
+    "sha256": "54aeab6d71bec6c83877d27afcfe18ef9d52f4968d622b13b076e52b3c0adf66"
+  },
+  {
+    "path": "B_r2/eval_a_interact.json",
+    "sha256": "6f1207e67338bf03296d32ed59a13011bc55b347c1f89c3529cc0055806bc4da"
+  },
+  {
+    "path": "B_r3/eval_a_interact.json",
+    "sha256": "1eeccebdcc58e6ac27e1ce3668091088f4f97a4013201136c1b0dd974d90d7d6"
+  },
+  {
+    "path": "C_r1/eval_a_interact.json",
+    "sha256": "8cb874e6a146d8428f7b05d097806fd0637d30fd2da86c16383dd8a77066d0e6"
+  },
+  {
+    "path": "C_r2/eval_a_interact.json",
+    "sha256": "e6971b7442ed1ace9c21681b79636bbc434181b8a00d72696957e4327d925312"
+  },
+  {
+    "path": "C_r3/eval_a_interact.json",
+    "sha256": "ac08f53931fb6a9fb832c095a0e069b9d01c5b25675df181e84ee042e3721003"
+  },
+  {
+    "path": "baseline_r1/eval_a_interact.json",
+    "sha256": "346654caa4e93361c65832bc2d85bd24748449423532844bc051de7b29385bfc"
+  },
+  {
+    "path": "baseline_r2/eval_a_interact.json",
+    "sha256": "bbf1b57b8259812b406384d83ed4df12f755c118b91ff65f1f380dea0f6be181"
+  },
+  {
+    "path": "baseline_r3/eval_a_interact.json",
+    "sha256": "9a6c3f908709042c7a176dbb2cb8e630f4354a7ac21b601ea0ff397d945b0c76"
+  }
+]

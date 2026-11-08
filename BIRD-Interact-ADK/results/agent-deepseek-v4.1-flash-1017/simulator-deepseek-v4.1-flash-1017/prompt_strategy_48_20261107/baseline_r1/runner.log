@@ -1,0 +1,29 @@
+2026-11-07 15:40:10,328 __main__ INFO Result output: /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/prompt_strategy_48_20261107/baseline_r1/eval_a_interact.json
+2026-11-07 15:40:10,380 __main__ INFO a-interact: Evaluating 4 tasks with concurrency=1
+2026-11-07 15:40:10,381 __main__ INFO === Task 1/4: credit_11 ===
+2026-11-07 15:40:10,381 orchestrator.ainteract INFO Starting task: credit_11 (db: credit)
+2026-11-07 15:40:10,939 httpx INFO HTTP Request: POST http://localhost:6002/init_task "HTTP/1.1 200 OK"
+2026-11-07 15:40:11,034 httpx INFO HTTP Request: POST http://localhost:6001/init_task "HTTP/1.1 200 OK"
+2026-11-07 15:40:11,034 orchestrator.ainteract INFO   [credit_11] Services initialized
+2026-11-07 15:40:11,375 httpx INFO HTTP Request: POST http://localhost:6000/init_session "HTTP/1.1 200 OK"
+2026-11-07 15:50:35,864 httpx INFO HTTP Request: POST http://localhost:6002/cleanup_task "HTTP/1.1 200 OK"
+Traceback (most recent call last):
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/orchestrator/runner.py", line 235, in <module>
+    main()
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/orchestrator/runner.py", line 224, in main
+    asyncio.run(run_parallel_evaluation(
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/asyncio/base_events.py", line 1871, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/selectors.py", line 469, in select
+    fd_event_list = self._selector.poll(timeout, max_ev)
+KeyboardInterrupt

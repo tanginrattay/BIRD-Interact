@@ -1,0 +1,12 @@
+{
+  "planned_runs": 48,
+  "valid_completed_runs": 0,
+  "expected_valid_completed_runs": 48,
+  "complete": false,
+  "balanced_design_completed": false,
+  "baseline_integrity_verified": true,
+  "all_four_prompt_control_verified": true,
+  "protected_runtime_sources_match_HEAD": true,
+  "no_results_fabricated": true,
+  "reason": "External model availability blocker; see experiment_status.json"
+}

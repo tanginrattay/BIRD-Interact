@@ -1,0 +1,38 @@
+{
+  "status": "blocked_by_model_service_availability",
+  "planned_runs": 48,
+  "started_task_attempts": 1,
+  "completed_valid_runs": 0,
+  "completed_invalid_runs": 0,
+  "interrupted_attempts": 1,
+  "not_started_runs": 47,
+  "first_attempt": {
+    "condition": "baseline",
+    "repetition": 1,
+    "task_id": "credit_11",
+    "started_at_local": "2026-11-07T15:40:10+08:00",
+    "interrupted_at_local": "2026-11-07T15:50:35+08:00",
+    "reason": "No completed task result after >10 minutes; independent async LiteLLM diagnosis returned HTTP 503 and tool-enabled diagnosis timed out. Formal request was interrupted, not observed returning HTTP 503.",
+    "runner_cleanup_task_http_status": 200,
+    "result_saved": false,
+    "reward": null
+  },
+  "diagnostics_excluded_from_experiment": {
+    "models_endpoint": "HTTP 200",
+    "direct_sync_one_token": "HTTP 200, 0.24 seconds; model deepseek-flash; fingerprint bc19ba97cbe016479903222bb1578db6",
+    "repository_sync_one_token": "OK, 3.15 seconds",
+    "repository_async_one_token_no_tools": "ServiceUnavailableError: Service is too busy (request_id: 430c1239-baa1-454f-99a4-ace30acfb78b)",
+    "repository_async_one_token_with_tools": "TimeoutError; 29.49 seconds; see async_tool_diagnostic.json"
+  },
+  "comparison_possible": false,
+  "baseline_unchanged": true,
+  "tools_callbacks_simulator_unchanged": true,
+  "provider_changed": false,
+  "services_stopped": true,
+  "task_db_cleanup_confirmed": true,
+  "notes": [
+    "No API failure or interrupted attempt is counted as a strategy score of zero.",
+    "Source task and original database contents were not modified.",
+    "Operational database container was started from its existing image and volume."
+  ]
+}
