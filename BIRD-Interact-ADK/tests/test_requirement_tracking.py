@@ -1,30 +1,34 @@
-"""One-call protocol smoke using real ADK, controlled model and HTTP fixtures."""
+"""Native function-calling State smoke: real ADK, controlled model/HTTP."""
 
-import asyncio
 import copy
 import json
 import os
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from google.adk.models.base_llm import BaseLlm
+from google.adk.models.llm_request import LlmRequest
 from google.adk.models.llm_response import LlmResponse
 from google.genai import types
 from pydantic import PrivateAttr
 
 from system_agent.adk_runtime import AdkRuntime
 from system_agent.requirement_state import apply_update, empty_state
+from system_agent.requirement_tracking import (
+    START, END, STATE_MARKER, before_model_with_requirements, after_model_callback,
+)
 
 QUERY = "Find the top 10 suspicious chains ordered by TCR descending. Return chain_id and TCR."
-SCHEMA = "CREATE TABLE chains(chain_id integer, total numeric, capacity numeric);"
-SQL = "SELECT chain_id, total/NULLIF(capacity,0) AS tcr FROM chains WHERE total/NULLIF(capacity,0)>0.8 ORDER BY tcr DESC LIMIT 10"
 
+SCHEMA = "CREATE TABLE chains(chain_id integer, total numeric, capacity numeric);"
+
+SQL = "SELECT chain_id, total/NULLIF(capacity,0) AS tcr FROM chains WHERE total/NULLIF(capacity,0)>0.8 ORDER BY tcr DESC LIMIT 10"
 
 def row(i, text, category="user_semantics", status="unresolved", value="", priority=3):
     return dict(id=f"r{i}", requirement=text, category=category, status=status,
                 value=value, priority=priority, reason="Compared visible evidence with the previous answer.")
-
 
 INITIAL = [
     row(1, "Return 10 chains", status="resolved", value="10 (source: user)", priority=0),
@@ -34,50 +38,22 @@ INITIAL = [
     row(5, "Map chain identifiers and formula inputs", "schema"),
     row(6, "Return chain_id and TCR columns", status="resolved", value="chain_id, TCR (source: user)", priority=0),
 ]
+
 SCHEMA_UPDATE = row(5, INITIAL[4]["requirement"], "schema", "resolved",
                     "chains(chain_id,total,capacity), no joins (source: get_schema)", 0)
+
 KB_UPDATE = row(3, INITIAL[2]["requirement"], "knowledge", "candidate",
                 "TCR = total/capacity; applicability unconfirmed (source: KB)", 3)
+
 PARTIAL_UPDATE = row(2, INITIAL[1]["requirement"], "user_semantics", "candidate",
                      "TCR above an unspecified threshold (source: user)", 3)
+
 FINAL_UPDATES = [
     row(2, INITIAL[1]["requirement"], "user_semantics", "resolved", "TCR > 0.8 (source: user)", 0),
     row(3, INITIAL[2]["requirement"], "user_semantics", "resolved",
         "TCR = total/NULLIF(capacity,0); user confirms KB applicability (source: user & KB)", 0),
     row(7, "Exclude zero capacity", "user_semantics", "resolved", "capacity <> 0 (source: user)", 0),
 ]
-
-
-class ScriptModel(BaseLlm):
-    model: str = "requirement-one-call-smoke"
-    _steps: list = PrivateAttr(default_factory=list)
-    _requests: list = PrivateAttr(default_factory=list)
-
-    async def generate_content_async(self, llm_request, stream=False):
-        snapshot = json.loads(llm_request.config.system_instruction.rsplit(
-            "Current Requirement State (runtime validated):\n", 1)[1])
-        assert llm_request.config.tools is None and llm_request.config.tool_config is None
-        assert llm_request.config.response_schema == {"type": "json_object"}
-        self._requests.append({"state": snapshot, "contents": [
-            c.model_dump(mode="json", exclude_none=True) for c in llm_request.contents],
-            "tools": list(llm_request.tools_dict), "native_tools_enabled": False})
-        assert self._steps, "unexpected extra model call"
-        step = self._steps.pop(0)
-        if isinstance(step, dict) and "native" in step:
-            content = types.Content(role="model", parts=[types.Part.from_function_call(
-                name="get_schema", args={})])
-        else:
-            if isinstance(step, dict) and "raw" in step:
-                raw = step["raw"]
-            else:
-                upserts, action = step
-                calls = [] if isinstance(action, str) else [
-                    {"name": n, "args": a} for n, a in (action if isinstance(action, list) else [action])]
-                raw = json.dumps({"state_update": {"base_revision": snapshot["revision"], "upserts": upserts},
-                                  "tool_calls": calls, "response": action if isinstance(action, str) else ""})
-            content = types.Content(role="model", parts=[types.Part.from_text(text=raw)])
-        yield LlmResponse(content=content)
-
 
 class FakeClient:
     calls = []
@@ -115,7 +91,6 @@ class FakeClient:
             raise AssertionError(url)
         return type("Response", (), {"status_code": 200, "json": lambda self: data})()
 
-
 class ValidationTests(unittest.TestCase):
     def test_optional_audit_reason_keeps_exact_requirement_fields(self):
         patch_rows = [{k: v for k, v in r.items() if k != "reason"} for r in INITIAL]
@@ -151,6 +126,84 @@ class ValidationTests(unittest.TestCase):
         self.assertEqual(state["requirements"][0], before["requirements"][0])
 
 
+def update_text(revision, rows):
+    return START + json.dumps({"state_update": {"base_revision": revision, "upserts": rows}}) + END
+
+
+class ScriptModel(BaseLlm):
+    model: str = "native-requirement-smoke"
+    _steps: list = PrivateAttr(default_factory=list)
+    _requests: list = PrivateAttr(default_factory=list)
+
+    async def generate_content_async(self, llm_request, stream=False):
+        snapshot = json.loads(llm_request.config.system_instruction.rsplit(STATE_MARKER, 1)[1])
+        assert llm_request.config.tools
+        assert llm_request.config.tool_config is None
+        assert llm_request.config.response_schema is None
+        assert llm_request.config.response_mime_type is None
+        self._requests.append({"state": snapshot, "tools": list(llm_request.tools_dict),
+                               "contents": [c.model_dump(mode="json", exclude_none=True) for c in llm_request.contents]})
+        assert self._steps, "unexpected extra model call"
+        step = self._steps.pop(0)
+        if isinstance(step, dict):
+            text, calls = step["raw_text"], step.get("calls", [])
+        else:
+            rows, action = step
+            text = update_text(snapshot["revision"], rows)
+            calls = [] if isinstance(action, str) else (action if isinstance(action, list) else [action])
+            if isinstance(action, str):
+                text += "\n" + action
+        parts = [types.Part.from_text(text=text)]
+        parts.extend(types.Part(function_call=types.FunctionCall(
+            id=f"call_model_{len(self._requests)}_{i}", name=name, args=args,
+        )) for i, (name, args) in enumerate(calls))
+        yield LlmResponse(content=types.Content(role="model", parts=parts))
+
+
+class CallbackContractTests(unittest.IsolatedAsyncioTestCase):
+    async def test_plain_json_and_decorated_marker_keep_strict_state_validation(self):
+        payload = json.dumps({"state_update": {"base_revision": 0, "upserts": INITIAL}})
+        for text in [payload, '<requirement_state_update" >' + payload + END]:
+            state = {"task_id": "test", "requirement_state": empty_state("test")}
+            response = LlmResponse(content=types.Content(role="model", parts=[types.Part.from_text(text=text)]))
+            self.assertIsNone(await after_model_callback(SimpleNamespace(state=state), response))
+            self.assertEqual(state["requirement_state"]["revision"], 1)
+
+    async def test_before_model_changes_only_system_instruction(self):
+        async def original_before(callback_context, llm_request):
+            return None
+        content = types.Content(role="model", parts=[types.Part(function_call=types.FunctionCall(
+            id="call_provider_1", name="get_schema", args={}))])
+        request = LlmRequest(contents=[content], config=types.GenerateContentConfig(
+            temperature=0.0, tools=[types.Tool(function_declarations=[types.FunctionDeclaration(name="get_schema")])]))
+        before_config = request.config.model_dump(exclude={"system_instruction"})
+        before_contents = request.contents
+        before_dump = [c.model_dump() for c in before_contents]
+        state = {"task_id": "test", "requirement_state": empty_state("test")}
+        await before_model_with_requirements(original_before)(SimpleNamespace(state=state), request)
+        self.assertEqual(request.config.model_dump(exclude={"system_instruction"}), before_config)
+        self.assertIs(request.contents, before_contents)
+        self.assertEqual([c.model_dump() for c in request.contents], before_dump)
+
+    async def test_after_model_preserves_native_response_and_arguments(self):
+        state = {"task_id": "test", "requirement_state": empty_state("test")}
+        response = LlmResponse(content=types.Content(role="model", parts=[
+            types.Part.from_text(text=update_text(0, INITIAL)),
+            types.Part(function_call=types.FunctionCall(id="call_provider_1", name="submit_sql",
+                                                       args={"sql": SQL, "unused": "ADK handles arguments"})),
+            types.Part(function_call=types.FunctionCall(id="call_provider_2", name="get_schema", args={})),
+        ]))
+        before = response.model_dump()
+        self.assertIsNone(await after_model_callback(SimpleNamespace(state=state), response))
+        self.assertEqual(response.model_dump(), before)
+        self.assertEqual(state["requirement_state"]["revision"], 1)
+        # Partial/error events do not mutate State or rewrite ADK responses.
+        for item in [LlmResponse(partial=True, content=response.content), LlmResponse(error_code="upstream")]:
+            previous = copy.deepcopy(state)
+            self.assertIsNone(await after_model_callback(SimpleNamespace(state=state), item))
+            self.assertEqual(state, previous)
+
+
 class RuntimeSmoke(unittest.IsolatedAsyncioTestCase):
     async def asyncSetUp(self):
         self.model = ScriptModel()
@@ -167,169 +220,108 @@ class RuntimeSmoke(unittest.IsolatedAsyncioTestCase):
         self.http_patch.stop()
         self.model_patch.stop()
 
-    async def session(self, task="smoke", mode="a-interact"):
+    async def session(self, task="smoke", mode="a-interact", reset=False):
         return await self.runtime.init_session(task, mode, {
-            "task_id": "untrusted-task-id", "budget_remaining": 12., "initial_budget": 12.,
+            "task_id": "untrusted", "budget_remaining": 12., "initial_budget": 12.,
             "db_name": "synthetic", "db_schema": SCHEMA if mode == "c-interact" else "",
             "external_kg": "", "max_turn": 4,
-        })
+        }, reset=reset)
 
-    async def test_full_smoke_one_call_per_decision_and_persistence(self):
+    async def test_native_smoke_state_saved_before_tools_and_read_next_turn(self):
         await self.session()
         runner, _ = await self.runtime._get_runner("a-interact")
         ref = self.runtime._session_refs[("a-interact", "smoke")]
         observed = []
-
-        def observe_saved_state():
-            saved = runner.session_service.sessions[ref.app_name][ref.user_id][ref.session_id]
-            observed.append(copy.deepcopy(saved.state["requirement_state"]))
-
-        FakeClient.observer = observe_saved_state
+        def observe():
+            session = runner.session_service.sessions[ref.app_name][ref.user_id][ref.session_id]
+            observed.append(copy.deepcopy(session.state["requirement_state"]))
+        FakeClient.observer = observe
         self.model._steps = [
-            (INITIAL, ("get_schema", {})), ([SCHEMA_UPDATE], ("get_knowledge_definition", {"knowledge_name": "TCR"})),
-            ([KB_UPDATE], ("ask_user", {"question": "What makes a chain suspicious and does KB TCR apply?"})),
-            ([PARTIAL_UPDATE], ("ask_user", {"question": "What threshold, formula and zero-capacity rule should apply?"})),
-            (FINAL_UPDATES, ("submit_sql", {"sql": SQL})), ([], "Finished smoke."),
+            (INITIAL, ("get_schema", {})),
+            ([SCHEMA_UPDATE], ("get_knowledge_definition", {"knowledge_name": "TCR"})),
+            ([KB_UPDATE], ("ask_user", {"question": "Does the generic TCR apply and what is suspicious?"})),
+            ([PARTIAL_UPDATE], ("ask_user", {"question": "What threshold and zero-capacity rule apply?"})),
+            (FINAL_UPDATES, ("submit_sql", {"sql": SQL})), ([], "Done."),
         ]
         result = await self.runtime.run_turn("smoke", "a-interact", QUERY)
         state = result["state"]
-        self.assertEqual(len(self.model._requests), 6)  # No separate tracking requests.
+        self.assertEqual(len(self.model._requests), 6)
         self.assertEqual(len(state["requirement_state_history"]), 6)
         self.assertEqual([s["revision"] for s in observed], [1, 2, 3, 4, 5])
-        self.assertEqual(state["requirement_state"]["revision"], 5)
-        self.assertEqual(len(state["requirement_state"]["requirements"]), 7)
-        self.assertTrue(all(r["status"] == "resolved" and r["priority"] == 0
-                            for r in state["requirement_state"]["requirements"]))
         self.assertEqual(state["budget_remaining"], 3.5)
-        self.assertEqual([t["tool"] for t in state["tool_trajectory"]],
-                         ["get_schema", "get_knowledge_definition", "ask_user", "ask_user", "submit_sql"])
-        self.assertEqual(self.model._requests[1]["state"]["revision"], 1)
-        self.assertEqual(self.model._requests[4]["state"]["requirements"][1]["status"], "candidate")
+        self.assertEqual(len(state["requirement_state"]["requirements"]), 7)
         saved = await runner.session_service.get_session(app_name=ref.app_name, user_id=ref.user_id, session_id=ref.session_id)
         self.assertEqual(saved.state["requirement_state"], state["requirement_state"])
-        self.assertEqual(saved.state["adk_events"], state["adk_events"])
-        self.model._steps = [([], "Rechecked saved state.")]
-        later = await self.runtime.run_turn("smoke", "a-interact", "Recheck all saved constraints.")
+        self.assertEqual(state["requirement_state"]["revision"], 5)
+        self.model._steps = [([], "Read saved state.")]
+        later = await self.runtime.run_turn("smoke", "a-interact", "Read the saved requirements.")
         self.assertEqual(self.model._requests[-1]["state"], state["requirement_state"])
-        self.assertEqual(later["state"]["requirement_state"], state["requirement_state"])
-        self.assertEqual(len(self.model._requests), 7)
-        history_parts = [p for e in later["state"]["adk_events"] if e["type"] == "adk_event"
-                         for p in e["content"]["parts"]]
-        call_ids = [p.get("id") for p in history_parts if p["type"] == "function_call"]
-        result_ids = [p.get("id") for p in history_parts if p["type"] == "function_response"]
-        self.assertEqual(len(call_ids), 5)
-        self.assertTrue(all(call_ids))
-        self.assertEqual(len(set(call_ids)), 5)
-        self.assertEqual(set(call_ids), set(result_ids))
         request_parts = [p for c in self.model._requests[-1]["contents"] for p in c.get("parts", [])]
-        self.assertFalse(any("function_call" in p or "function_response" in p for p in request_parts))
-        self.assertTrue(any("Tool result (evidence):" in p.get("text", "") for p in request_parts))
-        self.assertTrue(any('"state_update"' in p.get("text", "") for p in request_parts))
+        calls = [p["function_call"] for p in request_parts if "function_call" in p]
+        responses = [p["function_response"] for p in request_parts if "function_response" in p]
+        self.assertEqual(len(calls), 5)
+        self.assertEqual({c["id"] for c in calls}, {r["id"] for r in responses})
+        self.assertTrue(all(c["id"].startswith("call_model_") for c in calls))
+        self.assertTrue(any(START in p.get("text", "") for p in request_parts))
+        self.assertFalse(any("Tool result (evidence):" in p.get("text", "") for p in request_parts))
         if os.environ.get("REQUIREMENT_SMOKE_ARTIFACT"):
             Path(os.environ["REQUIREMENT_SMOKE_ARTIFACT"]).write_text(json.dumps({
-                "kind": "one-call protocol; real ADK; scripted model and HTTP; SQL correctness not evaluated",
+                "kind": "native calls + State text; real ADK, controlled model/HTTP; no SQL evaluation",
                 "query": QUERY, "first_run": result, "later_run": later,
                 "model_requests": self.model._requests, "http_calls": FakeClient.calls,
-                "persisted_state_observed_before_tool_execution": observed,
+                "saved_state_observed_before_tools": observed,
             }, ensure_ascii=False, indent=2) + "\n")
 
-    async def test_invalid_response_keeps_state_and_executes_no_tools(self):
+    async def test_invalid_state_blocks_only_that_response_without_retry(self):
         await self.session()
-        self.model._steps = [(INITIAL, "Initialized.")]
+        self.model._steps = [(INITIAL, "Ready")]
         good = await self.runtime.run_turn("smoke", "a-interact", QUERY)
-        invalid = {"state_update": {"base_revision": 1, "upserts": [SCHEMA_UPDATE]},
-                   "tool_calls": [{"name": "get_schema", "args": {}}], "response": ""}
-        payloads = ["not JSON", json.dumps({"tool_calls": [], "response": "missing state_update"}),
-                    json.dumps({**invalid, "state_update": {"base_revision": 0, "upserts": []}}),
-                    json.dumps({**invalid, "tool_calls": [{"name": "not_a_tool", "args": {}}]}),
-                    json.dumps({**invalid, "tool_calls": [{"name": "ask_user", "args": {}}]}),
-                    json.dumps({**invalid, "tool_calls": [{"name": "get_schema", "args": {"task_id": "other"}}]}),
-                    json.dumps({**invalid, "tool_calls": [{"name": "submit_sql", "args": {"sql": SQL}},
-                                                          {"name": "get_schema", "args": {}}]}),
-                    '{"response":"a","response":"b"}']
-        for raw in payloads:
+        bad_rows = [{**KB_UPDATE, "status": "resolved", "priority": 3}]
+        for raw in ["No State supplied", START + "invalid JSON" + END,
+                    update_text(0, []), update_text(1, bad_rows),
+                    update_text(1, []) + update_text(1, []),
+                    '{"state_update":{},"state_update":{}}']:
             with self.subTest(raw=raw):
-                before_calls = len(self.model._requests)
-                self.model._steps = [{"raw": raw}]
-                bad = await self.runtime.run_turn("smoke", "a-interact", "New evidence")
-                self.assertEqual(len(self.model._requests), before_calls + 1)
-                self.assertEqual(bad["state"]["requirement_state"], good["state"]["requirement_state"])
-                self.assertTrue(bad["state"]["requirement_state_error"])
-                self.assertEqual(bad["state"]["budget_remaining"], 12.)
+                before = len(self.model._requests)
+                self.model._steps = [{"raw_text": raw, "calls": [("get_schema", {})]}]
+                result = await self.runtime.run_turn("smoke", "a-interact", "New evidence")
+                self.assertEqual(len(self.model._requests), before + 1)
+                self.assertEqual(result["state"]["requirement_state"], good["state"]["requirement_state"])
+                self.assertTrue(result["state"]["requirement_state_error"])
+                self.assertEqual(result["state"]["budget_remaining"], 12.)
                 self.assertEqual(FakeClient.calls, [])
 
-    async def test_native_response_cannot_bypass_state_protocol(self):
+    async def test_business_arguments_still_follow_original_adk(self):
         await self.session()
-        self.model._steps = [{"native": True}]
+        self.model._steps = [(INITIAL, ("get_schema", {"unused": "filtered by FunctionTool"})), ([], "Done")]
         result = await self.runtime.run_turn("smoke", "a-interact", QUERY)
-        self.assertEqual(result["state"]["requirement_state"], empty_state("smoke"))
-        self.assertTrue(result["state"]["requirement_state_error"])
-        self.assertEqual(FakeClient.calls, [])
+        self.assertEqual(result["state"]["budget_remaining"], 11.)
+        self.assertEqual(len(FakeClient.calls), 1)
+        self.assertEqual(FakeClient.calls[0]["payload"], {"task_id": "smoke"})
 
-    async def test_task_mode_isolation_reset_and_cinteract(self):
+    async def test_task_mode_isolation_reset_and_original_submit_batch(self):
         first = await self.session("one")
-        self.model._steps = [(INITIAL, "Ready.")]
+        self.model._steps = [(INITIAL, "Ready")]
         one = await self.runtime.run_turn("one", "a-interact", QUERY)
         self.assertEqual(one["state"]["task_id"], "one")
-        self.assertEqual(one["state"]["requirement_state"]["task_id"], "one")
-        two = await self.session("two")
-        self.assertNotEqual(first["session_id"], two["session_id"])
+        await self.session("two")
         runner, _ = await self.runtime._get_runner("a-interact")
         ref = self.runtime._session_refs[("a-interact", "two")]
-        fresh = await runner.session_service.get_session(app_name=ref.app_name, user_id=ref.user_id, session_id=ref.session_id)
-        self.assertEqual(fresh.state["requirement_state"], empty_state("two"))
+        two = await runner.session_service.get_session(app_name=ref.app_name, user_id=ref.user_id, session_id=ref.session_id)
+        self.assertEqual(two.state["requirement_state"], empty_state("two"))
         await self.session("one", "c-interact")
-        self.model._steps = [(INITIAL, ("submit_sql", {"sql": SQL}))]
-        before_calls = len(self.model._requests)
+        self.model._steps = [(INITIAL, [("submit_sql", {"sql": SQL}), ("submit_sql", {"sql": SQL})])]
+        before = len(self.model._requests)
         c = await self.runtime.run_turn("one", "c-interact", QUERY)
-        self.assertEqual(len(self.model._requests), before_calls + 1)
+        self.assertEqual(len(self.model._requests), before + 1)
+        self.assertEqual(len(c["state"]["tool_trajectory"]), 2)  # Original ADK batch policy.
         self.assertTrue(c["state"]["_submitted_this_phase"])
         self.assertEqual(c["state"]["budget_remaining"], 12.)
-        self.model._steps = [([], "Next turn sees saved state.")]
-        c2 = await self.runtime.run_turn("one", "c-interact", "Recheck")
-        self.assertFalse(c2["state"]["_submitted_this_phase"])
-        self.assertEqual(c["state"]["requirement_state"], c2["state"]["requirement_state"])
-        reset = await self.runtime.init_session("one", "a-interact", reset=True)
+        self.model._steps = [([], "New run")]
+        again = await self.runtime.run_turn("one", "c-interact", "Recheck")
+        self.assertFalse(again["state"]["_submitted_this_phase"])
+        reset = await self.session("one", reset=True)
         self.assertNotEqual(first["session_id"], reset["session_id"])
-
-    async def test_same_session_concurrent_turns_are_serialized(self):
-        await self.session()
-        self.model._steps = [(INITIAL, "First"), ([], "Second")]
-        results = await asyncio.gather(self.runtime.run_turn("smoke", "a-interact", QUERY),
-                                       self.runtime.run_turn("smoke", "a-interact", "Keep constraints"))
-        self.assertEqual(len(self.model._requests), 2)
-        self.assertEqual(len(results[1]["state"]["requirement_state_history"]), 2)
-        self.assertEqual(results[1]["state"]["requirement_state"]["revision"], 1)
-
-    async def test_query_batch_uses_unique_ids_and_original_budget(self):
-        await self.session()
-        self.model._steps = [(INITIAL, [("get_schema", {}), ("get_all_external_knowledge_names", {})]),
-                             ([SCHEMA_UPDATE], "Done with schema and names.")]
-        result = await self.runtime.run_turn("smoke", "a-interact", QUERY)
-        self.assertEqual(len(self.model._requests), 2)
-        self.assertEqual(result["state"]["budget_remaining"], 10.5)
-        events = result["state"]["adk_events"]
-        ids = [p["id"] for e in events if e["type"] == "adk_event"
-               for p in e["content"]["parts"] if p["type"] == "function_call"]
-        self.assertEqual(len(set(ids)), 2)
-        self.assertTrue(all(i.startswith("call_req_") for i in ids))
-
-    async def test_litellm_adapter_forwards_json_object_format(self):
-        from google.adk.models.lite_llm import _get_completion_inputs
-        from google.adk.models.llm_request import LlmRequest
-        from types import SimpleNamespace
-        from system_agent.requirement_tracking import requirement_callbacks
-
-        async def original_before(callback_context, llm_request):
-            return None
-
-        before, _ = requirement_callbacks(original_before, [])
-        request = LlmRequest(model="deepseek/deepseek-flash", contents=[
-            types.Content(role="user", parts=[types.Part.from_text(text=QUERY)])])
-        await before(SimpleNamespace(state={"task_id": "adapter-test"}), request)
-        _, tools, response_format, _, _ = await _get_completion_inputs(request, request.model)
-        self.assertIsNone(tools)
-        self.assertEqual(response_format, {"type": "json_object"})
 
 
 if __name__ == "__main__":

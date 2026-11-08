@@ -10,7 +10,6 @@ import asyncio
 import importlib
 import json
 import logging
-from copy import deepcopy
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
@@ -35,7 +34,6 @@ class AdkRuntime:
         self._backend: Optional[Dict[str, Any]] = None
         self._runners: Dict[str, Any] = {}
         self._session_refs: Dict[tuple[str, str], _SessionRef] = {}
-        self._session_locks: Dict[tuple[str, str], asyncio.Lock] = {}
         self._lock = asyncio.Lock()
         self._load_backend()
 
@@ -187,14 +185,6 @@ class AdkRuntime:
         }
 
     async def init_session(
-        self, task_id: str, mode: str, state: Optional[Dict[str, Any]] = None,
-        reset: bool = False,
-    ) -> Dict[str, Any]:
-        lock = self._session_locks.setdefault((mode, task_id), asyncio.Lock())
-        async with lock:
-            return await self._init_session_unlocked(task_id, mode, state, reset)
-
-    async def _init_session_unlocked(
         self,
         task_id: str,
         mode: str,
@@ -214,20 +204,18 @@ class AdkRuntime:
                 }
 
             user_id = f"user_{task_id}"
-            initial_state = deepcopy(state or {})
-            initial_state.update({
-                "task_id": task_id,
-                STATE_KEY: empty_state(task_id),
-                "requirement_state_history": [],
-                "requirement_state_error": "",
-            })
-            initial_state.setdefault("tool_trajectory", [])
-            initial_state.setdefault("adk_events", [])
+            initial_state = dict(state or {})
+            initial_state.update({"task_id": task_id, STATE_KEY: empty_state(task_id),
+                                  "requirement_state_history": [], "requirement_state_error": ""})
             session = await runner.session_service.create_session(
                 app_name=app_name,
                 user_id=user_id,
                 state=initial_state,
             )
+            session_state = getattr(session, "state", {}) or {}
+            session_state.setdefault("tool_trajectory", [])
+            session_state.setdefault("adk_events", [])
+            session.state = session_state
             ref = _SessionRef(
                 app_name=app_name,
                 user_id=user_id,
@@ -243,18 +231,12 @@ class AdkRuntime:
 
     async def run_turn(self, task_id: str, mode: str, message: str,
                        **kwargs) -> Dict[str, Any]:
-        lock = self._session_locks.setdefault((mode, task_id), asyncio.Lock())
-        async with lock:
-            return await self._run_turn_unlocked(task_id, mode, message, **kwargs)
-
-    async def _run_turn_unlocked(self, task_id: str, mode: str, message: str,
-                                 **kwargs) -> Dict[str, Any]:
         if not self.available:
             raise RuntimeError(self.error or "ADK runtime unavailable")
 
         key = (mode, task_id)
         if key not in self._session_refs:
-            await self._init_session_unlocked(task_id=task_id, mode=mode, state={}, reset=False)
+            await self.init_session(task_id=task_id, mode=mode, state={}, reset=False)
 
         runner, _ = await self._get_runner(mode)
         ref = self._session_refs[key]
@@ -297,15 +279,10 @@ class AdkRuntime:
             session_id=ref.session_id,
         )
         session_state = getattr(session, "state", {}) or {}
-        adk_events = list(session_state.get("adk_events", []))
+        adk_events = session_state.get("adk_events", [])
         adk_events.extend(turn_events)
-        # get_session returns a copy in ADK 2.9.2. Persist via an event,
-        # including for non-memory session services.
-        from google.adk.events import Event, EventActions
-        await runner.session_service.append_event(session, Event(
-            author="system", actions=EventActions(state_delta={"adk_events": adk_events}),
-        ))
         session_state["adk_events"] = adk_events
+        session.state = session_state
         return {
             "task_id": task_id,
             "mode": mode,

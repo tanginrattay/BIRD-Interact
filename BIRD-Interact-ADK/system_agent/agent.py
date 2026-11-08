@@ -93,22 +93,23 @@ def build_agent(mode: str = "c-interact") -> Agent:
         raise RuntimeError(f"google-adk runtime unavailable: {ADK_IMPORT_ERROR}")
 
     model = _build_model(settings.system_agent_model)
-    from system_agent.requirement_tracking import requirement_callbacks
+    from system_agent.requirement_tracking import (
+        before_model_with_requirements,
+        after_model_callback as update_requirements,
+    )
     if mode == "a-interact":
         from system_agent.tools import get_ainteract_tools
         from system_agent.callbacks import (
             before_model_callback, before_tool_callback, after_tool_callback,
         )
-        tools = get_ainteract_tools()
-        state_before, state_after = requirement_callbacks(before_model_callback, tools)
         return Agent(
             model=model,
             name="bird_interact_agent",
             description="Text-to-SQL agent for BIRD-Interact a-interact benchmark.",
             instruction=AINTERACT_INSTRUCTION,
-            tools=tools,
-            before_model_callback=state_before,
-            after_model_callback=state_after,
+            tools=get_ainteract_tools(),
+            before_model_callback=before_model_with_requirements(before_model_callback),
+            after_model_callback=update_requirements,
             before_tool_callback=before_tool_callback,
             after_tool_callback=after_tool_callback,
             generate_content_config=types.GenerateContentConfig(temperature=0.0),
@@ -120,16 +121,14 @@ def build_agent(mode: str = "c-interact") -> Agent:
             before_tool_callback as c_before_tool,
             after_tool_callback as c_after_tool,
         )
-        tools = [FunctionTool(ask_user), FunctionTool(submit_sql)]
-        state_before, state_after = requirement_callbacks(c_before_model, tools)
         return Agent(
             model=model,
             name="bird_interact_agent",
             description="Text-to-SQL agent for BIRD-Interact c-interact benchmark.",
             instruction=CINTERACT_INSTRUCTION,
-            tools=tools,
-            before_model_callback=state_before,
-            after_model_callback=state_after,
+            tools=[FunctionTool(ask_user), FunctionTool(submit_sql)],
+            before_model_callback=before_model_with_requirements(c_before_model),
+            after_model_callback=update_requirements,
             before_tool_callback=c_before_tool,
             after_tool_callback=c_after_tool,
             generate_content_config=types.GenerateContentConfig(temperature=0.0),
