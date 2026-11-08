@@ -141,6 +141,9 @@ async def run_single_task(task_data: dict) -> Dict[str, Any]:
             "dialogue_history": state.get("dialogue_history", []),
             "tool_trajectory": state.get("tool_trajectory", []),
             "adk_events": state.get("adk_events", []),
+            "requirement_state": state.get("requirement_state"),
+            "requirement_state_history": state.get("requirement_state_history", []),
+            "requirement_state_error": state.get("requirement_state_error", ""),
             "final_response": run_result.get("response", ""),
         }
         logger.info(

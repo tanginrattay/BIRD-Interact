@@ -93,6 +93,7 @@ def build_agent(mode: str = "c-interact") -> Agent:
         raise RuntimeError(f"google-adk runtime unavailable: {ADK_IMPORT_ERROR}")
 
     model = _build_model(settings.system_agent_model)
+    from system_agent.requirement_tracking import tracking_callback, guard_submission_batch
     if mode == "a-interact":
         from system_agent.tools import get_ainteract_tools
         from system_agent.callbacks import (
@@ -104,7 +105,8 @@ def build_agent(mode: str = "c-interact") -> Agent:
             description="Text-to-SQL agent for BIRD-Interact a-interact benchmark.",
             instruction=AINTERACT_INSTRUCTION,
             tools=get_ainteract_tools(),
-            before_model_callback=before_model_callback,
+            before_model_callback=tracking_callback(model, before_model_callback),
+            after_model_callback=guard_submission_batch,
             before_tool_callback=before_tool_callback,
             after_tool_callback=after_tool_callback,
             generate_content_config=types.GenerateContentConfig(temperature=0.0),
@@ -122,7 +124,8 @@ def build_agent(mode: str = "c-interact") -> Agent:
             description="Text-to-SQL agent for BIRD-Interact c-interact benchmark.",
             instruction=CINTERACT_INSTRUCTION,
             tools=[FunctionTool(ask_user), FunctionTool(submit_sql)],
-            before_model_callback=c_before_model,
+            before_model_callback=tracking_callback(model, c_before_model),
+            after_model_callback=guard_submission_batch,
             before_tool_callback=c_before_tool,
             after_tool_callback=c_after_tool,
             generate_content_config=types.GenerateContentConfig(temperature=0.0),

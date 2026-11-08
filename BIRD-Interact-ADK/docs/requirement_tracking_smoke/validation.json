@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-08",
+  "branch": "state/requirement-tracking",
+  "base_main": "81384036930d22f993849dd8eaba9bfe65e0d89b",
+  "commit_created": false,
+  "versions": {
+    "google-adk": "2.9.2",
+    "litellm": "1.102.0",
+    "pydantic": "2.13.5",
+    "python": "3.10"
+  },
+  "offline": {
+    "command": "REQUIREMENT_SMOKE_ARTIFACT=docs/requirement_tracking_smoke/offline.json /home/nimir/miniconda3/envs/bird-interact/bin/python -m unittest discover -s tests -v",
+    "exit_code": 0,
+    "tests_passed": 6,
+    "live_tests_skipped": 1,
+    "runtime_seconds": 1.024,
+    "model": "scripted BaseLlm",
+    "adk_runtime": "real",
+    "http": "synthetic fixtures",
+    "sql_correctness_evaluated": false
+  },
+  "live": {
+    "command": "REQUIREMENT_LIVE_SMOKE=1 /home/nimir/miniconda3/envs/bird-interact/bin/python -m unittest discover -s tests -p '*live.py' -v",
+    "exit_code": 0,
+    "tests_passed": 1,
+    "runtime_seconds": 24.792,
+    "model": "deepseek/deepseek-flash",
+    "http": "synthetic fixtures",
+    "sql_correctness_evaluated": false,
+    "final_requirement_count": 9,
+    "final_revision": 5,
+    "budget_initial": 16,
+    "budget_remaining": 6.0,
+    "tools": [
+      "get_schema",
+      "get_all_external_knowledge_names",
+      "get_knowledge_definition",
+      "ask_user",
+      "ask_user",
+      "execute_sql",
+      "submit_sql"
+    ],
+    "internal_model_calls": 6,
+    "internal_total_tokens": 11661,
+    "internal_seconds": 16.254516333996435,
+    "cleanup_warning": "LiteLLM/aiohttp emitted Event loop is closed during process shutdown; assertions passed and artifact saved"
+  },
+  "checks": {
+    "git_diff_check": "passed",
+    "compileall_system_agent_orchestrator_tests": "passed"
+  },
+  "limitations": [
+    "No real PostgreSQL or user-simulator evaluation",
+    "No benchmark comparison",
+    "No restart durability",
+    "Semantic deduplication, completeness and conflict assessment remain model-dependent",
+    "Live conflict reasoning not tested"
+  ],
+  "files_sha256": {
+    "system_agent/requirement_state.py": "11e177c1fe40fef7b345c1abdc20783311d095cb9d53ab0ce18c0f4d438bb176",
+    "system_agent/requirement_tracking.py": "32a328b3b3ce766884441a96469b723d87d7c32ff5c191553454cef4dd90762b",
+    "system_agent/agent.py": "fdba1d8a7c302a95a3b6deee43321ef025e37bd9832ec52f59d7bbdcbb702fc2",
+    "system_agent/adk_runtime.py": "791659766eee59efe06df539b908bad3ac9ea48c1ef50bb042f272501987769d",
+    "orchestrator/ainteract.py": "1b91e1345a4e7f2902365fe2ba71bccdb4ea0dc79466b1c77be4af74cc42cec8",
+    "orchestrator/cinteract.py": "ce8ab0469e4225e84fb061196556dab079d76e43c8f1ea9fa94e510983e15918",
+    "orchestrator/runner.py": "2a01ed090bedeec578ede146122bfd3fdca77252d9ae86b217689ae8649215c0",
+    "tests/test_requirement_tracking.py": "c51c07a4299f5f517729e2997ddd46450c1d526aba7e90c454b1cb9d24417ba0",
+    "tests/test_requirement_tracking_live.py": "0872e64be9eb04cbc79afbc4502bcb3ef48865908ffbbf29eef25dfffc9dd26a",
+    "docs/REQUIREMENT_STATE_TRACKING_ZH.md": "ee9b1727424fe3a8bef61b48f32d0e4d05afb41f7e3c9e95442656788f9ddbdb",
+    "docs/requirement_tracking_smoke/offline.json": "18ce6df49ca18fee33d74ff48491a5e5954c25bbed2caeb4fca7fa2f8fbc0ac9",
+    "docs/requirement_tracking_smoke/live.json": "837f33be614dd3b30606987e6c2d4cabf96c07e2c058ebac270e04cca8b70d68"
+  }
+}
