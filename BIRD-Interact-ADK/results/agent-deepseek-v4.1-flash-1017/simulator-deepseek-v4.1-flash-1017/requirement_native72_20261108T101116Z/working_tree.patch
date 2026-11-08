@@ -1,0 +1,182 @@
+diff --git a/BIRD-Interact-ADK/system_agent/requirement_state.py b/BIRD-Interact-ADK/system_agent/requirement_state.py
+index 4b40b40..d5e132f 100644
+--- a/BIRD-Interact-ADK/system_agent/requirement_state.py
++++ b/BIRD-Interact-ADK/system_agent/requirement_state.py
+@@ -42,7 +42,6 @@ class Change(Requirement):
+ 
+ class Update(BaseModel):
+     model_config = ConfigDict(extra="forbid", strict=True)
+-    base_revision: StrictInt = Field(ge=0)
+     upserts: list[Change] = Field(max_length=200)
+ 
+ 
+@@ -57,14 +56,13 @@ def normalized(text: str) -> str:
+ def apply_update(current: dict, payload: dict, task_id: str) -> tuple[dict, list[dict]]:
+     """Validate an entire patch before returning a new snapshot. Never mutate input.
+ 
++    Revision is runtime-owned and advances only for actual changes.
+     No deletion/renaming: explicit constraints survive partial patches. Meaning-level
+     deduplication and evidence sufficiency remain model responsibilities.
+     """
+     patch = Update.model_validate(payload)
+     if current["task_id"] != task_id:
+         raise ValueError("requirement state belongs to another task")
+-    if patch.base_revision != current["revision"]:
+-        raise ValueError("stale base_revision")
+     result = copy.deepcopy(current)
+     records = {r["id"]: Requirement.model_validate(r).model_dump() for r in result["requirements"]}
+     seen = set()
+diff --git a/BIRD-Interact-ADK/system_agent/requirement_tracking.py b/BIRD-Interact-ADK/system_agent/requirement_tracking.py
+index a88ab0d..5c53c38 100644
+--- a/BIRD-Interact-ADK/system_agent/requirement_tracking.py
++++ b/BIRD-Interact-ADK/system_agent/requirement_tracking.py
+@@ -8,15 +8,12 @@ from __future__ import annotations
+ import json
+ import re
+ 
+-from google.genai import types
+-
+ from system_agent.requirement_state import STATE_KEY, apply_update, empty_state
+ 
+ START = "<requirement_state_update>"
+ END = "</requirement_state_update>"
+ STATE_MARKER = "Current Requirement State (runtime validated):\n"
+-OPEN_BLOCK = re.compile(r'<requirement_state_update(?=[\s">])[^>]*>')
+-CLOSE_BLOCK = re.compile(r'</requirement_state_update\s*>')
++STATE_KEY_TEXT = re.compile(r'"state_update"\s*:')
+ 
+ STATE_INSTRUCTION = """REQUIREMENT STATE: use the original native tools normally, but
+ replace ordinary planning narration in assistant.content with a state update.
+@@ -27,11 +24,12 @@ text just because you are calling a tool. Do not write "I'll explore..." instead
+ of the required update.
+ 
+ Required assistant TEXT format (not function arguments):
+-<requirement_state_update>{"state_update":{"base_revision":0,"upserts":[{"id":"r1","requirement":"Result count","category":"user_semantics","status":"resolved","value":"10 (source: user)","priority":0}]}}</requirement_state_update>
+-This illustrates one item, NOT complete initialization. Use the current revision
+-and all relevant requirements for the actual question. A plain JSON object with
++<requirement_state_update>{"state_update":{"upserts":[{"id":"r1","requirement":"Result count","category":"user_semantics","status":"resolved","value":"10 (source: user)","priority":0}]}}</requirement_state_update>
++This illustrates one item, NOT complete initialization. Include all relevant
++requirements for the actual question. A plain JSON object with
+ the same state_update field is also accepted. After initialization, upserts: []
+ is allowed for no change. Initialization must include all task constraints.
++state_update contains only upserts; runtime manages versioning internally.
+ 
+ Each requirement: id (r1, r2, ...), requirement, category, status, value, priority.
+ Optional reason is audit-only. Reuse existing ids and requirement text; add new
+@@ -61,8 +59,9 @@ Read current State and tool/user evidence; in one response update State AND
+ choose your native action. Avoid repeating answered exploration. Before submit_sql
+ recheck every requirement against your SQL. No automatic SQL mapping or forced
+ priority order; original best-effort/budget rules still apply. Never infer hidden
+-ground truth. Invalid/missing state preserves old State and blocks that response's
+-tools without an extra model call. Include the update also in final text replies.
++ground truth. Invalid/missing updates are logged and preserve old State; normal
++tools and replies still proceed without an extra model call. Include the update
++also in final text replies.
+ """
+ 
+ 
+@@ -79,6 +78,60 @@ def _reject_constant(value):
+     raise ValueError(f"invalid JSON number: {value}")
+ 
+ 
++def extract_state_update(text):
++    """Ignore outer decoration, never repair or salvage a broken JSON object.
++
++    Scan whole outer containers so nested objects cannot bypass validation of
++    their parent. Multiple updates are ambiguous and rejected atomically.
++    """
++    candidates = []
++    index = 0
++    while index < len(text):
++        if text[index] not in "{[":
++            index += 1
++            continue
++        begin = index
++        stack = []
++        quoted = escaped = False
++        while index < len(text):
++            char = text[index]
++            index += 1
++            if quoted:
++                if escaped:
++                    escaped = False
++                elif char == "\\":
++                    escaped = True
++                elif char == '"':
++                    quoted = False
++            elif char == '"':
++                quoted = True
++            elif char in "{[":
++                stack.append(char)
++            elif char in "}]":
++                if not stack or stack[-1] != {"}": "{", "]": "["}[char]:
++                    break
++                stack.pop()
++                if not stack:
++                    break
++        raw = text[begin:index]
++        try:
++            payload = json.loads(raw, object_pairs_hook=_unique_object,
++                                 parse_constant=_reject_constant)
++        except ValueError:
++            if STATE_KEY_TEXT.search(raw):
++                raise  # Do not skip a malformed update to accept another one.
++            continue
++        if isinstance(payload, dict) and "state_update" in payload:
++            if set(payload) != {"state_update"}:
++                raise ValueError("the JSON object must contain only the state_update field")
++            candidates.append(payload["state_update"])
++        elif STATE_KEY_TEXT.search(raw):
++            raise ValueError("state_update must be the sole field of an outer JSON object")
++    if len(candidates) != 1:
++        raise ValueError("expected exactly one complete state_update JSON object")
++    return candidates[0]
++
++
+ def before_model_with_requirements(original_before):
+     async def before_model_callback(callback_context, llm_request):
+         stop = await original_before(callback_context, llm_request)
+@@ -91,7 +144,7 @@ def before_model_with_requirements(original_before):
+             raise ValueError("Requirement State must belong to the current task")
+         llm_request.append_instructions([
+             STATE_INSTRUCTION,
+-            STATE_MARKER + json.dumps(current, ensure_ascii=False),
++            STATE_MARKER + json.dumps({"requirements": current["requirements"]}, ensure_ascii=False),
+         ])
+         return None
+     return before_model_callback
+@@ -108,21 +161,7 @@ async def after_model_callback(callback_context, llm_response):
+     error = ""
+     changes = []
+     try:
+-        if "<requirement_state_update" in text or "</requirement_state_update" in text:
+-            opening, closing = list(OPEN_BLOCK.finditer(text)), list(CLOSE_BLOCK.finditer(text))
+-            if len(opening) != 1 or len(closing) != 1:
+-                raise ValueError("expected exactly one requirement_state_update text block")
+-            begin = opening[0].end()
+-            finish = closing[0].start()
+-            if finish < begin:
+-                raise ValueError("invalid requirement_state_update block order")
+-            raw = text[begin:finish]
+-        else:
+-            raw = text
+-        payload = json.loads(raw, object_pairs_hook=_unique_object, parse_constant=_reject_constant)
+-        if not isinstance(payload, dict) or set(payload) != {"state_update"}:
+-            raise ValueError("the block must contain only the state_update field")
+-        snapshot, changes = apply_update(current, payload["state_update"], task_id)
++        snapshot, changes = apply_update(current, extract_state_update(text), task_id)
+     except (ValueError, TypeError, KeyError) as exc:
+         error = str(exc)
+     else:
+@@ -138,8 +177,6 @@ async def after_model_callback(callback_context, llm_response):
+                  if llm_response.usage_metadata else {},
+     })
+     state["requirement_state_history"] = history
+-    if error:
+-        return llm_response.model_copy(update={"content": types.Content(role="model", parts=[
+-            types.Part.from_text(text="Requirement State update rejected; no proposed tools executed. " + error)
+-        ])})
+-    return None  # Preserve original text, native calls, IDs, arguments and history.
++    # State tracking is observational: reject only the invalid patch, never the
++    # model response. ADK retains its original tool execution and budget rules.
++    return None

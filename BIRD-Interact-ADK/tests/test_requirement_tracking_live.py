@@ -124,8 +124,12 @@ class LiveSmoke(unittest.IsolatedAsyncioTestCase):
         self.assertGreaterEqual(LiveClient.asks, 2, "partial answer must not invent a numeric threshold")
         self.assertTrue(any("0.8" in r["value"] and r["status"] == "resolved"
                             for r in state["requirement_state"]["requirements"]))
-        self.assertEqual([r["state"]["revision"] for r in model._requests[1:]],
-                         [h["revision"] for h in state["requirement_state_history"][:-1]])
+        visible = {}
+        for request, entry in zip(model._requests, state["requirement_state_history"]):
+            self.assertEqual(request["state"], {"requirements": list(visible.values())})
+            for change in entry["changes"]:
+                visible[change["id"]] = change["after"]
+        self.assertEqual(list(visible.values()), state["requirement_state"]["requirements"])
 
 
 if __name__ == "__main__":

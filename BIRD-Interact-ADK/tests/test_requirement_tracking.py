@@ -92,42 +92,62 @@ class FakeClient:
         return type("Response", (), {"status_code": 200, "json": lambda self: data})()
 
 class ValidationTests(unittest.TestCase):
+    def test_revision_is_runtime_owned_and_changes_only_with_data(self):
+        state, _ = apply_update(empty_state("a"), {"upserts": INITIAL}, "a")
+        self.assertEqual(state["revision"], 1)
+        state, audit = apply_update(state, {"upserts": []}, "a")
+        self.assertEqual(state["revision"], 1)
+        self.assertEqual(audit, [])
+        state, _ = apply_update(state, {"upserts": [KB_UPDATE]}, "a")
+        self.assertEqual(state["revision"], 2)
+        unchanged, audit = apply_update(state, {"upserts": [KB_UPDATE]}, "a")
+        self.assertEqual(unchanged, state)
+        self.assertEqual(audit, [])
+        before = copy.deepcopy(state)
+        with self.assertRaises(ValueError):
+            apply_update(state, {"upserts": [{**KB_UPDATE, "priority": 0}]}, "a")
+        self.assertEqual(state, before)
+        # Neither version field belongs to the model's update schema anymore.
+        for key in ["base_revision", "revision"]:
+            with self.assertRaises(ValueError):
+                apply_update(state, {"upserts": [], key: 999}, "a")
+
     def test_optional_audit_reason_keeps_exact_requirement_fields(self):
         patch_rows = [{k: v for k, v in r.items() if k != "reason"} for r in INITIAL]
-        state, audit = apply_update(empty_state("a"), {"base_revision": 0, "upserts": patch_rows}, "a")
+        state, audit = apply_update(empty_state("a"), {"upserts": patch_rows}, "a")
         self.assertEqual(set(state["requirements"][0]),
                          {"id", "requirement", "category", "status", "value", "priority"})
         self.assertEqual(audit[0]["reason"], "")
 
     def test_atomic_validation_and_conflict_reopening(self):
-        state, _ = apply_update(empty_state("a"), {"base_revision": 0, "upserts": INITIAL}, "a")
+        state, _ = apply_update(empty_state("a"), {"upserts": INITIAL}, "a")
         before = copy.deepcopy(state)
         invalids = [
-            {"base_revision": 0, "upserts": []},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "category": "invalid"}]},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "status": "resolved", "priority": 3}]},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "priority": True}]},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "source": "KB"}]},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "id": "r7", "requirement": INITIAL[0]["requirement"]}]},
-            {"base_revision": 1, "upserts": [KB_UPDATE, KB_UPDATE]},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "requirement": "rename"}]},
+            {"revision": 0, "upserts": []},
+            {"upserts": [{**KB_UPDATE, "category": "invalid"}]},
+            {"upserts": [{**KB_UPDATE, "status": "resolved", "priority": 3}]},
+            {"upserts": [{**KB_UPDATE, "priority": True}]},
+            {"upserts": [{**KB_UPDATE, "source": "KB"}]},
+            {"upserts": [{**KB_UPDATE, "id": "r7", "requirement": INITIAL[0]["requirement"]}]},
+            {"upserts": [KB_UPDATE, KB_UPDATE]},
+            {"upserts": [{**KB_UPDATE, "requirement": "rename"}]},
         ]
         for payload in invalids:
             with self.subTest(payload=payload), self.assertRaises(ValueError):
                 apply_update(state, payload, "a")
             self.assertEqual(state, before)
         with self.assertRaises(ValueError):
-            apply_update(state, {"base_revision": 1, "upserts": []}, "another-task")
+            apply_update(state, {"upserts": []}, "another-task")
         for change in [KB_UPDATE, FINAL_UPDATES[1],
                        {**KB_UPDATE, "status": "conflict", "value": "formula A (source: KB) | formula B (source: user)"},
                        {**FINAL_UPDATES[1], "value": "formula B; user explicitly rejects A (source: user)"}, FINAL_UPDATES[2]]:
-            state, _ = apply_update(state, {"base_revision": state["revision"], "upserts": [change]}, "a")
+            state, _ = apply_update(state, {"upserts": [change]}, "a")
         self.assertEqual(len(state["requirements"]), 7)
         self.assertEqual(state["requirements"][0], before["requirements"][0])
 
 
-def update_text(revision, rows):
-    return START + json.dumps({"state_update": {"base_revision": revision, "upserts": rows}}) + END
+def update_text(rows):
+    return START + json.dumps({"state_update": {"upserts": rows}}) + END
 
 
 class ScriptModel(BaseLlm):
@@ -149,7 +169,7 @@ class ScriptModel(BaseLlm):
             text, calls = step["raw_text"], step.get("calls", [])
         else:
             rows, action = step
-            text = update_text(snapshot["revision"], rows)
+            text = update_text(rows)
             calls = [] if isinstance(action, str) else (action if isinstance(action, list) else [action])
             if isinstance(action, str):
                 text += "\n" + action
@@ -161,13 +181,75 @@ class ScriptModel(BaseLlm):
 
 
 class CallbackContractTests(unittest.IsolatedAsyncioTestCase):
+    async def test_invalid_or_missing_state_preserves_entire_native_response(self):
+        current, _ = apply_update(empty_state("test"), {"upserts": INITIAL}, "test")
+        for text in ["No State supplied", START + "invalid JSON" + END,
+                     update_text([{**KB_UPDATE, "priority": 0}])]:
+            state = {"task_id": "test", "requirement_state": copy.deepcopy(current)}
+            response = LlmResponse(content=types.Content(role="model", parts=[
+                types.Part.from_text(text=text),
+                types.Part(function_call=types.FunctionCall(id="call_provider_1", name="submit_sql", args={"sql": SQL})),
+            ]))
+            before = response.model_dump()
+            self.assertIsNone(await after_model_callback(SimpleNamespace(state=state), response))
+            self.assertEqual(response.model_dump(), before)
+            self.assertEqual(state["requirement_state"], current)
+            self.assertTrue(state["requirement_state_error"])
+            self.assertFalse(state["requirement_state_history"][-1]["accepted"])
+
     async def test_plain_json_and_decorated_marker_keep_strict_state_validation(self):
-        payload = json.dumps({"state_update": {"base_revision": 0, "upserts": INITIAL}})
+        payload = json.dumps({"state_update": {"upserts": INITIAL}})
         for text in [payload, '<requirement_state_update" >' + payload + END]:
             state = {"task_id": "test", "requirement_state": empty_state("test")}
             response = LlmResponse(content=types.Content(role="model", parts=[types.Part.from_text(text=text)]))
             self.assertIsNone(await after_model_callback(SimpleNamespace(state=state), response))
             self.assertEqual(state["requirement_state"]["revision"], 1)
+
+    async def test_outer_text_recovery_keeps_native_calls(self):
+        rows = copy.deepcopy(INITIAL)
+        rows[0]["value"] = '10; literal braces { } and quote " (source: user)'
+        payload = json.dumps({"state_update": {"upserts": rows}})
+        cases = [payload + END, START + payload, "broken marker>" + payload,
+                 "Plan:\n```json\n" + payload + "\n```\nNext action.",
+                 START + payload + "</｜｜DSML｜｜ parameter>\n</｜｜DSML｜｜ invoke>",
+                 '{"unrelated": true}\n' + payload,
+                 "</requirement_state_update>" + payload + "<requirement_state_update>"]
+        for text in cases:
+            with self.subTest(text=text):
+                state = {"task_id": "test", "requirement_state": empty_state("test")}
+                response = LlmResponse(content=types.Content(role="model", parts=[
+                    types.Part.from_text(text=text), types.Part(function_call=types.FunctionCall(
+                        id="native", name="get_schema", args={}))]))
+                original = response.model_dump()
+                self.assertIsNone(await after_model_callback(SimpleNamespace(state=state), response))
+                self.assertEqual(response.model_dump(), original)
+                self.assertEqual(state["requirement_state_error"], "")
+                self.assertEqual(state["requirement_state"]["requirements"][0]["value"], rows[0]["value"])
+
+    async def test_recovery_never_relaxes_inner_json_or_schema(self):
+        valid = json.dumps({"state_update": {"upserts": INITIAL}})
+        invalid = [valid[:-1], valid[:-1] + ",}", valid.replace('"state_update"', "'state_update'"),
+                   '{"state_update":{"upserts":[],"upserts":[]}}',
+                   '{"state_update":{"upserts":[],"extra":NaN}}',
+                   '{"state_update":{"upserts":[],"extra":Infinity}}',
+                   '{"state_update":{/*comment*/"upserts":[]}}',
+                   '{"state_update":{"upserts":[]},"extra":true}',
+                   '{"wrapper":' + valid + '}', '[' + valid + ']',
+                   valid + valid, '{"state_update": broken} ' + valid,
+                   json.dumps({"state_update": {"upserts": [{**INITIAL[0], "priority": "0"}]}}),
+                   json.dumps({"state_update": {"upserts": [{**INITIAL[0], "source": "user"}]}})]
+        current, _ = apply_update(empty_state("test"), {"upserts": INITIAL}, "test")
+        for text in invalid:
+            with self.subTest(text=text):
+                state = {"task_id": "test", "requirement_state": copy.deepcopy(current)}
+                response = LlmResponse(content=types.Content(role="model", parts=[
+                    types.Part.from_text(text="broken wrapper>" + text + "</bad>"),
+                    types.Part(function_call=types.FunctionCall(id="native", name="submit_sql", args={"sql": SQL}))]))
+                original = response.model_dump()
+                self.assertIsNone(await after_model_callback(SimpleNamespace(state=state), response))
+                self.assertEqual(response.model_dump(), original)
+                self.assertEqual(state["requirement_state"], current)
+                self.assertTrue(state["requirement_state_error"])
 
     async def test_before_model_changes_only_system_instruction(self):
         async def original_before(callback_context, llm_request):
@@ -180,15 +262,20 @@ class CallbackContractTests(unittest.IsolatedAsyncioTestCase):
         before_contents = request.contents
         before_dump = [c.model_dump() for c in before_contents]
         state = {"task_id": "test", "requirement_state": empty_state("test")}
+        state["requirement_state"]["revision"] = 27
         await before_model_with_requirements(original_before)(SimpleNamespace(state=state), request)
         self.assertEqual(request.config.model_dump(exclude={"system_instruction"}), before_config)
         self.assertIs(request.contents, before_contents)
         self.assertEqual([c.model_dump() for c in request.contents], before_dump)
+        visible = json.loads(request.config.system_instruction.rsplit(STATE_MARKER, 1)[1])
+        self.assertEqual(visible, {"requirements": []})
+        self.assertNotIn("base_revision", request.config.system_instruction)
+        self.assertNotIn('"revision"', request.config.system_instruction)
 
     async def test_after_model_preserves_native_response_and_arguments(self):
         state = {"task_id": "test", "requirement_state": empty_state("test")}
         response = LlmResponse(content=types.Content(role="model", parts=[
-            types.Part.from_text(text=update_text(0, INITIAL)),
+            types.Part.from_text(text=update_text(INITIAL)),
             types.Part(function_call=types.FunctionCall(id="call_provider_1", name="submit_sql",
                                                        args={"sql": SQL, "unused": "ADK handles arguments"})),
             types.Part(function_call=types.FunctionCall(id="call_provider_2", name="get_schema", args={})),
@@ -255,7 +342,7 @@ class RuntimeSmoke(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(state["requirement_state"]["revision"], 5)
         self.model._steps = [([], "Read saved state.")]
         later = await self.runtime.run_turn("smoke", "a-interact", "Read the saved requirements.")
-        self.assertEqual(self.model._requests[-1]["state"], state["requirement_state"])
+        self.assertEqual(self.model._requests[-1]["state"], {"requirements": state["requirement_state"]["requirements"]})
         request_parts = [p for c in self.model._requests[-1]["contents"] for p in c.get("parts", [])]
         calls = [p["function_call"] for p in request_parts if "function_call" in p]
         responses = [p["function_response"] for p in request_parts if "function_response" in p]
@@ -272,24 +359,65 @@ class RuntimeSmoke(unittest.IsolatedAsyncioTestCase):
                 "saved_state_observed_before_tools": observed,
             }, ensure_ascii=False, indent=2) + "\n")
 
-    async def test_invalid_state_blocks_only_that_response_without_retry(self):
+    async def test_recovered_json_is_saved_before_native_tool_and_read_next_turn(self):
+        await self.session()
+        raw = START + json.dumps({"state_update": {"upserts": INITIAL}}) + "</｜｜DSML｜｜ parameter>"
+        self.model._steps = [{"raw_text": raw, "calls": [("get_schema", {})]}, ([], "Done")]
+        result = await self.runtime.run_turn("smoke", "a-interact", QUERY)
+        self.assertEqual(len(self.model._requests), 2)
+        self.assertEqual(len(FakeClient.calls), 1)
+        self.assertEqual(result["state"]["budget_remaining"], 11)
+        self.assertTrue(all(h["accepted"] for h in result["state"]["requirement_state_history"]))
+        self.assertEqual(result["state"]["requirement_state"]["revision"], 1)
+        self.assertEqual(self.model._requests[-1]["state"]["requirements"],
+                         result["state"]["requirement_state"]["requirements"])
+
+    async def test_invalid_state_allows_tools_and_normal_continuation_without_retry(self):
         await self.session()
         self.model._steps = [(INITIAL, "Ready")]
         good = await self.runtime.run_turn("smoke", "a-interact", QUERY)
         bad_rows = [{**KB_UPDATE, "status": "resolved", "priority": 3}]
         for raw in ["No State supplied", START + "invalid JSON" + END,
-                    update_text(0, []), update_text(1, bad_rows),
-                    update_text(1, []) + update_text(1, []),
+                    START + '{"state_update":{"upserts":[],"revision":0}}' + END, update_text(bad_rows),
+                    update_text([]) + update_text([]),
                     '{"state_update":{},"state_update":{}}']:
             with self.subTest(raw=raw):
                 before = len(self.model._requests)
-                self.model._steps = [{"raw_text": raw, "calls": [("get_schema", {})]}]
+                before_http = len(FakeClient.calls)
+                before_budget = good["state"]["budget_remaining"] - before_http
+                self.model._steps = [{"raw_text": raw, "calls": [("get_schema", {})]}, ([], "Continued normally")]
                 result = await self.runtime.run_turn("smoke", "a-interact", "New evidence")
-                self.assertEqual(len(self.model._requests), before + 1)
+                # One tool decision and its ordinary follow-up; no State retry.
+                self.assertEqual(len(self.model._requests), before + 2)
                 self.assertEqual(result["state"]["requirement_state"], good["state"]["requirement_state"])
+                rejected, continued = result["state"]["requirement_state_history"][-2:]
+                self.assertFalse(rejected["accepted"])
+                self.assertTrue(rejected["error"])
+                self.assertTrue(continued["accepted"])
+                self.assertFalse(result["state"]["requirement_state_error"])
+                self.assertEqual(result["state"]["budget_remaining"], before_budget - 1)
+                self.assertEqual(len(FakeClient.calls), before_http + 1)
+                self.assertEqual(result["state"]["tool_trajectory"][-1]["tool"], "get_schema")
+                self.assertIn("Continued normally", result["response"])
+
+    async def test_missing_initial_state_does_not_block_submit_in_either_mode(self):
+        for mode in ["a-interact", "c-interact"]:
+            with self.subTest(mode=mode):
+                task = "missing-" + mode
+                await self.session(task, mode)
+                FakeClient.calls = []
+                before = len(self.model._requests)
+                self.model._steps = [{"raw_text": "", "calls": [("submit_sql", {"sql": SQL})]}]
+                if mode == "a-interact":
+                    self.model._steps.append({"raw_text": "Submitted normally.", "calls": []})
+                result = await self.runtime.run_turn(task, mode, QUERY)
+                self.assertEqual(result["state"]["requirement_state"], empty_state(task))
                 self.assertTrue(result["state"]["requirement_state_error"])
-                self.assertEqual(result["state"]["budget_remaining"], 12.)
-                self.assertEqual(FakeClient.calls, [])
+                self.assertTrue(all(not h["accepted"] for h in result["state"]["requirement_state_history"]))
+                self.assertEqual(len(FakeClient.calls), 1)
+                self.assertEqual(FakeClient.calls[0]["payload"], {"task_id": task, "sql": SQL})
+                self.assertEqual(result["state"]["budget_remaining"], 9. if mode == "a-interact" else 12.)
+                self.assertEqual(len(self.model._requests), before + (2 if mode == "a-interact" else 1))
 
     async def test_business_arguments_still_follow_original_adk(self):
         await self.session()

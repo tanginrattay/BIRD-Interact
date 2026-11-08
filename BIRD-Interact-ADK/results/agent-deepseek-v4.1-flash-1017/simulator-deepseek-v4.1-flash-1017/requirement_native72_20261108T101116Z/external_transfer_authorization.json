@@ -1,0 +1,7 @@
+{
+  "authorized": true,
+  "scope": "Full 72 tasks, prompts and necessary database query information for agent and simulator",
+  "destination": "api.deepseek.com",
+  "user_reply": "授权完整72题，启动评测",
+  "recorded_at_utc": "2026-11-08T10:45:44.595828+00:00"
+}

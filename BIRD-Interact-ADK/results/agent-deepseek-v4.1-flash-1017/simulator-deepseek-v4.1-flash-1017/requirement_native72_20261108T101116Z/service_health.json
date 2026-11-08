@@ -1,0 +1,17 @@
+{
+  "16000": {
+    "status": "healthy",
+    "service": "system_agent",
+    "model": "deepseek/deepseek-flash",
+    "adk_available": true,
+    "adk_error": ""
+  },
+  "16002": {
+    "status": "healthy",
+    "service": "db_environment"
+  },
+  "16001": {
+    "status": "healthy",
+    "service": "user_simulator"
+  }
+}
