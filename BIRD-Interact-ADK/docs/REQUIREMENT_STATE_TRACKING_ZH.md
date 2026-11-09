@@ -1,12 +1,17 @@
 # Requirement State Tracking 实现与验证
 
+当前在 `state/requirement-tracking-2calls` 修复三项可靠性问题：版本号由 Runtime 管理且不进入模型上下文；非法/缺失更新经过原有最多一次纠正后仍失败，只保留旧 State 并继续正常决策；外层文本可容错提取，但 JSON 与 State schema 仍严格校验。同时移除 State 增加的 submit_sql 混合批次拦截，回归原 ADK 工具流程。内部整理 pass 仍保留，未改成 Native 单回复方案。
+
+本轮验证：10 项离线测试通过，1 项真实模型测试默认跳过。已验证初始/后续 State 缺失或非法时工具继续、原预算扣费、合法更新恢复、外层恢复后的保存与后续读取、a/c 两模式提交、混合批次、严格 JSON/字段检查、Task 隔离及 Session 保存。尚未运行修复后的真实模型或 72 题实验。下文真实 smoke 的数字来自旧版本历史证据，不视为本轮真实验证。
+
+
 本次是独立 State 机制实验，日期 2026-11-08。分支为 `state/requirement-tracking`，从干净的 `main@8138403` 创建；该 main 与本地 `origin/main` 一致。原 `prompt/exploration-policy@775e5b0` 未合并、修改或删除。本次未创建 commit。没有引入 Planner、独立 Controller、Memory Retrieval 或 SQL 自动对应机制。
 
 ## 1. 实际修改的文件
 
 | 文件 | 职责 |
 | --- | --- |
-| `system_agent/requirement_state.py`（新增） | 五字段 Requirement 加内部 ID；严格验证 JSON 更新；revision 校验；原子 upsert；禁止删除/改名；规范化文本去重 |
+| `system_agent/requirement_state.py`（新增） | 五字段 Requirement 加内部 ID；严格验证 JSON 更新；Runtime 管理 revision；原子 upsert；禁止删除/改名；规范化文本去重 |
 | `system_agent/requirement_tracking.py`（新增） | 同一个 Agent 模型的内部需求整理调用；可见证据序列化；校验和有限纠正；State 注入正常决策；更新审计与 token/耗时记录；混合提交批次保护 |
 | `system_agent/agent.py` | 在 a-interact/c-interact 中组合原有停止回调与 State 整理回调，接入提交批次保护；原有两份环境任务 prompt 未修改 |
 | `system_agent/adk_runtime.py` | 在 Session 创建时隔离 State，覆盖不可信 task_id；同一任务的初始化/重置/运行串行化；通过 ADK Event 保存运行事件 |
@@ -57,12 +62,11 @@ Runtime 另保存 `requirement_state_history` 和 `requirement_state_error`：�
 2. `run_turn()` → `Runner.run_async()`：ADK 组织 instruction、对话及工具结果，进入 `before_model_callback`。
 3. 先调用原有 a/c 模式停止回调。若任务结束、轮数耗尽或原有预算规则要求停止，保持原有终止行为，不额外调用需求整理模型。
 4. 否则调用内部需求整理 pass。首次正常决策前初始化所有独立可检查约束，包括已经明确的数量、排序、输出列等。指标公式与 schema 映射分开记录；任务约束不是按每个单词机械拆分。
-5. 内部请求没有工具，使用与 Agent 完全相同的模型实例，输入为当前 State 和实际可见的对话/工具响应，以及 c-interact 已提供的 schema/知识。不会把完整 Session、hidden ambiguity、ground truth SQL 或测试用例送入整理请求。
+5. 内部请求没有工具，使用与 Agent 完全相同的模型实例，输入为当前 State 的 requirements 投影（不含 task_id/revision）和实际可见的对话/工具响应，以及 c-interact 已提供的 schema/知识。不会把完整 Session、hidden ambiguity、ground truth SQL 或测试用例送入整理请求。
 6. 模型向 Runtime 返回以下 JSON，**这就是 Agent 的 State 更新通道**：
 
 ```json
 {
-  "base_revision": 2,
   "upserts": [
     {
       "id": "r2",
@@ -77,19 +81,19 @@ Runtime 另保存 `requirement_state_history` 和 `requirement_state_error`：�
 }
 ```
 
-`reason` 是更新协议的审计解释，保存历史，不进入五字段 Requirement。首次必须返回至少一项需求；后续无变化可返回空 upserts。未出现在补丁中的旧需求保留。已有 ID 的 requirement 文本不能改名；新的需求使用新 ID。只在实际数据改变时增加 revision。
+`reason` 是更新协议的审计解释，保存历史，不进入五字段 Requirement。外层标记、说明、Markdown 围栏或 DSML 尾部可忽略，直接提取唯一完整的外层 `{"upserts": ...}` 对象；不修复内层 JSON，不从损坏/错误父容器提取子对象，不接受多个更新、重复 JSON key、NaN/Infinity 或非法字段。首次必须返回至少一项需求；后续无变化可返回空 upserts。未出现在补丁中的旧需求保留。已有 ID 的 requirement 文本不能改名；新的需求使用新 ID。只在实际数据改变时增加 revision。
 
-7. Pydantic 拒绝非法枚举、未知字段、错误类型、非法 priority/status、重复 ID、同名需求、过期 revision 和跨任务补丁。整个补丁验证完成前不写入 State。Runtime 对 Requirement 文本做 NFKC、大小写与标点规范化去重；语义改写重复由模型识别。
-8. 校验成功后对 `callback_context.state["requirement_state"]` 做顶层赋值，由 ADK 捕获 `EventActions.state_delta`。最新 snapshot 通过 `llm_request.append_instructions()` 注入当前正常决策请求。模型决定下一步行动，Priority 仅供参考。
+7. Pydantic 拒绝非法枚举、未知字段、错误类型、非法 priority/status、重复 ID、同名需求和跨任务补丁；模型提供 base_revision/revision 也作为未知字段拒绝。整个补丁验证完成前不写入 State。Runtime 对 Requirement 文本做 NFKC、大小写与标点规范化去重；语义改写重复由模型识别。
+8. 校验成功后对 `callback_context.state["requirement_state"]` 做顶层赋值，由 ADK 捕获 `EventActions.state_delta`。最新 requirements 投影（不含 task_id/revision）通过 `llm_request.append_instructions()` 注入当前正常决策请求。模型决定下一步行动，Priority 仅供参考。
 9. 环境工具执行并返回后，ADK 下一次决策前重复整理，从而处理新 schema、KB 定义、用户回答、错误与 follow-up。同一回复包含多个查询工具时，在整批返回后的下一次决策统一整理。
-10. `submit_sql` 前的正常决策已经读取并复查全部当前需求。注入指令要求逐项检查 SQL；没有自动 SQL 与 Requirement 对应验证，也不强制所有项 resolved 后才允许按原预算规则尽力提交。禁止把 submit 与其他工具放在同一个批次，否则该批次全部停止、不扣费，并保存错误，避免 SQL 使用尚未整理的新回答。
+10. `submit_sql` 前的正常决策已经读取并复查全部当前需求。注入指令要求逐项检查 SQL；没有自动 SQL 与 Requirement 对应验证，也不强制所有项 resolved 后才允许按原预算规则尽力提交。State 不额外拦截 submit 与其他工具的混合批次，参数、执行与预算沿用原 ADK 工具流程；并发工具之间仍可能存在原框架的证据时序问题。
 11. Runner 保存事件中的 state_delta；新一次 `get_session()` 和下一次 `run_turn()` 读取同一个已保存 State。orchestrator 将 State/历史写入结果 JSON。Runtime 原来直接给 session 副本赋值保存 `adk_events` 的代码也改为 `append_event`。
 
-非法 JSON/字段/更新最多进行一次纠正，即每次整理最多两个请求；两次均失败，保存错误与失败审计、保留旧 snapshot，返回明确停止响应，不继续环境行动。这是内部协议错误处理，不替 Agent 选择普通工具或强制需求解决次序。上游网络异常目前仍按原调用栈上抛；取消、进程退出与服务级故障不属于补丁事务保证。
+非法 JSON/字段/更新最多进行一次纠正，即每次整理最多两个请求；两次均失败，保存错误与失败审计、保留旧 snapshot，把旧 requirements 注入正常决策请求并返回 None，继续正常决策与环境行动。这是内部协议错误处理，不替 Agent 选择普通工具或强制需求解决次序。上游网络异常目前仍按原调用栈上抛；取消、进程退出与服务级故障不属于补丁事务保证。
 
 ## 4. Task 隔离和持久化范围
 
-Runner 按 mode 隔离 app；Session 引用按 `(mode, task_id)` 区分；每题有独立 Session ID 与 `user_{task_id}`，State 键不使用 `app:`、`user:` 或 `temp:` 前缀。创建时深拷贝输入并强制使用请求参数 task_id、空 Requirement State 和空审计，防止外部传入旧题的 Requirement State。更新时再次验证 task_id 和 base_revision。
+Runner 按 mode 隔离 app；Session 引用按 `(mode, task_id)` 区分；每题有独立 Session ID 与 `user_{task_id}`，State 键不使用 `app:`、`user:` 或 `temp:` 前缀。创建时深拷贝输入并强制使用请求参数 task_id、空 Requirement State 和空审计，防止外部传入旧题的 Requirement State。更新时再次验证 task_id；revision 只由 Runtime 对实际数据变化递增，空更新/重复更新不递增，模型无需维护或返回版本。
 
 同一键的初始化、重置和 run_turn 使用同一把异步锁，避免两个 HTTP 请求同时改同一 Session。`reset=False` 复用已有 Session；`reset=True` 创建新 Session，旧 Session 不被删除。不同 Task 不共用 Requirement 容器。
 
@@ -99,7 +103,7 @@ Runner 按 mode 隔离 app；Session 引用按 `(mode, task_id)` 区分；每题
 
 内部整理直接调用 `model.generate_content_async()`，没有 FunctionTool、DB HTTP 或用户询问；因此不会触发 `TOOL_COSTS`、扣币回调或工具轨迹。环境工具费用和免费最终提交规则沿用原实现。两模式的原有正常决策轮数限制保留，内部整理不增加 `model_turns`，调用次数、usage 和耗时另记历史。
 
-这不代表免费推理：每个非终止决策前增加一次模型调用，非法更新时可能增加第二次；provider 自身重试仍沿用原 LiteLLM 配置。真实 smoke 中内部整理 6 次，累计 11,661 tokens，耗时约 16.25 秒；这部分不会计入 Bird-coin。usage 是 provider 报告的 token 数，未换算货币费用，也不能与普通决策调用总费用混淆。
+这不代表免费推理：每个非终止决策前增加一次模型调用，非法更新时可能增加第二次；provider 自身重试仍沿用原 LiteLLM 配置。旧版本历史真实 smoke 中内部整理 6 次，累计 11,661 tokens，耗时约 16.25 秒；这部分不会计入 Bird-coin。usage 是 provider 报告的 token 数，未换算货币费用，也不能与普通决策调用总费用混淆。
 
 结果默认进入 `results/agent-.../simulator-.../requirement_tracking_v1/<run_id>/`，metadata 的 `state_mechanism` 为 `requirement_tracking_v1`。`--output` 仍可显式指定。此前 Prompt Engineering 分支和归档未混入。
 
@@ -116,7 +120,7 @@ Runner 按 mode 隔离 app；Session 引用按 `(mode, task_id)` 区分；每题
 | get_knowledge_definition → revision 3 | 通用 TCR 定义为 `total/capacity`，适用性未确认，保持 candidate |
 | 第一次 ask_user → revision 4 | 回答只有“TCR 高于阈值”，尚无阈值数字；suspicious 保持 candidate |
 | 第二次 ask_user → revision 5 | 明确阈值 0.8、确认公式并排除零容量；相应需求 resolved/0 |
-| submit_sql 与后续 run_turn | 正常请求已包含 revision 5；从新取出的 Session 与下一轮决策均读到相同 State，明确数量/排序/输出约束未丢失 |
+| submit_sql 与后续 run_turn | 正常请求已包含当前 requirements；Runtime revision 5；从新取出的 Session 与下一轮决策均读到相同 State，明确数量/排序/输出约束未丢失 |
 
 离线 SQL 为 `SELECT chain_id, total/NULLIF(capacity,0) AS tcr FROM chains WHERE total/NULLIF(capacity,0)>0.8 ORDER BY tcr DESC LIMIT 10`。工具费用为 schema 1 + KB 0.5 + 两次询问 4 + submit 3 = 8.5，初始 12，剩余 3.5。所有内部更新均未出现在工具轨迹。
 
@@ -126,7 +130,7 @@ Runner 按 mode 隔离 app；Session 引用按 `(mode, task_id)` 区分；每题
 
 ## 7. 已验证与尚未验证
 
-离线覆盖：初始化完整明确/未知约束；新增 Requirement；Category 更新；候选、冲突、resolved 后重开与再次解决；优先级恢复；补丁原子性；非法字段、类型、枚举、过期 revision、重复条目拒绝；一次纠正与两次失败停止；跨事件保存；跨轮读取；Task/mode 隔离；reset；同 Session 并发请求串行化；c-interact 提交后停止/新轮重置；混合提交批次不执行工具；Bird-coin 不受内部更新影响。
+离线覆盖：初始化完整明确/未知约束；新增 Requirement；Category 更新；候选、冲突、resolved 后重开与再次解决；优先级恢复；补丁原子性；非法字段、类型、枚举、模型版本字段、重复条目拒绝；一次纠正与两次失败仍继续正常决策；跨事件保存；跨轮读取；Task/mode 隔离；reset；同 Session 并发请求串行化；c-interact 提交后停止/新轮重置；混合提交批次沿用原工具执行与预算规则；Bird-coin 不受内部更新影响。
 
 真实模型 smoke 已验证：模型自行生成合法 JSON、首次覆盖明确约束与未知需求、Knowledge 候选状态、部分回答不误解决、二次澄清后更新及新增规则、完成提交链路。该 smoke 未覆盖真实模型的冲突判定；冲突重开由离线受控补丁验证。
 
@@ -140,8 +144,8 @@ Runner 按 mode 隔离 app；Session 引用按 `(mode, task_id)` 区分；每题
 - ADK 的 Session State 不会自动进入模型上下文，必须显式注入；`get_session()` 返回副本，直接赋值不构成可靠持久化。官方说明见 [ADK State](https://github.com/google/adk-docs/blob/main/docs/sessions/state.md) 与 [Callback 类型](https://github.com/google/adk-docs/blob/main/docs/callbacks/types-of-callbacks.md)，实现同时以本机源码和 Runner smoke 验证。
 - 直接调用内部模型不会触发另一层 ADK 工具循环或自动生成内部模型事件；因此必须手动校验并单独记录 usage/耗时。正常决策的 ADK 事件仍由 Runner 保存。
 - 没有强制使用 provider 原生 response_schema，也没有要求同一回复同时产生 JSON 文本和工具调用；使用无工具内部 JSON pass，再本地严格验证，避免不同 provider 的结构化输出/工具并用差异。回复不合协议可被拒绝。
-- 每次整理会发送可见历史与 State，token 随上下文增长；长初始化或大量更新可能超过原模型 max_tokens=4096，随后有限纠正仍失败会停止。未加入压缩、检索或需求裁剪。
-- submit 与其他工具并发会导致证据时序不清，因此当前明确停止这种批次；没有实现自动重新规划或自动重试该批次。
+- 每次整理会发送可见历史与 State，token 随上下文增长；长初始化或大量更新可能超过原模型 max_tokens=4096，随后有限纠正仍失败会保留旧 State 并继续正常决策。未加入压缩、检索或需求裁剪。
+- submit 与其他工具并发可能导致证据时序不清；当前移除了 State 的特殊批次拦截，保留原框架行为，没有自动重新规划该批次。
 - 真实 smoke 进程退出时 LiteLLM/aiohttp 打印了 `Event loop is closed` 清理告警，测试断言和结果保存均成功；未修改共享 provider 的连接生命周期。
 - 首次联网尝试被沙箱阻止；获准联网后初轮链路完成，但测试对 Knowledge 工具的假设过窄，且 fixture 缺少其他工具响应。完善 fixture、允许两种正常 Knowledge 查询入口后，真实模型 smoke 通过。未将第一次失败算作通过。
 

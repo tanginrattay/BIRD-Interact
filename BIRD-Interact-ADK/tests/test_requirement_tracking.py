@@ -17,7 +17,7 @@ from pydantic import PrivateAttr
 
 from system_agent.adk_runtime import AdkRuntime
 from system_agent.requirement_state import apply_update, empty_state
-from system_agent.requirement_tracking import TRACKING_INSTRUCTION
+from system_agent.requirement_tracking import TRACKING_INSTRUCTION, DECISION_INSTRUCTION, extract_update
 
 
 QUERY = "Find the top 10 suspicious chains ordered by TCR descending. Return chain_id and TCR."
@@ -64,8 +64,8 @@ class ScriptModel(BaseLlm):
             self._requests.append({"kind": "tracking", "input": data})
             payload = self._patches.pop(0)
             if isinstance(payload, list):
-                payload = {"base_revision": data["current_state"]["revision"], "upserts": payload}
-            content = types.Content(role="model", parts=[types.Part.from_text(text=json.dumps(payload))])
+                payload = {"upserts": payload}
+            content = types.Content(role="model", parts=[types.Part.from_text(text=payload if isinstance(payload, str) else json.dumps(payload))])
         else:
             self._requests.append({"kind": "decision", "system": llm_request.config.system_instruction})
             action = self._actions.pop(0)
@@ -114,34 +114,69 @@ class FakeClient:
 
 
 class ValidationTests(unittest.TestCase):
+    def test_runtime_revision_and_strict_json_recovery(self):
+        initial = {"upserts": INITIAL}
+        raw = json.dumps(initial)
+        for text in [raw, "<broken>" + raw, raw + "</missing>",
+                     "Plan:\n```json\n" + raw + "\n``` Done",
+                     '<requirement_state_update" >' + raw + '</｜｜DSML｜｜ parameter>',
+                     '{"other": true} ' + raw]:
+            with self.subTest(text=text):
+                self.assertEqual(extract_update(text), initial)
+        state, _ = apply_update(empty_state("a"), initial, "a")
+        self.assertEqual(state["revision"], 1)
+        unchanged, changes = apply_update(state, initial, "a")
+        self.assertEqual(unchanged, state)
+        self.assertEqual(changes, [])
+        unchanged, changes = apply_update(state, {"upserts": []}, "a")
+        self.assertEqual(unchanged, state)
+        self.assertEqual(changes, [])
+        updated, _ = apply_update(state, {"upserts": [KB_UPDATE]}, "a")
+        self.assertEqual(updated["revision"], 2)
+        quoted = copy.deepcopy(initial)
+        quoted["upserts"][0]["value"] = 'braces { } and quote " (source: user)'
+        self.assertEqual(extract_update("Text " + json.dumps(quoted) + " End"), quoted)
+
+    def test_outer_recovery_rejects_broken_or_ambiguous_inner_json(self):
+        valid = json.dumps({"upserts": INITIAL})
+        for raw in [valid[:-1], valid[:-1] + ",}", "{'upserts': []}",
+                    '{"upserts":[],"upserts":[]}', '{"upserts":[NaN]}',
+                    '{"upserts":[Infinity]}', '{"upserts":/* comment */[]}',
+                    '{"wrapper":' + valid + '}', '[' + valid + ']',
+                    valid + valid, '{"upserts": broken} ' + valid,
+                    '{"upserts":[],"revision":0}']:
+            with self.subTest(raw=raw), self.assertRaises(ValueError):
+                extract_update("broken wrapper>" + raw + "</bad>")
+
     def test_atomic_validation_and_transitions(self):
-        state, _ = apply_update(empty_state("a"), {"base_revision": 0, "upserts": INITIAL}, "a")
+        state, _ = apply_update(empty_state("a"), {"upserts": INITIAL}, "a")
         before = copy.deepcopy(state)
         invalids = [
-            {"base_revision": 0, "upserts": []},  # stale
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "category": "made_up"}]},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "status": "resolved", "priority": 3}]},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "priority": True}]},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "source": "KB"}]},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "id": "r7", "requirement": INITIAL[0]["requirement"]}]},
-            {"base_revision": 1, "upserts": [KB_UPDATE, KB_UPDATE]},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "requirement": "renamed away"}]},
-            {"base_revision": 1, "upserts": [{**KB_UPDATE, "status": "conflict", "value": "only one answer"}]},
+            {"base_revision": 0, "upserts": []},  # runtime-owned; model field forbidden
+            {"revision": 1, "upserts": []},
+            {"upserts": [{**KB_UPDATE, "category": "made_up"}]},
+            {"upserts": [{**KB_UPDATE, "status": "resolved", "priority": 3}]},
+            {"upserts": [{**KB_UPDATE, "priority": True}]},
+            {"upserts": [{**KB_UPDATE, "source": "KB"}]},
+            {"upserts": [{**KB_UPDATE, "id": "r7", "requirement": INITIAL[0]["requirement"]}]},
+            {"upserts": [KB_UPDATE, KB_UPDATE]},
+            {"upserts": [{**KB_UPDATE, "requirement": "renamed away"}]},
+            {"upserts": [{**KB_UPDATE, "status": "conflict", "value": "only one answer"}]},
         ]
         for payload in invalids:
             with self.subTest(payload=payload), self.assertRaises(ValueError):
                 apply_update(state, payload, "a")
             self.assertEqual(state, before)
         with self.assertRaises(ValueError):
-            apply_update(state, {"base_revision": 1, "upserts": []}, "other")
+            apply_update(state, {"upserts": []}, "other")
         for change in [KB_UPDATE, FINAL_UPDATES[1],
                        {**KB_UPDATE, "status": "conflict", "value": "formula A (source: KB) | formula B (source: user)"},
                        {**FINAL_UPDATES[1], "value": "formula B; user explicitly rejects A (source: user)"}]:
-            state, _ = apply_update(state, {"base_revision": state["revision"], "upserts": [change]}, "a")
+            state, _ = apply_update(state, {"upserts": [change]}, "a")
         self.assertEqual(len(state["requirements"]), 6)
         self.assertEqual(state["requirements"][2]["priority"], 0)
         self.assertEqual(state["requirements"][0], before["requirements"][0])
-        state, _ = apply_update(state, {"base_revision": state["revision"], "upserts": [
+        state, _ = apply_update(state, {"upserts": [
             row(7, "Output format", "user_semantics", "resolved", "SQL query (source: user)", 0),
         ]}, "a")
         self.assertEqual(len(state["requirements"]), 7)
@@ -190,7 +225,7 @@ class RuntimeSmoke(unittest.IsolatedAsyncioTestCase):
                          ["get_schema", "get_knowledge_definition", "ask_user", "ask_user", "submit_sql"])
         decisions = [r for r in self.model._requests if r["kind"] == "decision"]
         self.assertEqual(len(decisions), 6)
-        self.assertIn('"revision": 5', decisions[4]["system"])
+        self.assertNotIn('"revision"', decisions[4]["system"])
         self.assertIn("TCR > 0.8", decisions[4]["system"])
         self.assertIn("numeric threshold missing", decisions[3]["system"])
         # Fresh get_session proves state_delta persistence, not just callback-local data.
@@ -205,7 +240,7 @@ class RuntimeSmoke(unittest.IsolatedAsyncioTestCase):
         later = await self.runtime.run_turn("smoke", "a-interact", "Recheck the saved requirements.")
         self.assertEqual(later["state"]["requirement_state"], state["requirement_state"])
         self.assertGreater(len(later["state"]["adk_events"]), old_events)
-        self.assertIn('"revision": 5', self.model._requests[-1]["system"])
+        self.assertNotIn('"revision"', self.model._requests[-1]["system"])
         if os.environ.get("REQUIREMENT_SMOKE_ARTIFACT"):
             Path(os.environ["REQUIREMENT_SMOKE_ARTIFACT"]).write_text(json.dumps({
                 "kind": "offline real-ADK smoke; scripted model and HTTP fixtures; no database evaluation",
@@ -241,19 +276,26 @@ class RuntimeSmoke(unittest.IsolatedAsyncioTestCase):
         fresh = await runner.session_service.get_session(app_name=ref.app_name, user_id=ref.user_id, session_id=ref.session_id)
         self.assertEqual(fresh.state["requirement_state"], empty_state("one"))
 
-    async def test_invalid_update_correction_then_atomic_failure(self):
+    async def test_invalid_update_correction_then_nonblocking_failure(self):
         await self.session()
         self.model._patches = [{"bad": "field"}, INITIAL]
         self.model._actions = ["Ready."]
         good = await self.runtime.run_turn("smoke", "a-interact", QUERY)
         self.assertEqual(good["state"]["requirement_state"]["revision"], 1)
         self.assertEqual(len(good["state"]["requirement_state_history"][0]["attempts"]), 2)
-        self.model._patches = [{"bad": "field"}, {"bad": "field"}]
+        self.model._patches = [{"bad": "field"}, {"bad": "field"}, []]
+        self.model._actions = [("get_schema", {}), "Continued normally"]
         bad = await self.runtime.run_turn("smoke", "a-interact", "New evidence")
         self.assertEqual(bad["state"]["requirement_state"], good["state"]["requirement_state"])
-        self.assertTrue(bad["state"]["requirement_state_error"])
-        self.assertEqual(bad["state"]["budget_remaining"], 12.)
-        self.assertEqual(FakeClient.calls, [])
+        failed = bad["state"]["requirement_state_history"][-2]
+        self.assertTrue(all(not a["accepted"] for a in failed["attempts"]))
+        self.assertEqual(failed["changes"], [])
+        self.assertEqual(bad["state"]["budget_remaining"], 11.)
+        self.assertEqual(len(FakeClient.calls), 1)
+        self.assertFalse(bad["state"]["requirement_state_error"])
+        self.assertIn("Continued normally", bad["response"])
+        decisions = [r for r in self.model._requests if r["kind"] == "decision"]
+        self.assertIn('"Return 10 chains"', decisions[-2]["system"])
 
     async def test_same_session_concurrent_turns_are_serialized(self):
         import asyncio
@@ -266,15 +308,56 @@ class RuntimeSmoke(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(len(results[1]["state"]["requirement_state_history"]), 2)
         self.assertEqual(results[1]["state"]["requirement_state"]["revision"], 1)
 
-    async def test_mixed_submit_batch_executes_no_tools(self):
+    async def test_mixed_submit_batch_uses_original_tools_and_budget(self):
         await self.session()
-        self.model._patches = [INITIAL]
-        self.model._actions = [{"calls": [("ask_user", {"question": "new evidence?"}), ("submit_sql", {"sql": SQL})]}]
+        self.model._patches = [INITIAL, []]
+        self.model._actions = [{"calls": [("ask_user", {"question": "new evidence?"}), ("submit_sql", {"sql": SQL})]}, "Done"]
         result = await self.runtime.run_turn("smoke", "a-interact", QUERY)
         self.assertEqual(result["state"]["requirement_state"]["revision"], 1)
-        self.assertIn("single call", result["state"]["requirement_state_error"])
-        self.assertEqual(FakeClient.calls, [])
-        self.assertEqual(result["state"]["budget_remaining"], 12.)
+        self.assertFalse(result["state"]["requirement_state_error"])
+        self.assertEqual(len(FakeClient.calls), 2)
+        self.assertEqual({t["tool"] for t in result["state"]["tool_trajectory"]}, {"ask_user", "submit_sql"})
+        self.assertEqual(result["state"]["budget_remaining"], 7.)
+
+    async def test_missing_initial_state_does_not_block_submission_in_both_modes(self):
+        for mode in ["a-interact", "c-interact"]:
+            with self.subTest(mode=mode):
+                task = "missing-" + mode
+                await self.session(task, mode)
+                FakeClient.calls = []
+                self.model._patches = ["No update", "No update"]
+                self.model._actions = [("submit_sql", {"sql": SQL})]
+                if mode == "a-interact":
+                    self.model._patches += ["No update", "No update"]
+                    self.model._actions += ["Done"]
+                result = await self.runtime.run_turn(task, mode, QUERY)
+                self.assertEqual(result["state"]["requirement_state"], empty_state(task))
+                self.assertTrue(result["state"]["requirement_state_error"])
+                self.assertEqual(len(FakeClient.calls), 1)
+                self.assertTrue(FakeClient.calls[0]["url"].endswith("/submit"))
+                self.assertEqual(result["state"]["budget_remaining"], 9. if mode == "a-interact" else 12.)
+                self.assertTrue(all(not attempt["accepted"] for h in result["state"]["requirement_state_history"] for attempt in h["attempts"]))
+
+    async def test_recovered_json_is_saved_and_visible_without_version_fields(self):
+        await self.session()
+        self.model._patches = ['<broken>' + json.dumps({"upserts": INITIAL}) + '</｜｜DSML｜｜ parameter>', [SCHEMA_UPDATE]]
+        self.model._actions = [("get_schema", {}), "Done"]
+        result = await self.runtime.run_turn("smoke", "a-interact", QUERY)
+        self.assertEqual(result["state"]["requirement_state"]["revision"], 2)
+        self.assertEqual(len(FakeClient.calls), 1)
+        self.assertEqual(result["state"]["budget_remaining"], 11.)
+        self.assertEqual(len(self.model._requests), 4)
+        for request in self.model._requests:
+            if request["kind"] == "tracking":
+                self.assertEqual(set(request["input"]["current_state"]), {"requirements"})
+            else:
+                visible = json.JSONDecoder().raw_decode(request["system"].split("Current Requirement State (runtime validated):\n",1)[1])[0]
+                self.assertEqual(set(visible), {"requirements"})
+        runner, _ = await self.runtime._get_runner("a-interact")
+        ref = self.runtime._session_refs[("a-interact", "smoke")]
+        saved = await runner.session_service.get_session(app_name=ref.app_name, user_id=ref.user_id, session_id=ref.session_id)
+        self.assertEqual(saved.state["requirement_state"], result["state"]["requirement_state"])
+
 
 
 if __name__ == "__main__":

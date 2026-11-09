@@ -42,7 +42,6 @@ class Change(Requirement):
 
 class Update(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
-    base_revision: StrictInt = Field(ge=0)
     upserts: list[Change] = Field(max_length=200)
 
 
@@ -63,8 +62,6 @@ def apply_update(current: dict, payload: dict, task_id: str) -> tuple[dict, list
     patch = Update.model_validate(payload)
     if current["task_id"] != task_id:
         raise ValueError("requirement state belongs to another task")
-    if patch.base_revision != current["revision"]:
-        raise ValueError("stale base_revision")
     result = copy.deepcopy(current)
     records = {r["id"]: Requirement.model_validate(r).model_dump() for r in result["requirements"]}
     seen = set()
