@@ -1,0 +1,23 @@
+{
+  "started_at_utc": "2026-11-09T03:07:59.680610+00:00",
+  "status": "failed",
+  "runs": {
+    "baseline_main": {
+      "started_at_utc": "2026-11-09T03:08:01.312049+00:00",
+      "status": "running",
+      "completed": 3,
+      "metrics": {
+        "total_tasks": 3,
+        "total_reward": 0.0,
+        "average_reward": 0.0,
+        "phase1_rate": 0.0,
+        "phase2_rate": 0.0,
+        "phase1_count": 0,
+        "phase2_count": 0
+      }
+    }
+  },
+  "active_run": "baseline_main",
+  "error": "RuntimeError: Three consecutive task errors; stopped to avoid invalid batch",
+  "failed_at_utc": "2026-11-09T03:08:08.854858+00:00"
+}

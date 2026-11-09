@@ -1,0 +1,35 @@
+{
+  "scope": "Runtime/protocol/persistence only; no State semantics or SQL analysis",
+  "git_head": "4ff1580302420407a89591315d98175bbcd7ce73",
+  "task_count": 72,
+  "expected_task_count": 72,
+  "task_set_matches": true,
+  "runner_exit_code": 0,
+  "runtime_errors": 0,
+  "tasks_with_state_protocol_error": 1,
+  "tasks_without_state_protocol_error": 71,
+  "termination_counts": {
+    "task_done": 35,
+    "original_budget_exit": 21,
+    "stopped_without_task_done": 16
+  },
+  "model_calls": 638,
+  "accepted_state_updates": 637,
+  "rejected_state_updates": 1,
+  "state_error_types": {
+    "invalid_state": 1
+  },
+  "subsequent_state_reads_checked": 566,
+  "persisted_event_updates_checked": 637,
+  "native_calls_generated": 748,
+  "native_calls_forwarded": 748,
+  "native_calls_blocked_by_state": 0,
+  "native_calls_forwarded_despite_state_error": 1,
+  "outer_text_recoveries": 0,
+  "distinct_sessions": 72,
+  "structural_checks_passed": true,
+  "structural_issues": [],
+  "normal_agent_model_tokens": 7769913,
+  "production_code_unchanged": true,
+  "semantic_review_performed": false
+}

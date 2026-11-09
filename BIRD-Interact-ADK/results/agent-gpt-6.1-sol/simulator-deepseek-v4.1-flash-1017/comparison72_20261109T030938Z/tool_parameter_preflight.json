@@ -1,0 +1,64 @@
+{
+  "request": {
+    "model": "gpt-6.1-sol",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Call ping with value OK."
+      }
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "ping",
+          "description": "Echo value",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          }
+        }
+      }
+    ],
+    "stream": false,
+    "max_completion_tokens": 64
+  },
+  "response": {
+    "id": "resp_0b4a894448fc87bf016af139601a788195bcb7b3090c838306",
+    "object": "chat.completion",
+    "created": 1794193761,
+    "model": "gpt-6.1-sol",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "id": "call_so91sgkj4yHrGJ6C0ZpnjJ8o",
+              "type": "function",
+              "function": {
+                "name": "ping",
+                "arguments": "{\"value\":\"OK\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 44,
+      "completion_tokens": 18,
+      "total_tokens": 62
+    },
+    "service_tier": "default"
+  }
+}

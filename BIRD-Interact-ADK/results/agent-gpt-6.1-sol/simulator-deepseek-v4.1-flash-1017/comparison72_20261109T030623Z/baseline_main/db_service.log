@@ -1,0 +1,20 @@
+INFO:     Started server process [23133]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:16002 (Press CTRL+C to quit)
+INFO:     127.0.0.1:45438 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45438 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45438 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45450 - "POST /init_task HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45454 - "POST /schema HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45464 - "POST /cleanup_task HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45472 - "POST /init_task HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45474 - "POST /schema HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45478 - "POST /cleanup_task HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45492 - "POST /init_task HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47982 - "POST /schema HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47994 - "POST /cleanup_task HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [23133]

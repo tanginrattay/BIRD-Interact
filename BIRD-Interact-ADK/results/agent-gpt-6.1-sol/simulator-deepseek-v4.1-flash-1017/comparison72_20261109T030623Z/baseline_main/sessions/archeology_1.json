@@ -1,0 +1,68 @@
+{
+  "task_id": "archeology_1",
+  "session_id": "6463d885-3f64-4385-bc7b-18b253efd808",
+  "runtime_error": "UnsupportedParamsError: litellm.UnsupportedParamsError: gpt-6.1-sol doesn't support temperature=0.0 while reasoning is active. Only temperature=1 is supported unless reasoning_effort resolves to 'none', either set explicitly on the request or declared as the model's default_reasoning_effort. To drop unsupported params set `litellm.drop_params = True` LiteLLM Retried: 5 times",
+  "session": {
+    "id": "6463d885-3f64-4385-bc7b-18b253efd808",
+    "app_name": "bird_interact_a_interact",
+    "user_id": "user_archeology_1",
+    "state": {
+      "task_id": "archeology_1",
+      "db_name": "archeology",
+      "user_query": "I'd like to see a quality assessment of scans across our archaeological sites. Show site code, site name, scan quality for each site and rank them.",
+      "current_phase": 1,
+      "budget_remaining": 16.0,
+      "initial_budget": 16.0,
+      "total_reward": 0.0,
+      "dialogue_history": [],
+      "tool_trajectory": [],
+      "adk_events": [],
+      "phase1_completed": false,
+      "phase2_completed": false,
+      "task_done": false
+    },
+    "events": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "Database: archeology\nTask ID: archeology_1\n\nUser Query:\nI'd like to see a quality assessment of scans across our archaeological sites. Show site code, site name, scan quality for each site and rank them.\n\nYou have a budget of 16.0 bird-coins. Use your tools to explore the database, clarify ambiguities with the user, and submit your final SQL efficiently."
+            }
+          ],
+          "role": "user"
+        },
+        "invocation_id": "e-6289daab-946c-4528-a0af-83f79e733930",
+        "author": "user",
+        "actions": {
+          "state_delta": {},
+          "artifact_delta": {},
+          "requested_auth_configs": {},
+          "requested_tool_confirmations": {}
+        },
+        "node_info": {
+          "path": ""
+        },
+        "id": "1c1eff43-133c-4c1d-b741-ae76f66dd8f7",
+        "timestamp": 1794193688.2131824
+      },
+      {
+        "error_code": "UnsupportedParamsError",
+        "error_message": "litellm.UnsupportedParamsError: gpt-6.1-sol doesn't support temperature=0.0 while reasoning is active. Only temperature=1 is supported unless reasoning_effort resolves to 'none', either set explicitly on the request or declared as the model's default_reasoning_effort. To drop unsupported params set `litellm.drop_params = True` LiteLLM Retried: 5 times",
+        "invocation_id": "e-6289daab-946c-4528-a0af-83f79e733930",
+        "author": "bird_interact_agent",
+        "actions": {
+          "state_delta": {},
+          "artifact_delta": {},
+          "requested_auth_configs": {},
+          "requested_tool_confirmations": {}
+        },
+        "node_info": {
+          "path": "bird_interact_agent@1"
+        },
+        "id": "b2bc1e04-781d-4b54-b5a2-393618e8aa37",
+        "timestamp": 1794193688.2241814
+      }
+    ],
+    "last_update_time": 1794193688.2241814
+  }
+}

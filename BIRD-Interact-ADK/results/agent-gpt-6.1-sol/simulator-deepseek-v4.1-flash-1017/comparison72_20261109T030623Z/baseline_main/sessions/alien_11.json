@@ -1,0 +1,68 @@
+{
+  "task_id": "alien_11",
+  "session_id": "91746876-c5f0-4f4b-a56d-742bef0045a6",
+  "runtime_error": "UnsupportedParamsError: litellm.UnsupportedParamsError: gpt-6.1-sol doesn't support temperature=0.0 while reasoning is active. Only temperature=1 is supported unless reasoning_effort resolves to 'none', either set explicitly on the request or declared as the model's default_reasoning_effort. To drop unsupported params set `litellm.drop_params = True` LiteLLM Retried: 5 times",
+  "session": {
+    "id": "91746876-c5f0-4f4b-a56d-742bef0045a6",
+    "app_name": "bird_interact_a_interact",
+    "user_id": "user_alien_11",
+    "state": {
+      "task_id": "alien_11",
+      "db_name": "alien",
+      "user_query": "Create a report evaluating observatory conditions using the Observability Index and identifying stations meeting Optimal Observing Window (OOW) criteria. The output should group stations by whether meets OOW (bool:True or False). For each group, you should provide its boolean value, the count of stations, average AOI and a detailed JSON array of environmental factors containing station name, AOI value, an object called 'lunar factors' with lunar stage and lunar distance inside, and solar condition.",
+      "current_phase": 1,
+      "budget_remaining": 18.0,
+      "initial_budget": 18.0,
+      "total_reward": 0.0,
+      "dialogue_history": [],
+      "tool_trajectory": [],
+      "adk_events": [],
+      "phase1_completed": false,
+      "phase2_completed": false,
+      "task_done": false
+    },
+    "events": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "Database: alien\nTask ID: alien_11\n\nUser Query:\nCreate a report evaluating observatory conditions using the Observability Index and identifying stations meeting Optimal Observing Window (OOW) criteria. The output should group stations by whether meets OOW (bool:True or False). For each group, you should provide its boolean value, the count of stations, average AOI and a detailed JSON array of environmental factors containing station name, AOI value, an object called 'lunar factors' with lunar stage and lunar distance inside, and solar condition.\n\nYou have a budget of 18.0 bird-coins. Use your tools to explore the database, clarify ambiguities with the user, and submit your final SQL efficiently."
+            }
+          ],
+          "role": "user"
+        },
+        "invocation_id": "e-07ccb6e1-01ed-4009-aa4d-940ee9f2b9b6",
+        "author": "user",
+        "actions": {
+          "state_delta": {},
+          "artifact_delta": {},
+          "requested_auth_configs": {},
+          "requested_tool_confirmations": {}
+        },
+        "node_info": {
+          "path": ""
+        },
+        "id": "76ce1071-9a7a-4917-985e-565e950f5cf8",
+        "timestamp": 1794193685.5692549
+      },
+      {
+        "error_code": "UnsupportedParamsError",
+        "error_message": "litellm.UnsupportedParamsError: gpt-6.1-sol doesn't support temperature=0.0 while reasoning is active. Only temperature=1 is supported unless reasoning_effort resolves to 'none', either set explicitly on the request or declared as the model's default_reasoning_effort. To drop unsupported params set `litellm.drop_params = True` LiteLLM Retried: 5 times",
+        "invocation_id": "e-07ccb6e1-01ed-4009-aa4d-940ee9f2b9b6",
+        "author": "bird_interact_agent",
+        "actions": {
+          "state_delta": {},
+          "artifact_delta": {},
+          "requested_auth_configs": {},
+          "requested_tool_confirmations": {}
+        },
+        "node_info": {
+          "path": "bird_interact_agent@1"
+        },
+        "id": "edc41b8c-61c6-4c37-865c-a99357cc6c69",
+        "timestamp": 1794193687.281237
+      }
+    ],
+    "last_update_time": 1794193687.281237
+  }
+}

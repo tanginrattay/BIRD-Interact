@@ -1,0 +1,2 @@
+# Preserve archived evidence bytes, including CSV line endings and raw patch whitespace.
+* -text -whitespace

@@ -1,0 +1,73 @@
+2026-11-09 11:08:04,462 __main__ INFO Result output: /home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/eval_a_interact.json
+2026-11-09 11:08:04,520 __main__ INFO a-interact: Evaluating 72 tasks with concurrency=1
+2026-11-09 11:08:04,520 __main__ INFO === Task 1/72: alien_11 ===
+2026-11-09 11:08:04,521 orchestrator.ainteract INFO Starting task: alien_11 (db: alien)
+2026-11-09 11:08:04,975 httpx INFO HTTP Request: POST http://localhost:16002/init_task "HTTP/1.1 200 OK"
+2026-11-09 11:08:05,009 httpx INFO HTTP Request: POST http://localhost:16001/init_task "HTTP/1.1 200 OK"
+2026-11-09 11:08:05,009 orchestrator.ainteract INFO   [alien_11] Services initialized
+2026-11-09 11:08:05,379 httpx INFO HTTP Request: POST http://localhost:16000/init_session "HTTP/1.1 200 OK"
+2026-11-09 11:08:07,295 httpx INFO HTTP Request: POST http://localhost:16000/run_session "HTTP/1.1 500 Internal Server Error"
+2026-11-09 11:08:07,399 httpx INFO HTTP Request: POST http://localhost:16002/cleanup_task "HTTP/1.1 200 OK"
+2026-11-09 11:08:07,400 __main__ ERROR Error: alien_11: Server error '500 Internal Server Error' for url 'http://localhost:16000/run_session'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+Traceback (most recent call last):
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/runner.py", line 73, in _run_one
+    r = await run_single_task(td)
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/ainteract.py", line 126, in run_single_task
+    run_result = await run_agent_session(instance_id, initial_message)
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/ainteract.py", line 91, in run_agent_session
+    return await _post(
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/ainteract.py", line 38, in _post
+    resp.raise_for_status()
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Server error '500 Internal Server Error' for url 'http://localhost:16000/run_session'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+2026-11-09 11:08:07,402 __main__ INFO === Task 2/72: alien_7 ===
+2026-11-09 11:08:07,402 orchestrator.ainteract INFO Starting task: alien_7 (db: alien)
+2026-11-09 11:08:07,596 httpx INFO HTTP Request: POST http://localhost:16002/init_task "HTTP/1.1 200 OK"
+2026-11-09 11:08:07,613 httpx INFO HTTP Request: POST http://localhost:16001/init_task "HTTP/1.1 200 OK"
+2026-11-09 11:08:07,613 orchestrator.ainteract INFO   [alien_7] Services initialized
+2026-11-09 11:08:07,619 httpx INFO HTTP Request: POST http://localhost:16000/init_session "HTTP/1.1 200 OK"
+2026-11-09 11:08:07,641 httpx INFO HTTP Request: POST http://localhost:16000/run_session "HTTP/1.1 500 Internal Server Error"
+2026-11-09 11:08:07,746 httpx INFO HTTP Request: POST http://localhost:16002/cleanup_task "HTTP/1.1 200 OK"
+2026-11-09 11:08:07,747 __main__ ERROR Error: alien_7: Server error '500 Internal Server Error' for url 'http://localhost:16000/run_session'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+Traceback (most recent call last):
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/runner.py", line 73, in _run_one
+    r = await run_single_task(td)
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/ainteract.py", line 126, in run_single_task
+    run_result = await run_agent_session(instance_id, initial_message)
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/ainteract.py", line 91, in run_agent_session
+    return await _post(
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/ainteract.py", line 38, in _post
+    resp.raise_for_status()
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Server error '500 Internal Server Error' for url 'http://localhost:16000/run_session'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+2026-11-09 11:08:07,750 __main__ INFO === Task 3/72: archeology_1 ===
+2026-11-09 11:08:07,750 orchestrator.ainteract INFO Starting task: archeology_1 (db: archeology)
+2026-11-09 11:08:08,174 httpx INFO HTTP Request: POST http://localhost:16002/init_task "HTTP/1.1 200 OK"
+2026-11-09 11:08:08,188 httpx INFO HTTP Request: POST http://localhost:16001/init_task "HTTP/1.1 200 OK"
+2026-11-09 11:08:08,188 orchestrator.ainteract INFO   [archeology_1] Services initialized
+2026-11-09 11:08:08,205 httpx INFO HTTP Request: POST http://localhost:16000/init_session "HTTP/1.1 200 OK"
+2026-11-09 11:08:08,230 httpx INFO HTTP Request: POST http://localhost:16000/run_session "HTTP/1.1 500 Internal Server Error"
+2026-11-09 11:08:08,333 httpx INFO HTTP Request: POST http://localhost:16002/cleanup_task "HTTP/1.1 200 OK"
+2026-11-09 11:08:08,334 __main__ ERROR Error: archeology_1: Server error '500 Internal Server Error' for url 'http://localhost:16000/run_session'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+Traceback (most recent call last):
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/runner.py", line 73, in _run_one
+    r = await run_single_task(td)
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/ainteract.py", line 126, in run_single_task
+    run_result = await run_agent_session(instance_id, initial_message)
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/ainteract.py", line 91, in run_agent_session
+    return await _post(
+  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/source_snapshot/orchestrator/ainteract.py", line 38, in _post
+    resp.raise_for_status()
+  File "/home/nimir/miniconda3/envs/bird-interact/lib/python3.10/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Server error '500 Internal Server Error' for url 'http://localhost:16000/run_session'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+2026-11-09 11:08:08,336 __main__ INFO === Task 4/72: archeology_9 ===
+2026-11-09 11:08:08,336 orchestrator.ainteract INFO Starting task: archeology_9 (db: archeology)

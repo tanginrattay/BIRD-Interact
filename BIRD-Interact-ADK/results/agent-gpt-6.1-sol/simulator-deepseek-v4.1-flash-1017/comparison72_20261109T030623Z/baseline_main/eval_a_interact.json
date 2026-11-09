@@ -1,0 +1,43 @@
+{
+  "mode": "a-interact",
+  "run_metadata": {
+    "run_id": "20261109T030804Z-00156ce0",
+    "started_at_utc": "2026-11-09T03:08:04.462799+00:00",
+    "system_agent_model": "openai/gpt-6.1-sol",
+    "user_sim_model": "deepseek/deepseek-flash",
+    "user_sim_pipeline": "two_stage",
+    "user_sim_enable_thinking": false,
+    "prompt_version": "v1",
+    "patience": 3,
+    "dataset": "lite",
+    "data_path": "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/tasks.jsonl",
+    "concurrency": 1,
+    "configuration_source": "runner settings; restart services to ensure the same configuration is active"
+  },
+  "metrics": {
+    "total_tasks": 3,
+    "total_reward": 0.0,
+    "average_reward": 0.0,
+    "phase1_rate": 0.0,
+    "phase2_rate": 0.0,
+    "phase1_count": 0,
+    "phase2_count": 0
+  },
+  "results": [
+    {
+      "task_id": "alien_11",
+      "error": "Server error '500 Internal Server Error' for url 'http://localhost:16000/run_session'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500",
+      "total_reward": 0
+    },
+    {
+      "task_id": "alien_7",
+      "error": "Server error '500 Internal Server Error' for url 'http://localhost:16000/run_session'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500",
+      "total_reward": 0
+    },
+    {
+      "task_id": "archeology_1",
+      "error": "Server error '500 Internal Server Error' for url 'http://localhost:16000/run_session'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500",
+      "total_reward": 0
+    }
+  ]
+}

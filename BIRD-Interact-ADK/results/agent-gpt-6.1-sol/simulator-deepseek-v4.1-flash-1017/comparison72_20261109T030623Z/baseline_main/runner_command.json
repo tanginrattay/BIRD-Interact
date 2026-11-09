@@ -1,0 +1,15 @@
+[
+  "/home/nimir/miniconda3/envs/bird-interact/bin/python",
+  "-m",
+  "orchestrator.runner",
+  "--mode",
+  "a-interact",
+  "--data",
+  "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/tasks.jsonl",
+  "--limit",
+  "72",
+  "--concurrency",
+  "1",
+  "--output",
+  "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/baseline_main/eval_a_interact.json"
+]

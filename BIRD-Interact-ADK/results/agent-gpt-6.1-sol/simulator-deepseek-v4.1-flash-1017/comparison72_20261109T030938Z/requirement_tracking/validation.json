@@ -1,0 +1,43 @@
+{
+  "metrics": {
+    "total_tasks": 72,
+    "total_reward": 46.900000000000006,
+    "average_reward": 0.651388888888889,
+    "phase1_rate": 0.7222222222222222,
+    "phase2_rate": 0.4861111111111111,
+    "phase1_count": 52,
+    "phase2_count": 35
+  },
+  "checks": {
+    "72_results": true,
+    "task_ids_and_order_match": true,
+    "unique_ids": true,
+    "72_sessions": true,
+    "all_results_have_trajectories": true,
+    "all_results_have_adk_events": true,
+    "no_task_errors": true,
+    "source_unchanged": true
+  },
+  "task_errors": [],
+  "session_event_count": 1388,
+  "agent_usage": {
+    "cached_content_token_count": 410422,
+    "candidates_token_count": 186199,
+    "prompt_token_count": 7583714,
+    "total_token_count": 7769913,
+    "thoughts_token_count": 18039
+  },
+  "simulator_calls": 392,
+  "simulator_usage": {
+    "completion_tokens": 17618,
+    "prompt_tokens": 1435814,
+    "total_tokens": 1453432,
+    "prompt_cache_hit_tokens": 1267072,
+    "prompt_cache_miss_tokens": 168742
+  },
+  "state_observations": {
+    "model_responses": 638,
+    "responses_with_state_error": 1,
+    "unchanged_response_checks": true
+  }
+}

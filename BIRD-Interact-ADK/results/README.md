@@ -39,3 +39,7 @@ results/agent-<配置模型>/simulator-<配置模型>/<UTC时间>-<随机ID>/eva
 ## DeepSeek V4.1 Flash 1017 / Native Requirement State / 72题
 
 [实验说明](agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/requirement_native72_20261108T101116Z/README.md)、[结果汇总](agent-deepseek-v4.1-flash-1017/simulator-deepseek-v4.1-flash-1017/requirement_native72_20261108T101116Z/RESULTS.md)：与上方 Baseline 的72题内容和顺序一致；P1=15/72，P2=7/72，平均reward=0.175。Agent与Simulator均调用DeepSeek官方API，请求名为deepseek/deepseek-flash，按用户确认归档为V4.1 Flash 1017。完整Session、State记录、源码快照和迁移说明均在目录内。
+
+## AINET gpt-6.1-sol / Baseline 与 Native Requirement State / 72题
+
+[归档入口](agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/README.md)、[完整对照报告](agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030938Z/COMPARISON.md)：2026-11-09 依次运行 `main@8138403` 和 `state/requirement-tracking@4ff1580`，各72题，Simulator保持昨日配置。Baseline P1=54/72、P2=37/72、平均reward=0.679167；Native State P1=52/72、P2=35/72、平均reward=0.651389。两组任务运行错误均为0；完整Session、逐题轨迹、State审计、用量、源码快照和启动失败证据均保留。两组均省略AINET不支持的temperature参数；单次运行不构成稳定收益证明。

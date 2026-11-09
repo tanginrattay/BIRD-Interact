@@ -1,0 +1,17 @@
+{
+  "tool_trajectory_counts": {
+    "get_schema": 72,
+    "get_all_knowledge_definitions": 10,
+    "ask_user": 168,
+    "execute_sql": 127,
+    "submit_sql": 167,
+    "get_all_external_knowledge_names": 67,
+    "get_knowledge_definition": 176,
+    "get_all_column_meanings": 8,
+    "get_column_meaning": 40
+  },
+  "total_budget_used": 1194.0,
+  "task_elapsed_seconds_total": 3303.2680263519287,
+  "source_result_sha256": "05e627c93d3bc2fd75be48227408475d6f3a60605b51731aa84999abc9de092b",
+  "exported_tasks": 72
+}
