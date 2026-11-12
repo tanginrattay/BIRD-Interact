@@ -20,6 +20,8 @@ build/
 
 # Results & logs
 results/
+trajectory_analysis/
+trashbin/
 *.log
 batch_evaluation.log
 
