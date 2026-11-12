@@ -1,5 +1,7 @@
 # BIRD-Interact-ADK
 
+本地 Text-to-SQL Scaffold 研究入口：[项目介绍与文档导航](agent/README.md)。
+
 **Google ADK-based implementation of the [BIRD-Interact](https://bird-interact.github.io/) benchmark** — an interactive text-to-SQL evaluation framework with dynamic agent-environment interactions.
 
 This is the official ADK agent implementation for running BIRD-Interact evaluations. It provides a modular, service-based architecture with parallel experiment execution, supporting both **Conversational Interaction (c-Interact)** and **Agentic Interaction (a-Interact)** modes.
@@ -17,10 +19,6 @@ orchestrator/runner.py          Parallel evaluation runner (--mode, --concurrenc
                 |
                 └── PostgreSQL      BIRD-Interact databases (Docker)
 ```
-
-<p align="center">
-  <img src="docs/architecture.png" alt="BIRD-Interact-ADK Architecture" width="80%">
-</p>
 
 **Key features:**
 
