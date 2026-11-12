@@ -20,6 +20,7 @@ build/
 
 # Results & logs
 results/
+trajectory_analysis/
 *.log
 batch_evaluation.log
 

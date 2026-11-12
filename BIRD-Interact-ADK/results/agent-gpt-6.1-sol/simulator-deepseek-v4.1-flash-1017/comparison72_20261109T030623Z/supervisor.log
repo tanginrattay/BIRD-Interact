@@ -1,5 +1,0 @@
-2026-11-09T03:08:08.353564+00:00 baseline_main 3 {"total_tasks": 3, "total_reward": 0.0, "average_reward": 0.0, "phase1_rate": 0.0, "phase2_rate": 0.0, "phase1_count": 0, "phase2_count": 0}
-Traceback (most recent call last):
-  File "/home/nimir/study/adb/BIRD-Interact/BIRD-Interact-ADK/results/agent-gpt-6.1-sol/simulator-deepseek-v4.1-flash-1017/comparison72_20261109T030623Z/supervise.py", line 130, in <module>
-    if n>=3 and all(r.get('error') for r in data['results'][-3:]):raise RuntimeError('Three consecutive task errors; stopped to avoid invalid batch')
-RuntimeError: Three consecutive task errors; stopped to avoid invalid batch

@@ -1,6 +1,0 @@
-{
-  "status": "failed_before_services",
-  "error": "ModuleNotFoundError: shared",
-  "external_calls": 0,
-  "fix": "Set project import path in experiment launcher only; production unchanged"
-}

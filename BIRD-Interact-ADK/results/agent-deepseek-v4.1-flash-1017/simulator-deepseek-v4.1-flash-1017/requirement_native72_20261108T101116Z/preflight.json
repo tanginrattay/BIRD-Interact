@@ -1,8 +1,0 @@
-{
-  "tasks_count": 72,
-  "tasks_byte_identical_to_baseline": true,
-  "production_matches_verified_snapshot": true,
-  "status": "awaiting_explicit_72_task_external_transfer_authorization",
-  "supervisor_started": false,
-  "runner_started": false
-}
